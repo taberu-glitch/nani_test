@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ナニウルのブランド品買取。Louis Vuitton・CHANEL・Hermès・GUCCIなど人気ブランドを高価買取。">
+<title>ブランド品買取｜ナニウル 八王子の高価買取専門店</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Hiragino Kaku Gothic ProN','Hiragino Sans','Noto Sans JP',Meiryo,sans-serif;font-size:14px;line-height:1.7;color:#222;background:#f7f7f7}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+ul,ol{list-style:none}
+:root{--navy:#1B2F6E;--navy2:#111F4D;--gold:#B8860B;--red:#C0392B;--white:#fff;--gray1:#F5F5F5;--gray2:#E8E8E8;--gray3:#BBBBBB;--gray4:#888888;--text:#222222;--border:#DDDDDD;--r4:4px;--shadow:0 2px 8px rgba(0,0,0,0.08)}
+.inner{max-width:1200px;margin:0 auto;padding:0 16px}
+
+/* HEADER */
+.site-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:300;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.site-header__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:16px}
+.site-logo{font-size:22px;font-weight:700;color:var(--navy);letter-spacing:.1em}
+.site-logo span{font-size:11px;color:var(--gray4);margin-left:8px;font-weight:400}
+.header-nav{display:flex;gap:0;margin-left:auto}
+.header-nav a{font-size:12px;font-weight:600;color:var(--gray4);padding:0 14px;height:60px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.header-nav a:hover,.header-nav a.active{color:var(--navy);border-bottom-color:var(--navy)}
+.header-tel{font-size:14px;font-weight:700;color:var(--navy);border:1.5px solid var(--navy);padding:8px 16px;border-radius:4px;margin-left:8px;white-space:nowrap}
+
+/* BREADCRUMB */
+.breadcrumb{background:#fff;border-bottom:1px solid var(--border);padding:10px 0}
+.breadcrumb__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;gap:0;align-items:center;font-size:12px;color:var(--gray4);flex-wrap:wrap}
+.breadcrumb__inner a{color:var(--gray4);transition:color .12s}
+.breadcrumb__inner a:hover{color:var(--navy)}
+.breadcrumb__sep{margin:0 8px}
+
+/* PAGE HERO */
+.page-hero{background:linear-gradient(135deg,#0d1b4b 0%,var(--navy2) 60%,#2a4a99 100%);padding:36px 0;border-bottom:3px solid var(--gold)}
+.page-hero__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:32px}
+.page-hero__text .label{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}
+.page-hero__text h1{font-size:30px;font-weight:700;color:#fff;margin-bottom:8px}
+.page-hero__text p{font-size:13px;color:rgba(255,255,255,.65);max-width:520px;line-height:1.8}
+.page-hero__badge-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.hero-badge{padding:5px 14px;border:1px solid rgba(255,255,255,.3);border-radius:20px;font-size:12px;font-weight:700;color:rgba(255,255,255,.8)}
+.hero-badge--gold{background:var(--gold);border-color:var(--gold);color:#fff}
+
+/* CAT HIERARCHY */
+.main-layout{max-width:1200px;margin:24px auto;padding:0 16px;display:flex;gap:24px;align-items:flex-start}
+.main-content{flex:1;min-width:0}
+.sidebar{width:220px;flex-shrink:0;position:sticky;top:72px}
+
+/* SIDEBAR */
+.sidebar-section{background:#fff;border:1px solid var(--border);border-radius:var(--r4);margin-bottom:16px;overflow:hidden}
+.sidebar-section__head{font-size:12px;font-weight:700;color:#fff;background:var(--navy);padding:10px 14px;letter-spacing:.05em}
+.sidebar-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;font-size:13px;color:var(--text);border-bottom:1px solid var(--border);transition:background .12s,color .12s}
+.sidebar-item:last-child{border-bottom:none}
+.sidebar-item:hover,.sidebar-item.is-active{background:#e8edf7;color:var(--navy)}
+.sidebar-item.is-active{font-weight:700}
+.sidebar-item__name{font-weight:600}
+.sidebar-item__arrow{font-size:10px;color:var(--gray3)}
+
+/* SECTION HEAD */
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--navy)}
+.section-head__title{font-size:17px;font-weight:700;color:var(--navy)}
+.section-head__sub{font-size:12px;color:var(--gray4)}
+
+/* ★ 中カテゴリーカード（大カテゴリーページに表示） */
+.mid-cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+.mid-cat-card{background:#fff;border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;transition:box-shadow .2s,transform .18s;cursor:pointer}
+.mid-cat-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.mid-cat-card__header{padding:20px 20px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px}
+.mid-cat-card__icon{width:52px;height:52px;border-radius:12px;background:var(--gray1);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.mid-cat-card__header-text{}
+.mid-cat-card__name{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.mid-cat-card__count{font-size:11px;color:var(--gray4)}
+.mid-cat-card__brands{padding:14px 20px;display:flex;flex-wrap:wrap;gap:6px}
+.mid-cat-brand{font-size:11px;padding:3px 10px;border:1px solid var(--border);border-radius:12px;color:var(--text);background:#fff;transition:all .12s;white-space:nowrap}
+.mid-cat-brand:hover{border-color:var(--navy);color:var(--navy);background:#e8edf7}
+.mid-cat-brand--strong{border-color:var(--gold);color:var(--gold)}
+.mid-cat-card__footer{padding:10px 20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.mid-cat-card__footer-link{font-size:12px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:4px}
+.mid-cat-card__footer-link:hover{text-decoration:underline}
+
+/* POINT BOXES */
+.point-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.point-box{background:#fff;border:1px solid var(--border);border-radius:var(--r4);padding:18px;border-top:3px solid var(--navy)}
+.point-box__num{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.12em;margin-bottom:6px}
+.point-box__title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.point-box__desc{font-size:12px;color:var(--gray4);line-height:1.7}
+
+/* ITEM CHECKLIST */
+.checklist{background:#fff;border:1px solid var(--border);border-radius:var(--r4);padding:20px;margin-bottom:28px}
+.checklist h3{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.checklist-items{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.checklist-item{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text);padding:6px 8px;background:var(--gray1);border-radius:var(--r4)}
+.checklist-item::before{content:'✓';color:var(--navy);font-weight:700;flex-shrink:0}
+
+/* FOOTER */
+.site-footer{background:var(--navy2);margin-top:48px;padding:32px 0 20px}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;gap:32px;flex-wrap:wrap;margin-bottom:20px}
+.footer-col-head{font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.footer-link{display:block;font-size:12px;color:rgba(255,255,255,.6);padding:3px 0;transition:color .12s}
+.footer-link:hover{color:var(--gold)}
+.footer-copy{text-align:center;font-size:11px;color:rgba(255,255,255,.3);border-top:1px solid rgba(255,255,255,.08);padding:16px;max-width:1200px;margin:0 auto}
+
+/* CTA */
+.cta-band{background:var(--navy);padding:32px 0}
+.cta-band__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.cta-band h2{font-size:20px;font-weight:700;color:#fff}
+.cta-band p{font-size:13px;color:rgba(255,255,255,.7);margin-top:4px}
+.cta-btns{display:flex;gap:10px;flex-wrap:wrap}
+.cta-btn{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;font-size:13px;font-weight:700;border-radius:var(--r4);transition:opacity .15s;white-space:nowrap}
+.cta-btn:hover{opacity:.88}
+.cta-btn--gold{background:var(--gold);color:#fff}
+.cta-btn--white{background:#fff;color:var(--navy)}
+
+@media(max-width:768px){
+  .main-layout{flex-direction:column}
+  .sidebar{width:100%;position:static}
+  .mid-cat-grid,.point-grid{grid-template-columns:1fr 1fr}
+  .checklist-items{grid-template-columns:1fr 1fr}
+  .header-nav{display:none}
+}
+@media(max-width:480px){
+  .mid-cat-grid,.point-grid{grid-template-columns:1fr}
+  .checklist-items{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="../index.html" class="site-logo">ナニウル<span>八王子の高価買取専門店</span></a>
+    <nav class="header-nav">
+      <a href="index.html" class="active">買取商品</a>
+      <a href="../flow/index.html">買取の流れ</a>
+      <a href="../results/index.html">買取実績</a>
+      <a href="../reason/index.html">選ばれる理由</a>
+      <a href="../faq/index.html">よくある質問</a>
+      <a href="../blog/index.html">ブログ</a>
+    </nav>
+    <a href="tel:0426000000" class="header-tel">042-600-0000</a>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb__inner">
+    <a href="../index.html">HOME</a>
+    <span class="breadcrumb__sep">›</span>
+    <a href="index.html">買取商品</a>
+    <span class="breadcrumb__sep">›</span>
+    <span>ブランド品</span>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero__inner">
+    <div class="page-hero__text">
+      <div class="label">Brand Items</div>
+      <h1>ブランド品 買取</h1>
+      <p>Louis Vuitton・CHANEL・Hermès・GUCCIなど国内外の人気ブランドを高価買取。バッグ・財布・ベルト・衣類など幅広いアイテムに対応しています。</p>
+      <div class="page-hero__badge-list">
+        <span class="hero-badge hero-badge--gold">手数料無料</span>
+        <span class="hero-badge">キャンセル無料</span>
+        <span class="hero-badge">即日現金払い</span>
+        <span class="hero-badge">LINE査定OK</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="main-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section__head">買取ジャンル</div>
+      <a href="kikinzoku.html" class="sidebar-item"><span class="sidebar-item__name">金・プラチナ・銀</span><span class="sidebar-item__arrow">›</span></a>
+      <a href="brand.html" class="sidebar-item is-active"><span class="sidebar-item__name">ブランド品</span><span class="sidebar-item__arrow">›</span></a>
+      <a href="watch.html" class="sidebar-item"><span class="sidebar-item__name">腕時計</span><span class="sidebar-item__arrow">›</span></a>
+      <a href="jewelry.html" class="sidebar-item"><span class="sidebar-item__name">宝石・ジュエリー</span><span class="sidebar-item__arrow">›</span></a>
+      <a href="antique.html" class="sidebar-item"><span class="sidebar-item__name">骨董・古美術</span><span class="sidebar-item__arrow">›</span></a>
+      <a href="camera.html" class="sidebar-item"><span class="sidebar-item__name">カメラ・光学機器</span><span class="sidebar-item__arrow">›</span></a>
+      <a href="coin.html" class="sidebar-item"><span class="sidebar-item__name">古銭・切手</span><span class="sidebar-item__arrow">›</span></a>
+      <a href="other.html" class="sidebar-item"><span class="sidebar-item__name">その他なんでも</span><span class="sidebar-item__arrow">›</span></a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section__head">中カテゴリー</div>
+      <a href="brand/bag.html" class="sidebar-item"><span class="sidebar-item__name">バッグ・鞄</span><span class="sidebar-item__arrow">›</span></a>
+      <a href="brand/wallet.html" class="sidebar-item"><span class="sidebar-item__name">財布・小物</span><span class="sidebar-item__arrow">›</span></a>
+      <a href="brand/accessory.html" class="sidebar-item"><span class="sidebar-item__name">アクセサリー</span><span class="sidebar-item__arrow">›</span></a>
+      <a href="brand/clothing.html" class="sidebar-item"><span class="sidebar-item__name">衣類・スカーフ</span><span class="sidebar-item__arrow">›</span></a>
+    </div>
+    <div class="sidebar-section" style="background:var(--navy);padding:16px;border:none">
+      <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px">ブランド品を売りたい</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.6);margin-bottom:14px">まずはLINEで写真を送るだけ</div>
+      <a href="../flow/line.html" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:10px;background:var(--gold);color:#fff;font-size:13px;font-weight:700;border-radius:4px;margin-bottom:8px">LINE査定（24時間）</a>
+      <a href="../contact/index.html" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:10px;border:1px solid rgba(255,255,255,.4);color:rgba(255,255,255,.85);font-size:13px;font-weight:700;border-radius:4px">メールで相談</a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- 高価買取のポイント -->
+    <section style="margin-bottom:28px">
+      <div class="section-head">
+        <h2 class="section-head__title">ブランド品を高く売るポイント</h2>
+      </div>
+      <div class="point-grid">
+        <div class="point-box">
+          <div class="point-box__num">POINT 01</div>
+          <div class="point-box__title">付属品は必ず揃える</div>
+          <div class="point-box__desc">箱・保存袋・保証書・鑑定書があると査定額が大幅アップ。なくても買取可能です。</div>
+        </div>
+        <div class="point-box">
+          <div class="point-box__num">POINT 02</div>
+          <div class="point-box__title">正規品であることを証明</div>
+          <div class="point-box__desc">シリアルナンバーや購入時のレシートがあれば価値の証明になります。</div>
+        </div>
+        <div class="point-box">
+          <div class="point-box__num">POINT 03</div>
+          <div class="point-box__title">状態は正直に教える</div>
+          <div class="point-box__desc">キズ・汚れがあっても買取可能。状態を事前に伝えることでスムーズな査定が可能。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ★ 中カテゴリー一覧（階層構造の核心） -->
+    <section style="margin-bottom:32px">
+      <div class="section-head">
+        <h2 class="section-head__title">カテゴリーから選ぶ</h2>
+        <span class="section-head__sub">ブランド名・商品種別で絞り込めます</span>
+      </div>
+      <div class="mid-cat-grid">
+
+        <!-- バッグ・鞄 -->
+        <a href="brand/bag.html" class="mid-cat-card">
+          <div class="mid-cat-card__header">
+            <div class="mid-cat-card__icon">👜</div>
+            <div class="mid-cat-card__header-text">
+              <div class="mid-cat-card__name">バッグ・鞄</div>
+              <div class="mid-cat-card__count">取扱実績 240件+</div>
+            </div>
+          </div>
+          <div class="mid-cat-card__brands">
+            <span class="mid-cat-brand mid-cat-brand--strong">HERMÈS</span>
+            <span class="mid-cat-brand mid-cat-brand--strong">CHANEL</span>
+            <span class="mid-cat-brand">Louis Vuitton</span>
+            <span class="mid-cat-brand">GUCCI</span>
+            <span class="mid-cat-brand">PRADA</span>
+            <span class="mid-cat-brand">CELINE</span>
+          </div>
+          <div class="mid-cat-card__footer">
+            <span class="mid-cat-card__footer-link">商品一覧を見る →</span>
+            <span style="font-size:11px;color:var(--gray4)">85商品</span>
+          </div>
+        </a>
+
+        <!-- 財布・小物 -->
+        <a href="brand/wallet.html" class="mid-cat-card">
+          <div class="mid-cat-card__header">
+            <div class="mid-cat-card__icon">👛</div>
+            <div class="mid-cat-card__header-text">
+              <div class="mid-cat-card__name">財布・小物</div>
+              <div class="mid-cat-card__count">取扱実績 180件+</div>
+            </div>
+          </div>
+          <div class="mid-cat-card__brands">
+            <span class="mid-cat-brand">Louis Vuitton</span>
+            <span class="mid-cat-brand">CHANEL</span>
+            <span class="mid-cat-brand">GUCCI</span>
+            <span class="mid-cat-brand">Bottega Veneta</span>
+            <span class="mid-cat-brand">BALENCIAGA</span>
+          </div>
+          <div class="mid-cat-card__footer">
+            <span class="mid-cat-card__footer-link">商品一覧を見る →</span>
+            <span style="font-size:11px;color:var(--gray4)">62商品</span>
+          </div>
+        </a>
+
+        <!-- アクセサリー -->
+        <a href="brand/accessory.html" class="mid-cat-card">
+          <div class="mid-cat-card__header">
+            <div class="mid-cat-card__icon">💍</div>
+            <div class="mid-cat-card__header-text">
+              <div class="mid-cat-card__name">アクセサリー</div>
+              <div class="mid-cat-card__count">取扱実績 130件+</div>
+            </div>
+          </div>
+          <div class="mid-cat-card__brands">
+            <span class="mid-cat-brand mid-cat-brand--strong">Cartier</span>
+            <span class="mid-cat-brand mid-cat-brand--strong">BVLGARI</span>
+            <span class="mid-cat-brand">Tiffany & Co.</span>
+            <span class="mid-cat-brand">CHANEL</span>
+            <span class="mid-cat-brand">Van Cleef</span>
+          </div>
+          <div class="mid-cat-card__footer">
+            <span class="mid-cat-card__footer-link">商品一覧を見る →</span>
+            <span style="font-size:11px;color:var(--gray4)">48商品</span>
+          </div>
+        </a>
+
+        <!-- 衣類 -->
+        <a href="brand/clothing.html" class="mid-cat-card">
+          <div class="mid-cat-card__header">
+            <div class="mid-cat-card__icon">👔</div>
+            <div class="mid-cat-card__header-text">
+              <div class="mid-cat-card__name">衣類・スカーフ</div>
+              <div class="mid-cat-card__count">取扱実績 90件+</div>
+            </div>
+          </div>
+          <div class="mid-cat-card__brands">
+            <span class="mid-cat-brand">HERMÈS</span>
+            <span class="mid-cat-brand">CHANEL</span>
+            <span class="mid-cat-brand">Versace</span>
+            <span class="mid-cat-brand">Burberry</span>
+          </div>
+          <div class="mid-cat-card__footer">
+            <span class="mid-cat-card__footer-link">商品一覧を見る →</span>
+            <span style="font-size:11px;color:var(--gray4)">31商品</span>
+          </div>
+        </a>
+
+        <!-- ベルト -->
+        <a href="brand/belt.html" class="mid-cat-card">
+          <div class="mid-cat-card__header">
+            <div class="mid-cat-card__icon">🔗</div>
+            <div class="mid-cat-card__header-text">
+              <div class="mid-cat-card__name">ベルト・革小物</div>
+              <div class="mid-cat-card__count">取扱実績 60件+</div>
+            </div>
+          </div>
+          <div class="mid-cat-card__brands">
+            <span class="mid-cat-brand">HERMÈS</span>
+            <span class="mid-cat-brand">GUCCI</span>
+            <span class="mid-cat-brand">Louis Vuitton</span>
+          </div>
+          <div class="mid-cat-card__footer">
+            <span class="mid-cat-card__footer-link">商品一覧を見る →</span>
+            <span style="font-size:11px;color:var(--gray4)">24商品</span>
+          </div>
+        </a>
+
+        <!-- その他ブランド -->
+        <a href="brand/other.html" class="mid-cat-card">
+          <div class="mid-cat-card__header">
+            <div class="mid-cat-card__icon">✨</div>
+            <div class="mid-cat-card__header-text">
+              <div class="mid-cat-card__name">その他ブランド品</div>
+              <div class="mid-cat-card__count">掲載外も買取可能</div>
+            </div>
+          </div>
+          <div class="mid-cat-card__brands">
+            <span class="mid-cat-brand">Fendi</span>
+            <span class="mid-cat-brand">Dior</span>
+            <span class="mid-cat-brand">YSL</span>
+            <span class="mid-cat-brand">Givenchy</span>
+            <span class="mid-cat-brand">まず相談</span>
+          </div>
+          <div class="mid-cat-card__footer">
+            <span class="mid-cat-card__footer-link">お問い合わせ →</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- 買取対象商品チェックリスト -->
+    <div class="checklist">
+      <h3>こんなブランド品も買取できます</h3>
+      <div class="checklist-items">
+        <div class="checklist-item">壊れたファスナー</div>
+        <div class="checklist-item">型崩れしたバッグ</div>
+        <div class="checklist-item">金具が錆びた財布</div>
+        <div class="checklist-item">シミ・汚れがある品</div>
+        <div class="checklist-item">箱・保存袋なし</div>
+        <div class="checklist-item">保証書なし</div>
+        <div class="checklist-item">古い型番・廃盤品</div>
+        <div class="checklist-item">使用感のある品</div>
+        <div class="checklist-item">コピー品はNG</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band__inner">
+    <div>
+      <h2>ブランド品の査定はナニウルへ</h2>
+      <p>手数料・キャンセル料すべて無料。今すぐお気軽にどうぞ。</p>
+    </div>
+    <div class="cta-btns">
+      <a href="../flow/line.html" class="cta-btn cta-btn--gold">LINE査定（24時間）</a>
+      <a href="tel:0426000000" class="cta-btn cta-btn--white">042-600-0000</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-col-head">買取商品</div>
+      <a href="kikinzoku.html" class="footer-link">金・プラチナ・銀</a>
+      <a href="brand.html" class="footer-link">ブランド品</a>
+      <a href="watch.html" class="footer-link">腕時計</a>
+      <a href="jewelry.html" class="footer-link">宝石・ジュエリー</a>
+    </div>
+    <div>
+      <div class="footer-col-head">買取の流れ</div>
+      <a href="../flow/tenpo.html" class="footer-link">店頭買取</a>
+      <a href="../flow/takuhai.html" class="footer-link">宅配買取</a>
+      <a href="../flow/syuttyou.html" class="footer-link">出張買取</a>
+      <a href="../flow/line.html" class="footer-link">LINE査定</a>
+    </div>
+    <div>
+      <div class="footer-col-head">サポート</div>
+      <a href="../faq/index.html" class="footer-link">よくある質問</a>
+      <a href="../voice/index.html" class="footer-link">お客様の声</a>
+      <a href="../blog/index.html" class="footer-link">ブログ</a>
+      <a href="../contact/index.html" class="footer-link">お問い合わせ</a>
+    </div>
+    <div>
+      <div class="footer-col-head">会社情報</div>
+      <a href="../company/index.html" class="footer-link">会社概要</a>
+      <a href="../company/access.html" class="footer-link">アクセス</a>
+      <a href="../company/recruit.html" class="footer-link">採用情報</a>
+    </div>
+  </div>
+  <p class="footer-copy">東京都公安委員会許可 第308832000000号 © ナニウル / 株式会社yxxk</p>
+</footer>
+
+</body>
+</html>

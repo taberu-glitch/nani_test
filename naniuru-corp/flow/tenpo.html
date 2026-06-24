@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ナニウルの店頭買取。八王子の店舗に持ち込むだけ。当日現金払い、予約不要。">
+<title>店頭買取｜ナニウル 八王子の高価買取専門店</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Hiragino Kaku Gothic ProN','Hiragino Sans','Noto Sans JP',Meiryo,sans-serif;font-size:14px;line-height:1.7;color:#222;background:#f7f7f7}
+a{color:inherit;text-decoration:none}
+:root{--navy:#1B2F6E;--navy2:#111F4D;--gold:#B8860B;--red:#C0392B;--white:#fff;--gray1:#F5F5F5;--gray2:#E8E8E8;--gray3:#BBBBBB;--gray4:#888888;--text:#222222;--border:#DDDDDD;--r4:4px;--shadow:0 2px 8px rgba(0,0,0,0.08)}
+.site-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:300;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.site-header__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:16px}
+.site-logo{font-size:22px;font-weight:700;color:var(--navy);letter-spacing:.1em}
+.site-logo span{font-size:11px;color:var(--gray4);margin-left:8px;font-weight:400}
+.header-nav{display:flex;gap:0;margin-left:auto}
+.header-nav a{font-size:12px;font-weight:600;color:var(--gray4);padding:0 14px;height:60px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.header-nav a:hover,.header-nav a.active{color:var(--navy);border-bottom-color:var(--navy)}
+.header-tel{font-size:14px;font-weight:700;color:var(--navy);border:1.5px solid var(--navy);padding:8px 16px;border-radius:4px;margin-left:8px;white-space:nowrap}
+.breadcrumb{background:#fff;border-bottom:1px solid var(--border);padding:10px 0}
+.breadcrumb__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;gap:0;align-items:center;font-size:12px;color:var(--gray4);flex-wrap:wrap}
+.breadcrumb__inner a{color:var(--gray4)}
+.breadcrumb__sep{margin:0 8px}
+.page-hero{background:linear-gradient(135deg,#0d1b4b 0%,var(--navy2) 60%,#2a4a99 100%);padding:36px 0;border-bottom:3px solid var(--gold)}
+.page-hero__inner{max-width:1200px;margin:0 auto;padding:0 16px}
+.page-hero__text .label{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}
+.page-hero__text h1{font-size:30px;font-weight:700;color:#fff;margin-bottom:8px}
+.page-hero__text p{font-size:13px;color:rgba(255,255,255,.65);max-width:600px;line-height:1.8}
+.badge-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.badge{padding:5px 14px;border:1px solid rgba(255,255,255,.3);border-radius:20px;font-size:12px;font-weight:700;color:rgba(255,255,255,.8)}
+.badge--gold{background:var(--gold);border-color:var(--gold);color:#fff}
+.main-wrap{max-width:900px;margin:40px auto;padding:0 16px}
+.steps-card{background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:32px}
+.steps-card__head{background:var(--navy);color:#fff;padding:14px 24px;font-size:14px;font-weight:700}
+.steps{padding:0 24px}
+.step{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border)}
+.step:last-child{border-bottom:none}
+.step__num{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step__title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.step__desc{font-size:13px;color:var(--gray4);line-height:1.8}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.info-box{background:#fff;border:1px solid var(--border);border-radius:var(--r4);padding:20px}
+.info-box__head{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:.1em;margin-bottom:8px}
+.info-box__val{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.info-box__sub{font-size:12px;color:var(--gray4)}
+.notice-box{background:#fff8e0;border:1px solid #ffe08a;border-radius:var(--r4);padding:16px 20px;margin-bottom:28px;font-size:13px;color:#5a4a1a;line-height:1.8}
+.notice-box strong{color:#8a5a00}
+.map-placeholder{background:var(--gray2);border-radius:var(--r4);height:220px;display:flex;align-items:center;justify-content:center;color:var(--gray4);font-size:13px;margin-bottom:32px;overflow:hidden}
+.map-placeholder iframe{width:100%;height:100%;border:none}
+.site-footer{background:var(--navy2);margin-top:48px;padding:32px 0 20px}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;gap:32px;flex-wrap:wrap;margin-bottom:20px}
+.footer-col-head{font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.footer-link{display:block;font-size:12px;color:rgba(255,255,255,.6);padding:3px 0;transition:color .12s}
+.footer-link:hover{color:var(--gold)}
+.footer-copy{text-align:center;font-size:11px;color:rgba(255,255,255,.3);border-top:1px solid rgba(255,255,255,.08);padding:16px;max-width:1200px;margin:0 auto}
+.cta-band{background:var(--navy);padding:32px 0}
+.cta-band__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.cta-band h2{font-size:20px;font-weight:700;color:#fff}
+.cta-band p{font-size:13px;color:rgba(255,255,255,.7);margin-top:4px}
+.cta-btns{display:flex;gap:10px;flex-wrap:wrap}
+.cta-btn{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;font-size:13px;font-weight:700;border-radius:var(--r4);transition:opacity .15s;white-space:nowrap}
+.cta-btn:hover{opacity:.88}
+.cta-btn--gold{background:var(--gold);color:#fff}
+.cta-btn--white{background:#fff;color:var(--navy)}
+@media(max-width:600px){.info-grid{grid-template-columns:1fr}.header-nav{display:none}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="../index.html" class="site-logo">ナニウル<span>八王子の高価買取専門店</span></a>
+    <nav class="header-nav">
+      <a href="../product/brand.html">買取商品</a>
+      <a href="index.html" class="active">買取の流れ</a>
+      <a href="../results/index.html">買取実績</a>
+      <a href="../reason/index.html">選ばれる理由</a>
+      <a href="../faq/index.html">よくある質問</a>
+    </nav>
+    <a href="tel:0426000000" class="header-tel">042-600-0000</a>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb__inner">
+    <a href="../index.html">HOME</a><span class="breadcrumb__sep">›</span>
+    <a href="index.html">買取の流れ</a><span class="breadcrumb__sep">›</span>
+    <span>店頭買取</span>
+  </div>
+</div>
+<div class="page-hero">
+  <div class="page-hero__inner">
+    <div class="page-hero__text">
+      <div class="label">In-Store Purchase</div>
+      <h1>店頭買取</h1>
+      <p>八王子の店舗へお品物をお持ちください。スタッフが丁寧に査定し、その場で現金をお支払いします。予約不要でいつでもお越しいただけます。</p>
+      <div class="badge-list">
+        <span class="badge badge--gold">当日現金払い</span>
+        <span class="badge">予約不要</span>
+        <span class="badge">手数料無料</span>
+        <span class="badge">キャンセル無料</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-wrap">
+  <div class="info-grid">
+    <div class="info-box">
+      <div class="info-box__head">営業時間</div>
+      <div class="info-box__val">10:00 〜 19:00</div>
+      <div class="info-box__sub">年中無休（年末年始は変更の場合あり）</div>
+    </div>
+    <div class="info-box">
+      <div class="info-box__head">所在地</div>
+      <div class="info-box__val">東京都八王子市</div>
+      <div class="info-box__sub">詳細住所は<a href="../company/access.html" style="color:var(--navy);text-decoration:underline">アクセスページ</a>をご確認ください</div>
+    </div>
+    <div class="info-box">
+      <div class="info-box__head">電話番号</div>
+      <div class="info-box__val">042-600-0000</div>
+      <div class="info-box__sub">営業時間内いつでもお電話ください</div>
+    </div>
+    <div class="info-box">
+      <div class="info-box__head">必要なもの</div>
+      <div class="info-box__val">身分証 1点</div>
+      <div class="info-box__sub">運転免許証・マイナンバーカード等</div>
+    </div>
+  </div>
+
+  <div class="notice-box">
+    <strong>📋 ご来店前のご確認</strong><br>
+    古物営業法に基づき、買取時には身分証明書（顔写真付き）のご提示が必要です。18歳未満の方の買取はお断りしています。
+  </div>
+
+  <div class="steps-card">
+    <div class="steps-card__head">🏪 店頭買取の流れ</div>
+    <div class="steps">
+      <div class="step"><div class="step__num">1</div><div class="step__content"><div class="step__title">ご来店</div><div class="step__desc">お品物をお持ちになってご来店ください。予約不要です。複数点でも大歓迎。</div></div></div>
+      <div class="step"><div class="step__num">2</div><div class="step__content"><div class="step__title">受付・仮査定</div><div class="step__desc">スタッフがお品物をお預かりし、状態・ブランド・付属品を確認します。</div></div></div>
+      <div class="step"><div class="step__num">3</div><div class="step__content"><div class="step__title">査定（15〜30分）</div><div class="step__desc">専門スタッフが相場・状態・希少性をもとに査定。点数によって時間が異なります。</div></div></div>
+      <div class="step"><div class="step__num">4</div><div class="step__content"><div class="step__title">買取金額のご提示・ご確認</div><div class="step__desc">査定額をご提示します。金額に納得いただけない場合は無料でキャンセルできます。</div></div></div>
+      <div class="step"><div class="step__num">5</div><div class="step__content"><div class="step__title">身分証のご提示</div><div class="step__desc">古物営業法に基づき、顔写真付き身分証の提示と書類へのご記入をお願いします。</div></div></div>
+      <div class="step"><div class="step__num">6</div><div class="step__content"><div class="step__title">現金でお支払い</div><div class="step__desc">その場で現金をお渡しします。レシートをお渡しし、お手続き完了です。</div></div></div>
+    </div>
+  </div>
+
+  <div class="map-placeholder">
+    <span>地図（Googleマップ埋め込み ※本番時に差し替え）</span>
+  </div>
+</div>
+
+<div class="cta-band">
+  <div class="cta-band__inner">
+    <div><h2>まずはお気軽にご来店ください</h2><p>査定・見積りだけでもOK。もちろん無料です。</p></div>
+    <div class="cta-btns">
+      <a href="line.html" class="cta-btn cta-btn--gold">📱 LINE査定（24時間）</a>
+      <a href="tel:0426000000" class="cta-btn cta-btn--white">📞 042-600-0000</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><div class="footer-col-head">Service</div><a href="tenpo.html" class="footer-link">店頭買取</a><a href="takuhai.html" class="footer-link">宅配買取</a><a href="syuttyou.html" class="footer-link">出張買取</a><a href="line.html" class="footer-link">LINE査定</a></div>
+    <div><div class="footer-col-head">Buy Items</div><a href="../product/kikinzoku.html" class="footer-link">金・プラチナ・銀</a><a href="../product/brand.html" class="footer-link">ブランド品</a><a href="../product/watch.html" class="footer-link">腕時計</a></div>
+    <div><div class="footer-col-head">Contact</div><div style="color:rgba(255,255,255,.7);font-size:20px;font-weight:700;margin-bottom:4px">042-600-0000</div><div style="color:rgba(255,255,255,.4);font-size:11px">営業時間 10:00〜19:00 年中無休</div></div>
+  </div>
+  <div class="footer-copy">© 2024 ナニウル（株式会社yxxk）All Rights Reserved.</div>
+</footer>
+</body>
+</html>

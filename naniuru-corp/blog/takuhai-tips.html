@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宅配買取を初めて使う方へ。梱包のコツと注意点まとめ｜ナニウル ブログ</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Hiragino Kaku Gothic ProN','Hiragino Sans','Noto Sans JP',Meiryo,sans-serif;font-size:14px;line-height:1.7;color:#222;background:#f7f7f7}
+a{color:inherit;text-decoration:none}
+:root{--navy:#1B2F6E;--navy2:#111F4D;--gold:#B8860B;--red:#C0392B;--gray1:#F5F5F5;--gray4:#888888;--border:#DDDDDD;--r4:4px}
+.site-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:300;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.site-header__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:16px}
+.site-logo{font-size:22px;font-weight:700;color:var(--navy);letter-spacing:.1em}
+.site-logo span{font-size:11px;color:var(--gray4);margin-left:8px;font-weight:400}
+.header-nav{display:flex;gap:0;margin-left:auto}
+.header-nav a{font-size:12px;font-weight:600;color:var(--gray4);padding:0 14px;height:60px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.header-nav a:hover{color:var(--navy);border-bottom-color:var(--navy)}
+.header-tel{font-size:14px;font-weight:700;color:var(--navy);border:1.5px solid var(--navy);padding:8px 16px;border-radius:4px;margin-left:8px;white-space:nowrap}
+.breadcrumb{background:#fff;border-bottom:1px solid var(--border);padding:10px 0}
+.breadcrumb__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;font-size:12px;color:var(--gray4);flex-wrap:wrap}
+.breadcrumb__inner a{color:var(--gray4)}
+.breadcrumb__sep{margin:0 8px}
+.main-wrap{max-width:1100px;margin:32px auto;padding:0 16px;display:grid;grid-template-columns:1fr 280px;gap:32px;align-items:start}
+.article{background:#fff;border:1px solid var(--border);border-radius:var(--r4);overflow:hidden}
+.article__hero{background:linear-gradient(135deg,#0d1b4b 0%,var(--navy2) 60%,#2a4a99 100%);padding:40px 36px;border-bottom:3px solid var(--gold)}
+.article__cats{display:flex;gap:6px;margin-bottom:12px}
+.article__cat{background:var(--gold);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:2px}
+.article__title{font-size:24px;font-weight:700;color:#fff;line-height:1.4;margin-bottom:12px}
+.article__meta{font-size:12px;color:rgba(255,255,255,.55)}
+.article__body{padding:36px}
+.article__body h2{font-size:17px;font-weight:700;color:var(--navy);margin:28px 0 12px;padding-left:10px;border-left:3px solid var(--gold)}
+.article__body h2:first-child{margin-top:0}
+.article__body p{font-size:13px;line-height:2;margin-bottom:14px;color:#333}
+.article__body ul{font-size:13px;line-height:2;padding-left:20px;margin-bottom:14px;list-style:disc;color:#333}
+.article__body .note-box{background:var(--gray1);border-left:3px solid var(--gold);padding:14px 18px;border-radius:0 var(--r4) var(--r4) 0;margin:20px 0;font-size:13px;color:#444}
+.article__body table{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:13px}
+.article__body th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left}
+.article__body td{padding:9px 14px;border-bottom:1px solid var(--border)}
+.article__body tr:last-child td{border-bottom:none}
+.article__footer{padding:24px 36px;border-top:1px solid var(--border);background:var(--gray1)}
+.related-box h3{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px}
+.related-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.related-card{background:#fff;border:1px solid var(--border);border-radius:var(--r4);padding:14px;font-size:12px;transition:box-shadow .15s}
+.related-card:hover{box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.related-card .icon{font-size:20px;margin-bottom:6px}
+.related-card .rtitle{font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:4px}
+.related-card .rdate{color:var(--gray4)}
+.sidebar-widget{background:#fff;border:1px solid var(--border);border-radius:var(--r4);padding:20px;margin-bottom:16px}
+.sidebar-widget h3{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--navy)}
+.sidebar-link{display:block;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;color:#444}
+.sidebar-link:last-child{border-bottom:none}
+.sidebar-link:hover{color:var(--navy)}
+.cta-widget{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:var(--r4);padding:20px;color:#fff;text-align:center}
+.cta-widget h3{font-size:14px;font-weight:700;margin-bottom:6px}
+.cta-widget p{font-size:11px;color:rgba(255,255,255,.7);margin-bottom:14px;line-height:1.6}
+.cta-widget a{display:block;background:var(--gold);color:#fff;font-size:13px;font-weight:700;padding:10px;border-radius:var(--r4);margin-bottom:8px}
+.cta-widget a.alt{background:rgba(255,255,255,.15);margin-bottom:0}
+.site-footer{background:var(--navy2);margin-top:48px;padding:32px 0 20px}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;gap:32px;flex-wrap:wrap;margin-bottom:20px}
+.footer-col-head{font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.footer-link{display:block;font-size:12px;color:rgba(255,255,255,.6);padding:3px 0}
+.footer-link:hover{color:var(--gold)}
+.footer-copy{text-align:center;font-size:11px;color:rgba(255,255,255,.3);border-top:1px solid rgba(255,255,255,.08);padding:16px;max-width:1200px;margin:0 auto}
+@media(max-width:768px){.header-nav{display:none}.main-wrap{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr}.article__hero{padding:24px 20px}.article__body{padding:20px}.article__footer{padding:16px 20px}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="../index.html" class="site-logo">ナニウル<span>八王子の高価買取専門店</span></a>
+    <nav class="header-nav">
+      <a href="../product/brand.html">買取商品</a>
+      <a href="../flow/index.html">買取の流れ</a>
+      <a href="../results/index.html">買取実績</a>
+      <a href="../reason/index.html">選ばれる理由</a>
+      <a href="../faq/index.html">よくある質問</a>
+      <a href="../blog/index.html" style="color:var(--navy);border-bottom-color:var(--navy)">ブログ</a>
+    </nav>
+    <a href="tel:0426000000" class="header-tel">042-600-0000</a>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb__inner">
+    <a href="../index.html">HOME</a><span class="breadcrumb__sep">›</span>
+    <a href="index.html">ブログ</a><span class="breadcrumb__sep">›</span><span>宅配買取を初めて使う方へ。梱包のコツと注…</span>
+  </div>
+</div>
+<div class="main-wrap">
+  <div>
+    <article class="article">
+      <div class="article__hero">
+        <div class="article__cats"><span class="article__cat">宅配買取</span><span class="article__cat">ガイド</span></div>
+        <div class="article__title">宅配買取を初めて使う方へ。梱包のコツと注意点まとめ</div>
+        <div class="article__meta">📅 2024年9月5日 ｜ ナニウル編集部</div>
+      </div>
+      <div class="article__body">
+        
+    <h2>宅配買取の流れ（おさらい）</h2>
+    <p>宅配買取は①申し込み→②梱包・発送→③査定→④金額確認・承諾→⑤振込の流れです。店頭に出向く必要がなく、全国どこからでも利用できます。</p>
+
+    <h2>梱包の基本ルール</h2>
+    <ul>
+      <li>品物はプチプチ（気泡緩衝材）で1点ずつ個別に包む</li>
+      <li>箱の中で動かないよう新聞紙や紙で隙間を埋める</li>
+      <li>貴金属・宝石はジュエリーボックスや小袋に入れてからさらに包む</li>
+      <li>時計はリューズを引き出さない状態で梱包</li>
+      <li>バッグは型崩れしないよう中に紙を詰める</li>
+    </ul>
+
+    <h2>注意点チェックリスト</h2>
+    <table>
+      <tr><th>チェック項目</th><th>理由</th></tr>
+      <tr><td>付属品（箱・袋・証明書）を同梱したか</td><td>査定額に影響するため</td></tr>
+      <tr><td>品物リスト（メモ）を入れたか</td><td>紛失防止・査定効率化</td></tr>
+      <tr><td>金属同士が直接触れていないか</td><td>傷つき防止のため</td></tr>
+      <tr><td>保険付き配送を選んだか</td><td>紛失・破損リスク対策</td></tr>
+    </table>
+    <div class="note-box">⚠️ 送料はナニウルが全額負担します。ただし着払いでの発送が必要です。元払い発送は対象外となりますのでご注意ください。</div>
+
+    <h2>キャンセル時の対応</h2>
+    <p>査定価格に納得できない場合はキャンセルが可能です。返送費用もナニウルが負担しますので、安心してご利用ください。</p>
+    
+      </div>
+      <div class="article__footer">
+        <div class="related-box">
+          <h3>関連記事・ページ</h3>
+          <div class="related-grid">
+            <a class="related-card" href="../flow/syuttyou.html">
+        <div class="icon">🚗</div>
+        <div class="rtitle">出張買取の流れ</div>
+        <div class="rdate">サービスページ</div>
+      </a><a class="related-card" href="../faq/index.html">
+        <div class="icon">📋</div>
+        <div class="rtitle">よくある質問</div>
+        <div class="rdate">FAQページ</div>
+      </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+  <aside>
+    <div class="sidebar-widget">
+      <h3>最近の記事</h3>
+      <a class="sidebar-link" href="../blog/gold-price-2024.html">金の買取相場が過去最高水準に</a>
+      <a class="sidebar-link" href="../blog/lv-bag-tips.html">LV高値バッグの特徴とは？</a>
+      <a class="sidebar-link" href="../blog/watch-price-2024.html">ロレックス・オメガの最新相場</a>
+      <a class="sidebar-link" href="../blog/diamond-4c.html">ダイヤモンド査定の4Cとは？</a>
+      <a class="sidebar-link" href="../blog/takuhai-tips.html">宅配買取の梱包のコツ</a>
+      <a class="sidebar-link" href="../blog/legacy-tips.html">遺品整理での買取のポイント</a>
+    </div>
+    <div class="cta-widget">
+      <h3>今すぐ無料査定</h3>
+      <p>写真を送るだけ。LINEで気軽に査定依頼できます。</p>
+      <a href="../flow/line.html">📱 LINE査定（無料）</a>
+      <a href="../contact/index.html" class="alt">📝 メールで相談</a>
+    </div>
+  </aside>
+</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><div class="footer-col-head">Service</div><a href="../flow/tenpo.html" class="footer-link">店頭買取</a><a href="../flow/takuhai.html" class="footer-link">宅配買取</a><a href="../flow/syuttyou.html" class="footer-link">出張買取</a><a href="../flow/line.html" class="footer-link">LINE査定</a></div>
+    <div><div class="footer-col-head">Buy Items</div><a href="../product/kikinzoku.html" class="footer-link">金・プラチナ・銀</a><a href="../product/brand.html" class="footer-link">ブランド品</a><a href="../product/watch.html" class="footer-link">腕時計</a></div>
+    <div><div class="footer-col-head">Contact</div><div style="color:rgba(255,255,255,.7);font-size:20px;font-weight:700;margin-bottom:4px">042-600-0000</div><div style="color:rgba(255,255,255,.4);font-size:11px">営業時間 10:00〜19:00 年中無休</div></div>
+  </div>
+  <div class="footer-copy">© 2024 ナニウル（株式会社yxxk）All Rights Reserved.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ナニウルのよくある質問。査定・買取・支払い・宅配などに関するQ&Aをまとめています。">
+<title>よくある質問｜ナニウル 八王子の高価買取専門店</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Hiragino Kaku Gothic ProN','Hiragino Sans','Noto Sans JP',Meiryo,sans-serif;font-size:14px;line-height:1.7;color:#222;background:#f7f7f7}
+a{color:inherit;text-decoration:none}
+:root{--navy:#1B2F6E;--navy2:#111F4D;--gold:#B8860B;--red:#C0392B;--white:#fff;--gray1:#F5F5F5;--gray2:#E8E8E8;--gray3:#BBBBBB;--gray4:#888888;--text:#222222;--border:#DDDDDD;--r4:4px;--shadow:0 2px 8px rgba(0,0,0,0.08)}
+.site-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:300;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.site-header__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:16px}
+.site-logo{font-size:22px;font-weight:700;color:var(--navy);letter-spacing:.1em}
+.site-logo span{font-size:11px;color:var(--gray4);margin-left:8px;font-weight:400}
+.header-nav{display:flex;gap:0;margin-left:auto}
+.header-nav a{font-size:12px;font-weight:600;color:var(--gray4);padding:0 14px;height:60px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.header-nav a:hover,.header-nav a.active{color:var(--navy);border-bottom-color:var(--navy)}
+.header-tel{font-size:14px;font-weight:700;color:var(--navy);border:1.5px solid var(--navy);padding:8px 16px;border-radius:4px;margin-left:8px;white-space:nowrap}
+.breadcrumb{background:#fff;border-bottom:1px solid var(--border);padding:10px 0}
+.breadcrumb__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;gap:0;align-items:center;font-size:12px;color:var(--gray4)}
+.breadcrumb__inner a{color:var(--gray4)}
+.breadcrumb__sep{margin:0 8px}
+.page-hero{background:linear-gradient(135deg,#0d1b4b 0%,var(--navy2) 60%,#2a4a99 100%);padding:36px 0;border-bottom:3px solid var(--gold)}
+.page-hero__inner{max-width:1200px;margin:0 auto;padding:0 16px}
+.page-hero__text .label{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}
+.page-hero__text h1{font-size:30px;font-weight:700;color:#fff;margin-bottom:8px}
+.page-hero__text p{font-size:13px;color:rgba(255,255,255,.65);max-width:600px;line-height:1.8}
+.main-wrap{max-width:900px;margin:40px auto;padding:0 16px}
+.faq-cat-title{font-size:16px;font-weight:700;color:var(--navy);margin:32px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--navy)}
+.faq-cat-title:first-child{margin-top:0}
+.faq-item{background:#fff;border:1px solid var(--border);border-radius:var(--r4);margin-bottom:8px;overflow:hidden}
+.faq-q{padding:14px 18px;font-size:13px;font-weight:700;color:var(--navy);cursor:pointer;display:flex;align-items:flex-start;gap:12px}
+.faq-q:hover{background:var(--gray1)}
+.faq-q-icon{flex-shrink:0;width:22px;height:22px;background:var(--navy);color:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px}
+.faq-q-text{flex:1}
+.faq-q-arrow{flex-shrink:0;font-size:18px;color:var(--gold);transition:transform .2s;margin-top:1px}
+.faq-item.open .faq-q-arrow{transform:rotate(45deg)}
+.faq-a{display:none;padding:12px 18px 16px 52px;font-size:13px;color:var(--gray4);line-height:1.8;background:#fafafa;border-top:1px solid var(--border)}
+.faq-item.open .faq-a{display:block}
+.site-footer{background:var(--navy2);margin-top:48px;padding:32px 0 20px}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;gap:32px;flex-wrap:wrap;margin-bottom:20px}
+.footer-col-head{font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.footer-link{display:block;font-size:12px;color:rgba(255,255,255,.6);padding:3px 0}
+.footer-link:hover{color:var(--gold)}
+.footer-copy{text-align:center;font-size:11px;color:rgba(255,255,255,.3);border-top:1px solid rgba(255,255,255,.08);padding:16px;max-width:1200px;margin:0 auto}
+.cta-band{background:var(--navy);padding:32px 0}
+.cta-band__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.cta-band h2{font-size:20px;font-weight:700;color:#fff}
+.cta-band p{font-size:13px;color:rgba(255,255,255,.7);margin-top:4px}
+.cta-btns{display:flex;gap:10px;flex-wrap:wrap}
+.cta-btn{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;font-size:13px;font-weight:700;border-radius:var(--r4);transition:opacity .15s;white-space:nowrap}
+.cta-btn:hover{opacity:.88}
+.cta-btn--gold{background:var(--gold);color:#fff}
+.cta-btn--white{background:#fff;color:var(--navy)}
+@media(max-width:600px){.header-nav{display:none}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="../index.html" class="site-logo">ナニウル<span>八王子の高価買取専門店</span></a>
+    <nav class="header-nav">
+      <a href="../product/brand.html">買取商品</a>
+      <a href="../flow/index.html">買取の流れ</a>
+      <a href="../results/index.html">買取実績</a>
+      <a href="../reason/index.html">選ばれる理由</a>
+      <a href="index.html" class="active">よくある質問</a>
+    </nav>
+    <a href="tel:0426000000" class="header-tel">042-600-0000</a>
+  </div>
+</header>
+<div class="breadcrumb">
+  <div class="breadcrumb__inner">
+    <a href="../index.html">HOME</a><span class="breadcrumb__sep">›</span><span>よくある質問</span>
+  </div>
+</div>
+<div class="page-hero">
+  <div class="page-hero__inner">
+    <div class="page-hero__text">
+      <div class="label">FAQ</div>
+      <h1>よくある質問</h1>
+      <p>お客様からよくいただくご質問をまとめました。解決しない場合はお気軽にお問い合わせください。</p>
+    </div>
+  </div>
+</div>
+
+<div class="main-wrap">
+
+  <div class="faq-cat-title">査定・買取について</div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span><span class="faq-q-text">査定だけでも利用できますか？</span><span class="faq-q-arrow">+</span></div>
+    <div class="faq-a">はい、もちろん可能です。査定のみのご利用、また金額確認だけでも大歓迎です。買取を断られても費用は一切かかりません。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span><span class="faq-q-text">壊れている・動かない商品でも買取できますか？</span><span class="faq-q-arrow">+</span></div>
+    <div class="faq-a">ジャンルによりますが、多くの場合は買取可能です。特に貴金属・ブランド品・腕時計は壊れていても素材やブランド価値で査定します。まずはご相談ください。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span><span class="faq-q-text">査定に時間はどれくらいかかりますか？</span><span class="faq-q-arrow">+</span></div>
+    <div class="faq-a">1〜3点程度でしたら15〜30分が目安です。点数が多い場合や専門的な査定が必要な場合は1時間以上かかる場合もあります。お急ぎの場合はあらかじめご連絡ください。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span><span class="faq-q-text">買取を断ることはできますか？</span><span class="faq-q-arrow">+</span></div>
+    <div class="faq-a">はい、査定額にご納得いただけない場合はいつでもキャンセルできます。キャンセル料・返送料などの費用は一切かかりません。</div>
+  </div>
+
+  <div class="faq-cat-title">持込・手続きについて</div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span><span class="faq-q-text">必要な身分証は何ですか？</span><span class="faq-q-arrow">+</span></div>
+    <div class="faq-a">運転免許証・マイナンバーカード・パスポートなど顔写真付きの公的書類が1点必要です。古物営業法により、身分証のご提示は必須です。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span><span class="faq-q-text">未成年でも買取してもらえますか？</span><span class="faq-q-arrow">+</span></div>
+    <div class="faq-a">古物営業法により、18歳未満の方からの買取はお断りしています。18歳以上であれば保護者の同意なく買取可能です。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span><span class="faq-q-text">複数点まとめて持ち込めますか？</span><span class="faq-q-arrow">+</span></div>
+    <div class="faq-a">もちろん大歓迎です。まとめてお持ちいただくとアップ査定のご提案ができる場合もあります。量が多い場合は出張買取もご検討ください。</div>
+  </div>
+
+  <div class="faq-cat-title">支払いについて</div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span><span class="faq-q-text">支払いはいつ・どのような方法ですか？</span><span class="faq-q-arrow">+</span></div>
+    <div class="faq-a">店頭買取は当日その場で現金払い、宅配買取・出張買取は査定ご承諾後最短翌営業日に銀行振込となります。手数料は一切かかりません。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span><span class="faq-q-text">振込に手数料はかかりますか？</span><span class="faq-q-arrow">+</span></div>
+    <div class="faq-a">振込手数料もナニウルが負担します。お客様の手出しは一切ありません。</div>
+  </div>
+
+  <div class="faq-cat-title">宅配・出張について</div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span><span class="faq-q-text">宅配買取の送料はかかりますか？</span><span class="faq-q-arrow">+</span></div>
+    <div class="faq-a">往復の送料はすべてナニウルが負担します。キャンセルの場合の返送料も無料です。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span><span class="faq-q-text">出張買取はどのエリアに対応していますか？</span><span class="faq-q-arrow">+</span></div>
+    <div class="faq-a">八王子市を中心に、多摩市・日野市・町田市・立川市・昭島市・福生市などの多摩エリア全般に対応しています。エリア外もご相談ください。</div>
+  </div>
+
+</div>
+
+<div class="cta-band">
+  <div class="cta-band__inner">
+    <div><h2>解決しない場合はお気軽に</h2><p>電話・LINE・メールでいつでもご相談ください。</p></div>
+    <div class="cta-btns">
+      <a href="../flow/line.html" class="cta-btn cta-btn--gold">📱 LINEで相談</a>
+      <a href="../contact/index.html" class="cta-btn cta-btn--white">📝 メールで相談</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><div class="footer-col-head">Service</div><a href="../flow/tenpo.html" class="footer-link">店頭買取</a><a href="../flow/takuhai.html" class="footer-link">宅配買取</a><a href="../flow/syuttyou.html" class="footer-link">出張買取</a><a href="../flow/line.html" class="footer-link">LINE査定</a></div>
+    <div><div class="footer-col-head">Buy Items</div><a href="../product/kikinzoku.html" class="footer-link">金・プラチナ・銀</a><a href="../product/brand.html" class="footer-link">ブランド品</a><a href="../product/watch.html" class="footer-link">腕時計</a></div>
+    <div><div class="footer-col-head">Info</div><a href="index.html" class="footer-link">よくある質問</a><a href="../results/index.html" class="footer-link">買取実績</a><a href="../company/index.html" class="footer-link">会社概要</a></div>
+    <div><div class="footer-col-head">Contact</div><div style="color:rgba(255,255,255,.7);font-size:20px;font-weight:700;margin-bottom:4px">042-600-0000</div><div style="color:rgba(255,255,255,.4);font-size:11px">営業時間 10:00〜19:00 年中無休</div></div>
+  </div>
+  <div class="footer-copy">© 2024 ナニウル（株式会社yxxk）All Rights Reserved.</div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>q.parentElement.classList.toggle('open'));
+});
+</script>
+</body>
+</html>

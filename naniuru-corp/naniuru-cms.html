@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ナニウル CMS</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B2F6E;--navy2:#111F4D;--gold:#B8860B;--red:#C0392B;
+  --bg:#F0F2F7;--surface:#fff;--border:#DDE1EA;--muted:#7a8299;
+  --accent-lt:#e8edf7;--r:8px;--rs:4px;
+  --shadow:0 2px 8px rgba(0,0,0,.08);
+}
+body{font-family:'Hiragino Kaku Gothic ProN','Hiragino Sans','Noto Sans JP',Meiryo,sans-serif;font-size:13px;line-height:1.6;color:#222;background:var(--bg);min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+input,textarea,select{font-family:inherit}
+
+/* LAYOUT */
+.app{display:flex;height:100vh;overflow:hidden}
+.sidebar{width:220px;flex-shrink:0;background:var(--navy2);display:flex;flex-direction:column;overflow-y:auto}
+.sidebar__logo{padding:20px 18px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sidebar__logo h1{font-size:18px;font-weight:700;color:#fff;letter-spacing:.08em}
+.sidebar__logo p{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;letter-spacing:.06em}
+.sidebar__nav{padding:8px 0;flex:1}
+.nav-section{padding:16px 18px 6px;font-size:10px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 18px;font-size:12px;font-weight:600;color:rgba(255,255,255,.6);cursor:pointer;transition:background .12s,color .12s;border-left:3px solid transparent}
+.nav-item:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.9)}
+.nav-item.active{background:rgba(255,255,255,.1);color:#fff;border-left-color:var(--gold)}
+.nav-item .icon{font-size:15px;width:18px;text-align:center}
+.nav-badge{margin-left:auto;background:var(--gold);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:10px}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:52px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.topbar__title{font-size:15px;font-weight:700;color:var(--navy);flex:1}
+.topbar__actions{display:flex;gap:8px}
+.content{flex:1;overflow-y:auto;padding:24px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;font-size:12px;font-weight:700;border-radius:var(--rs);border:1.5px solid transparent;transition:all .14s;white-space:nowrap;line-height:1}
+.btn-primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-primary:hover{background:var(--navy2)}
+.btn-gold{background:var(--gold);color:#fff;border-color:var(--gold)}
+.btn-gold:hover{opacity:.88}
+.btn-outline{background:#fff;color:var(--navy);border-color:var(--border)}
+.btn-outline:hover{border-color:var(--navy);background:var(--accent-lt)}
+.btn-danger{background:#fff;color:var(--red);border-color:#f5c5c5}
+.btn-danger:hover{background:#fff0f0;border-color:var(--red)}
+.btn-sm{padding:5px 11px;font-size:11px}
+.btn-xs{padding:3px 8px;font-size:10px;font-weight:700}
+
+/* CARDS LIST */
+.post-list{display:flex;flex-direction:column;gap:10px}
+.post-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 18px;display:flex;align-items:center;gap:14px;transition:box-shadow .14s}
+.post-card:hover{box-shadow:var(--shadow)}
+.post-card__thumb{width:48px;height:48px;border-radius:var(--rs);object-fit:cover;flex-shrink:0;background:var(--accent-lt);display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden}
+.post-card__thumb img{width:100%;height:100%;object-fit:cover}
+.post-card__body{flex:1;min-width:0}
+.post-card__title{font-size:13px;font-weight:700;color:#222;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.post-card__meta{font-size:11px;color:var(--muted);margin-top:3px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.post-card__badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;background:var(--accent-lt);color:var(--navy)}
+.post-card__actions{display:flex;gap:6px;flex-shrink:0}
+
+/* FORM */
+.form-layout{display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start}
+.form-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px}
+.form-card h3{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em}
+.field input,.field select,.field textarea{width:100%;border:1.5px solid var(--border);border-radius:var(--rs);padding:9px 12px;font-size:13px;color:#222;background:#fff;transition:border-color .14s;outline:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--navy)}
+.field textarea{resize:vertical;min-height:80px;line-height:1.7}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field .hint{font-size:10px;color:var(--muted);margin-top:4px}
+
+/* TAG INPUT */
+.tag-input{display:flex;flex-wrap:wrap;gap:6px;border:1.5px solid var(--border);border-radius:var(--rs);padding:7px 10px;background:#fff;cursor:text;min-height:40px;align-items:center}
+.tag-input:focus-within{border-color:var(--navy)}
+.tag-chip{display:inline-flex;align-items:center;gap:4px;background:var(--accent-lt);color:var(--navy);font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px}
+.tag-chip button{background:none;border:none;cursor:pointer;color:var(--muted);font-size:14px;line-height:1;padding:0}
+.tag-chip button:hover{color:var(--red)}
+.tag-input input{border:none;outline:none;font-size:12px;flex:1;min-width:80px;padding:0;font-family:inherit}
+
+/* IMAGE UPLOAD */
+.img-upload-zone{border:2px dashed var(--border);border-radius:var(--rs);padding:20px;text-align:center;cursor:pointer;transition:all .15s;background:#fafbff;position:relative}
+.img-upload-zone:hover,.img-upload-zone.drag-over{border-color:var(--navy);background:var(--accent-lt)}
+.img-upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.img-upload-zone .upload-icon{font-size:28px;margin-bottom:8px}
+.img-upload-zone p{font-size:12px;color:var(--muted)}
+.img-upload-zone p strong{color:var(--navy)}
+.img-preview-wrap{position:relative;display:inline-block;margin-top:10px}
+.img-preview-wrap img{max-width:100%;max-height:200px;border-radius:var(--rs);border:1px solid var(--border);display:block}
+.img-preview-wrap .img-remove{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;border:none;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;font-weight:700;line-height:1}
+.img-preview-wrap .img-meta{font-size:10px;color:var(--muted);margin-top:4px;text-align:center}
+
+/* INLINE IMAGE INSERT BAR */
+.inline-img-bar{display:flex;align-items:center;gap:8px;padding:8px 10px;background:#f7f8fb;border:1px solid var(--border);border-radius:var(--rs);margin-bottom:8px}
+.inline-img-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.inline-img-item{position:relative;display:inline-block}
+.inline-img-item img{width:80px;height:60px;object-fit:cover;border-radius:var(--rs);border:1px solid var(--border);cursor:pointer;transition:opacity .14s}
+.inline-img-item img:hover{opacity:.8}
+.inline-img-item .iil-ins{position:absolute;bottom:2px;left:50%;transform:translateX(-50%);background:rgba(27,47,110,.85);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:2px;pointer-events:none;white-space:nowrap}
+.inline-img-item .iil-del{position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:var(--red);color:#fff;border:none;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700;line-height:1}
+
+/* RICH TEXT EDITOR */
+.editor-wrap{border:1.5px solid var(--border);border-radius:var(--rs);overflow:hidden;background:#fff;transition:border-color .14s}
+.editor-wrap:focus-within{border-color:var(--navy)}
+.editor-toolbar{display:flex;gap:2px;padding:6px 8px;border-bottom:1px solid var(--border);background:#fafafa;flex-wrap:wrap;align-items:center}
+.editor-toolbar button{padding:4px 8px;border:none;border-radius:3px;background:none;color:#444;font-size:12px;font-family:inherit;font-weight:700;cursor:pointer;transition:background .1s}
+.editor-toolbar button:hover{background:var(--accent-lt);color:var(--navy)}
+.editor-toolbar .sep{width:1px;background:var(--border);margin:2px 4px;align-self:stretch}
+.editor-body{padding:12px;min-height:220px;outline:none;font-size:13px;line-height:1.9;color:#222}
+.editor-body h2{font-size:16px;font-weight:700;color:var(--navy);margin:16px 0 8px;padding-left:10px;border-left:3px solid var(--gold)}
+.editor-body p{margin-bottom:10px}
+.editor-body ul{padding-left:18px;margin-bottom:10px}
+.editor-body table{width:100%;border-collapse:collapse;margin-bottom:12px;font-size:12px}
+.editor-body th{background:var(--navy);color:#fff;padding:7px 10px;text-align:left}
+.editor-body td{padding:7px 10px;border-bottom:1px solid var(--border)}
+.editor-body .note-box{background:#f7f4e8;border-left:3px solid var(--gold);padding:10px 14px;border-radius:0 var(--rs) var(--rs) 0;margin:12px 0;font-size:12px}
+.editor-body img{max-width:100%;border-radius:var(--rs);margin:10px 0;display:block}
+.editor-body img.img-left{float:left;margin:0 14px 10px 0;max-width:45%}
+.editor-body img.img-right{float:right;margin:0 0 10px 14px;max-width:45%}
+[contenteditable]:empty:before{content:attr(data-placeholder);color:var(--muted)}
+
+/* RESULT CARD PREVIEW */
+.result-preview{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.result-preview__img{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:52px;position:relative;overflow:hidden}
+.result-preview__img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.result-preview__img .emoji-fallback{position:relative;z-index:1}
+.result-preview__badge{position:absolute;top:10px;left:10px;font-size:10px;font-weight:700;padding:3px 10px;border-radius:2px;z-index:2}
+.bg1{background:linear-gradient(135deg,#f0e8d0,#e8d5b0)}
+.bg2{background:linear-gradient(135deg,#d0d8f0,#b0c0e8)}
+.bg3{background:linear-gradient(135deg,#e8d0e0,#d0b0c8)}
+.bg4{background:linear-gradient(135deg,#d0e8d0,#b0d0b0)}
+.bg5{background:linear-gradient(135deg,#e8e0d0,#d0c8b0)}
+.bg6{background:linear-gradient(135deg,#d8d0e8,#c0b0d8)}
+.result-preview__body{padding:14px}
+.result-preview__cat{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
+.result-preview__name{font-size:14px;font-weight:700;color:#222;line-height:1.4;margin-bottom:10px}
+.result-preview__price-label{font-size:10px;color:var(--muted);margin-bottom:3px}
+.result-preview__price{font-size:22px;font-weight:700;color:var(--navy)}
+.result-preview__meta{display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.method-chip{font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px}
+.method-store{background:#E8EDF7;color:var(--navy)}
+.method-mail{background:#E8F0E8;color:#2a7a2a}
+.method-line{background:#E8F8E8;color:#00B900}
+.method-visit{background:#F0E8F8;color:#6a2a9a}
+
+/* STATS */
+.stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px}
+.stat-card__label{font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:600}
+.stat-card__val{font-size:26px;font-weight:700;color:var(--navy)}
+.stat-card__sub{font-size:11px;color:var(--muted);margin-top:3px}
+.recent-table{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.recent-table table{width:100%;border-collapse:collapse}
+.recent-table th{background:#f7f8fb;font-size:11px;font-weight:700;color:var(--muted);padding:10px 16px;text-align:left;border-bottom:1px solid var(--border)}
+.recent-table td{padding:11px 16px;font-size:12px;border-bottom:1px solid var(--border);color:#333}
+.recent-table tr:last-child td{border-bottom:none}
+.recent-table tr:hover td{background:#fafbff}
+.type-pill{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:48px 24px;color:var(--muted)}
+.empty-state .icon{font-size:40px;margin-bottom:12px}
+.empty-state h3{font-size:15px;font-weight:700;color:#aaa;margin-bottom:6px}
+
+/* TOAST */
+#toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;padding:12px 20px;border-radius:var(--r);font-size:12px;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,.2);transform:translateY(60px);opacity:0;transition:all .3s;z-index:9999;pointer-events:none}
+#toast.show{transform:translateY(0);opacity:1}
+#toast.success{background:#2a7a2a}
+#toast.error{background:var(--red)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:#fff;border-radius:var(--r);padding:24px;min-width:440px;max-width:90vw;max-height:90vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.18)}
+.modal h2{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:18px}
+.modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+
+/* EXPORT */
+.export-list{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.export-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg);border-radius:var(--rs);font-size:12px}
+.export-item__name{font-weight:700;color:var(--navy)}
+.export-item__detail{color:var(--muted);font-size:11px;margin-top:2px}
+
+
+/* LINKED RESULTS */
+.linked-result-card{background:#f7f8fb;border:1.5px solid var(--border);border-radius:var(--r);padding:16px;position:relative;margin-bottom:12px}
+.linked-result-card.has-img{border-color:var(--navy)}
+.linked-result-card__header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.linked-result-card__num{font-size:10px;font-weight:700;color:var(--muted);background:var(--border);padding:2px 8px;border-radius:20px}
+.linked-result-mini-preview{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--border);border-radius:var(--rs);padding:10px;margin-top:10px}
+.linked-result-mini-img{width:64px;height:48px;border-radius:var(--rs);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;position:relative}
+.linked-result-mini-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.linked-result-mini-body{flex:1;min-width:0}
+.linked-result-mini-body .mini-cat{font-size:9px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+.linked-result-mini-body .mini-name{font-size:12px;font-weight:700;color:#222;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.linked-result-mini-body .mini-price{font-size:16px;font-weight:700;color:var(--navy);margin-top:2px}
+.img-upload-mini{border:2px dashed var(--border);border-radius:var(--rs);padding:10px;text-align:center;cursor:pointer;transition:all .15s;background:#fff;position:relative;font-size:11px;color:var(--muted)}
+.img-upload-mini:hover{border-color:var(--navy);background:var(--accent-lt)}
+.img-upload-mini input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+
+
+/* GITHUB SETTINGS */
+.settings-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.settings-card h3{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.settings-status{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+.settings-status.ok{background:#e8f5e8;color:#2a7a2a}
+.settings-status.ng{background:#fff0f0;color:var(--red)}
+.settings-status.checking{background:#fff8e6;color:#8a6000}
+.token-input-wrap{position:relative}
+.token-input-wrap input{padding-right:40px;font-family:monospace;font-size:12px;letter-spacing:.05em}
+.token-toggle{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--muted);font-size:14px;padding:2px}
+.deploy-progress{background:#f7f8fb;border:1px solid var(--border);border-radius:var(--rs);padding:14px 16px;margin-top:12px}
+.deploy-progress__title{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.deploy-step{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border)}
+.deploy-step:last-child{border-bottom:none}
+.deploy-step .step-icon{width:20px;text-align:center;font-size:14px;flex-shrink:0}
+.deploy-step.done{color:#2a7a2a}
+.deploy-step.active{color:var(--navy);font-weight:700}
+.deploy-step.error{color:var(--red)}
+.publish-btn-wrap{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:var(--r);padding:20px;text-align:center;margin-top:16px}
+.publish-btn-wrap p{font-size:12px;color:rgba(255,255,255,.65);margin-bottom:12px;line-height:1.6}
+.publish-big-btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#fff;font-size:15px;font-weight:700;padding:14px 32px;border:none;border-radius:var(--r);cursor:pointer;transition:opacity .15s}
+.publish-big-btn:hover{opacity:.88}
+.publish-big-btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* MISC */
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.section-header h2{font-size:15px;font-weight:700;color:var(--navy)}
+.divider{height:1px;background:var(--border);margin:16px 0}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar__logo">
+    <h1>ナニウル CMS</h1>
+    <p>CONTENT MANAGER</p>
+  </div>
+  <div class="sidebar__nav">
+    <div class="nav-section">メニュー</div>
+    <div class="nav-item active" onclick="showView('dashboard')" id="nav-dashboard">
+      <span class="icon">📊</span> ダッシュボード
+    </div>
+    <div class="nav-section">コンテンツ</div>
+    <div class="nav-item" onclick="showView('blog-list')" id="nav-blog-list">
+      <span class="icon">📝</span> ブログ記事
+      <span class="nav-badge" id="blog-badge">0</span>
+    </div>
+    <div class="nav-item" onclick="showView('result-list')" id="nav-result-list">
+      <span class="icon">🏆</span> 買取実績
+      <span class="nav-badge" id="result-badge">0</span>
+    </div>
+    <div class="nav-section">ツール</div>
+    <div class="nav-item" onclick="showView('github-settings')" id="nav-github-settings">
+      <span class="icon">⚙️</span> GitHub設定
+    </div>
+    <div class="nav-item" onclick="showView('publish')" id="nav-publish">
+      <span class="icon">🚀</span> サイトに公開
+    </div>
+    <div class="nav-item" onclick="showExportModal()">
+      <span class="icon">📦</span> HTMLを出力
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar__title" id="topbar-title">ダッシュボード</div>
+    <div class="topbar__actions" id="topbar-actions"></div>
+  </div>
+  <div class="content" id="main-content"></div>
+</div>
+</div>
+
+<div id="toast"></div>
+
+<!-- EXPORT MODAL -->
+<div class="modal-overlay" id="export-modal">
+  <div class="modal">
+    <h2>📦 HTMLファイルを出力</h2>
+    <p style="font-size:12px;color:var(--muted);line-height:1.8">保存されたコンテンツをナニウルサイト用のHTMLとして書き出します。<br>
+    ブログ記事は <code style="background:#f0f2f7;padding:2px 5px;border-radius:3px">naniuru-corp/blog/</code> に配置。<br>
+    実績スニペットは <code style="background:#f0f2f7;padding:2px 5px;border-radius:3px">results/index.html</code> のグリッド末尾に貼り付け。</p>
+    <div class="export-list" id="export-list"></div>
+    <div style="background:#fff8e6;border:1px solid #f0d080;border-radius:6px;padding:12px 14px;font-size:11px;color:#7a5a00;margin-top:4px">
+      💡 画像をBase64で埋め込む場合はHTMLファイル1つで完結。別ファイル出力の場合は images/ フォルダも同梱されます。
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeExportModal()">閉じる</button>
+      <button class="btn btn-gold" onclick="exportAll()">📥 すべてダウンロード</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal" style="min-width:340px">
+    <h2>🗑 削除の確認</h2>
+    <p id="delete-msg" style="font-size:13px;line-height:1.8;color:#444"></p>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeDeleteModal()">キャンセル</button>
+      <button class="btn btn-danger" id="delete-confirm-btn">削除する</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   STORE
+============================================================ */
+const BLOG_KEY = 'naniuru_blogs_v2';
+const RESULT_KEY = 'naniuru_results_v2';
+const GH_KEY = 'naniuru_gh_config';
+
+function loadGhConfig(){try{return JSON.parse(localStorage.getItem(GH_KEY))||{};}catch(e){return {};}}
+function saveGhConfig(d){localStorage.setItem(GH_KEY,JSON.stringify(d));}
+
+function loadBlogs(){try{return JSON.parse(localStorage.getItem(BLOG_KEY))||[];}catch(e){return [];}}
+function saveBlogs(d){localStorage.setItem(BLOG_KEY,JSON.stringify(d));updateBadges();}
+function loadResults(){try{return JSON.parse(localStorage.getItem(RESULT_KEY))||[];}catch(e){return [];}}
+function saveResults(d){localStorage.setItem(RESULT_KEY,JSON.stringify(d));updateBadges();}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function fmtDate(iso){if(!iso)return '';const d=new Date(iso);return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;}
+function todayISO(){return new Date().toISOString().slice(0,10);}
+function updateBadges(){
+  document.getElementById('blog-badge').textContent=loadBlogs().length;
+  document.getElementById('result-badge').textContent=loadResults().length;
+}
+
+/* ============================================================
+   IMAGE HELPERS
+============================================================ */
+// Read file as base64 data URL
+function readFileAsDataURL(file){
+  return new Promise((resolve,reject)=>{
+    const r=new FileReader();
+    r.onload=e=>resolve(e.target.result);
+    r.onerror=reject;
+    r.readAsDataURL(file);
+  });
+}
+
+// Resize image to max dimension, return base64
+function resizeImage(dataUrl,maxW,maxH,quality){
+  return new Promise(resolve=>{
+    const img=new Image();
+    img.onload=()=>{
+      let w=img.width,h=img.height;
+      if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}
+      if(h>maxH){w=Math.round(w*maxH/h);h=maxH;}
+      const c=document.createElement('canvas');
+      c.width=w;c.height=h;
+      c.getContext('2d').drawImage(img,0,0,w,h);
+      resolve(c.toDataURL('image/jpeg',quality||0.85));
+    };
+    img.src=dataUrl;
+  });
+}
+
+// img stored as { dataUrl, name, size }
+// For inline images: stored separately in blog.inlineImages[]
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+let currentView='dashboard';
+let editingId=null;
+// temp image state per edit session
+let _blogMainImg=null;      // {dataUrl, name}
+let _blogInlineImgs=[];     // [{id, dataUrl, name}]
+let _resultImg=null;        // {dataUrl, name}
+
+function showView(view,id){
+  currentView=view;
+  editingId=id||null;
+  // reset image state on nav
+  if(view==='blog-new'){_blogMainImg=null;_blogInlineImgs=[];_blogLinkedResults=[];}
+  if(view==='result-new'){_resultImg=null;}
+
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const navMap={'dashboard':'nav-dashboard','blog-list':'nav-blog-list','blog-edit':'nav-blog-list','blog-new':'nav-blog-list','result-list':'nav-result-list','result-edit':'nav-result-list','result-new':'nav-result-list','github-settings':'nav-github-settings','publish':'nav-publish'};
+  const navEl=document.getElementById(navMap[view]||'');
+  if(navEl)navEl.classList.add('active');
+
+  const titleMap={'dashboard':'ダッシュボード','blog-list':'ブログ記事','blog-new':'新規ブログ記事','blog-edit':'ブログ記事を編集','result-list':'買取実績','result-new':'新規買取実績','result-edit':'買取実績を編集','github-settings':'GitHub設定','publish':'🚀 サイトに公開'};
+  document.getElementById('topbar-title').textContent=titleMap[view]||'';
+
+  const actions=document.getElementById('topbar-actions');
+  if(view==='blog-list'){
+    actions.innerHTML=`<button class="btn btn-primary" onclick="showView('blog-new')">＋ 新規記事</button>`;
+  }else if(view==='result-list'){
+    actions.innerHTML=`<button class="btn btn-primary" onclick="showView('result-new')">＋ 新規実績</button>`;
+  }else if(view==='blog-new'||view==='blog-edit'){
+    actions.innerHTML=`
+      <button class="btn btn-outline" onclick="showView('blog-list')">← 一覧に戻る</button>
+      <button class="btn btn-outline" onclick="toggleBlogPreview()">👁 プレビュー</button>
+      <button class="btn btn-primary" onclick="saveBlog()">💾 保存</button>`;
+  }else if(view==='result-new'||view==='result-edit'){
+    actions.innerHTML=`
+      <button class="btn btn-outline" onclick="showView('result-list')">← 一覧に戻る</button>
+      <button class="btn btn-primary" onclick="saveResult()">💾 保存</button>`;
+  }else if(view==='github-settings'||view==='publish'){
+    actions.innerHTML='';
+  }else{actions.innerHTML='';}
+
+  const renders={'dashboard':renderDashboard,'blog-list':renderBlogList,'blog-new':()=>renderBlogEdit(null),'blog-edit':()=>renderBlogEdit(editingId),'result-list':renderResultList,'result-new':()=>renderResultEdit(null),'result-edit':()=>renderResultEdit(editingId),'github-settings':renderGithubSettings,'publish':renderPublish};
+  if(renders[view])renders[view]();
+}
+
+/* ============================================================
+   DASHBOARD
+============================================================ */
+function renderDashboard(){
+  const blogs=loadBlogs(),results=loadResults();
+  const recent=[...blogs.map(b=>({...b,_type:'blog'})),...results.map(r=>({...r,_type:'result'}))]
+    .sort((a,b)=>((b.updatedAt||'')>(a.updatedAt||''))?1:-1).slice(0,8);
+  document.getElementById('main-content').innerHTML=`
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-card__label">ブログ記事</div><div class="stat-card__val">${blogs.length}</div><div class="stat-card__sub">+ 既存6記事</div></div>
+      <div class="stat-card"><div class="stat-card__label">買取実績</div><div class="stat-card__val">${results.length}</div><div class="stat-card__sub">+ 既存12件</div></div>
+      <div class="stat-card"><div class="stat-card__label">未出力</div><div class="stat-card__val">${blogs.filter(b=>!b.exported).length+results.filter(r=>!r.exported).length}</div><div class="stat-card__sub">HTMLに未反映</div></div>
+      <div class="stat-card"><div class="stat-card__label">ブログ連動実績</div><div class="stat-card__val">${results.filter(r=>r.linkedBlogId).length}</div><div class="stat-card__sub">自動生成カード数</div></div>
+      <div class="stat-card"><div class="stat-card__label">最終更新</div><div class="stat-card__val" style="font-size:14px">${recent[0]?fmtDate(recent[0].updatedAt):'—'}</div><div class="stat-card__sub">${(recent[0]?.title||'').slice(0,14)}</div></div>
+    </div>
+    <div class="recent-table"><table>
+      <thead><tr><th>種別</th><th>タイトル / 品名</th><th>カテゴリー</th><th>更新日</th><th></th></tr></thead>
+      <tbody>${recent.length===0?`<tr><td colspan="5" style="text-align:center;padding:32px;color:#bbb">まだコンテンツがありません</td></tr>`:
+        recent.map(item=>`<tr>
+          <td><span class="type-pill" style="background:${item._type==='blog'?'#e8edf7':'#e8f5e8'};color:${item._type==='blog'?'var(--navy)':'#2a7a2a'}">${item._type==='blog'?'ブログ':'実績'}</span></td>
+          <td style="font-weight:600;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${item.title||item.name||'(無題)'}</td>
+          <td style="color:var(--muted)">${item.category||item.cats?.join(',')||'—'}</td>
+          <td style="color:var(--muted)">${fmtDate(item.updatedAt)||'—'}</td>
+          <td><button class="btn btn-sm btn-outline" onclick="showView('${item._type}-edit','${item.id}')">編集</button></td>
+        </tr>`).join('')}
+      </tbody>
+    </table></div>`;
+}
+
+/* ============================================================
+   BLOG LIST
+============================================================ */
+function renderBlogList(){
+  const blogs=loadBlogs();
+  const el=document.getElementById('main-content');
+  if(!blogs.length){el.innerHTML=`<div class="empty-state"><div class="icon">📝</div><h3>記事がありません</h3><p>「＋ 新規記事」から作成してください。</p></div>`;return;}
+  el.innerHTML=`<div class="post-list">`+blogs.map(b=>`
+    <div class="post-card">
+      <div class="post-card__thumb">${b.mainImg?`<img src="${b.mainImg}" alt="">`:`<span>${b.icon||'📝'}</span>`}</div>
+      <div class="post-card__body">
+        <div class="post-card__title">${b.title||'(無題)'}</div>
+        <div class="post-card__meta">
+          <span>${fmtDate(b.date)||'日付なし'}</span>
+          ${(b.cats||[]).map(c=>`<span class="post-card__badge">${c}</span>`).join('')}
+          ${b.inlineImages?.length?`<span style="color:var(--muted)">📷 本文内画像${b.inlineImages.length}枚</span>`:''}
+          ${loadResults().filter(r=>r.linkedBlogId===b.id).length?`<span style="background:#fff8e6;color:var(--gold);font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px">🏆 実績${loadResults().filter(r=>r.linkedBlogId===b.id).length}件連動</span>`:''}
+          ${!b.exported?'<span style="color:#e07000;font-size:10px;font-weight:700">● 未出力</span>':''}
+        </div>
+      </div>
+      <div class="post-card__actions">
+        <button class="btn btn-sm btn-outline" onclick="showView('blog-edit','${b.id}')">編集</button>
+        <button class="btn btn-sm btn-danger" onclick="confirmDelete('blog','${b.id}','${(b.title||'').replace(/'/g,"\\'")}')">削除</button>
+      </div>
+    </div>`).join('')+`</div>`;
+}
+
+/* ============================================================
+   BLOG EDIT
+============================================================ */
+let _blogPreviewOpen=false;
+let _blogLinkedResults=[];  // [{id,name,category,price,method,pref,date,badge,blogLink,img,imgName,useMainImg}]
+
+function renderBlogEdit(id){
+  const blog=id?loadBlogs().find(b=>b.id===id):null;
+  // restore image state from saved data
+  if(blog){
+    _blogMainImg=blog.mainImg?{dataUrl:blog.mainImg,name:'saved'}:null;
+    _blogInlineImgs=(blog.inlineImages||[]).map(img=>({...img}));
+    // 既存の連動実績を読み込む（ブログに紐付いたものを全て）
+    const allResults=loadResults();
+    _blogLinkedResults=allResults
+      .filter(r=>r.linkedBlogId===(editingId||''))
+      .map(r=>({...r}));
+  }else{
+    _blogMainImg=null;_blogInlineImgs=[];_blogLinkedResults=[];
+  }
+
+  const el=document.getElementById('main-content');
+  el.innerHTML=`
+  <div class="form-layout" id="blog-form-layout">
+    <div style="display:flex;flex-direction:column;gap:16px">
+
+      <!-- 基本情報 -->
+      <div class="form-card">
+        <h3>基本情報</h3>
+        <div class="field">
+          <label>記事タイトル <span style="color:var(--red)">*</span></label>
+          <input type="text" id="b-title" placeholder="例：ロレックス買取の最新相場まとめ" value="${esc(blog?.title||'')}">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>アイコン（絵文字）</label>
+            <input type="text" id="b-icon" placeholder="⌚" value="${esc(blog?.icon||'📝')}" style="font-size:20px">
+          </div>
+          <div class="field">
+            <label>公開日</label>
+            <input type="date" id="b-date" value="${blog?.date||todayISO()}">
+          </div>
+        </div>
+        <div class="field">
+          <label>カテゴリータグ（Enter で追加）</label>
+          <div class="tag-input" id="b-tag-wrap" onclick="document.getElementById('b-tag-input').focus()">
+            ${(blog?.cats||[]).map(c=>`<span class="tag-chip">${c}<button type="button" onclick="removeTag(this)">×</button></span>`).join('')}
+            <input type="text" id="b-tag-input" placeholder="タグを入力…" onkeydown="handleTagKey(event)">
+          </div>
+        </div>
+        <div class="field">
+          <label>抜粋（一覧に表示）</label>
+          <textarea id="b-excerpt" rows="2" placeholder="記事の要約を2〜3文で">${esc(blog?.excerpt||'')}</textarea>
+        </div>
+      </div>
+
+      <!-- メイン画像 -->
+      <div class="form-card">
+        <h3>メイン画像（ヒーロー上部に表示）</h3>
+        <div id="b-main-img-area"></div>
+      </div>
+
+      <!-- 本文 -->
+      <div class="form-card">
+        <h3>本文</h3>
+
+        <!-- 本文内画像ライブラリ -->
+        <div style="background:#f7f8fb;border:1px solid var(--border);border-radius:var(--rs);padding:12px;margin-bottom:12px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+            <span style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase">本文内挿入用画像ライブラリ</span>
+            <label style="cursor:pointer">
+              <span class="btn btn-xs btn-outline">＋ 画像を追加</span>
+              <input type="file" accept="image/*" multiple style="display:none" onchange="addInlineImages(event)">
+            </label>
+          </div>
+          <div id="inline-img-library" class="inline-img-list"></div>
+          <div id="inline-img-empty" style="font-size:11px;color:var(--muted);padding:4px 0">画像を追加すると、エディタ内の挿入したい位置でクリックして差し込めます。</div>
+        </div>
+
+        <div class="editor-wrap">
+          <div class="editor-toolbar">
+            <button onclick="fmt('bold')"><b>B</b></button>
+            <button onclick="fmt('italic')"><i>I</i></button>
+            <div class="sep"></div>
+            <button onclick="insH2()">H2</button>
+            <button onclick="fmt('insertUnorderedList')">≡</button>
+            <div class="sep"></div>
+            <button onclick="insTable()">⊞ 表</button>
+            <button onclick="insNote()">💡 メモ</button>
+            <div class="sep"></div>
+            <button onclick="insHR()">── 区切り</button>
+            <button onclick="fmt('removeFormat')">✕ 書式解除</button>
+          </div>
+          <div class="editor-body" id="b-body" contenteditable="true" data-placeholder="本文を入力…">${blog?.body||''}</div>
+        </div>
+        <div class="hint" style="margin-top:6px">Ctrl+B で太字 / ライブラリの画像サムネイルをクリック → カーソル位置に挿入</div>
+      </div>
+
+      <!-- 関連記事 -->
+      <div class="form-card">
+        <h3>関連記事・リンク（任意）</h3>
+        <div id="b-related-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
+          ${(blog?.related||[]).map((r,i)=>relatedRow(r,i)).join('')}
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="addRelated()">＋ 関連記事を追加</button>
+      </div>
+
+      <!-- 連動する買取実績 -->
+      <div class="form-card" style="border-color:var(--gold);border-width:1.5px">
+        <h3 style="color:var(--gold)">🏆 連動する買取実績カード</h3>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.7">
+          ここで追加した実績カードは、記事を保存すると自動的に「買取実績」ページにも反映されます。<br>
+          ブログのタイトル・画像・カテゴリーを初期値として引用し、手動で上書きできます。
+        </p>
+        <div id="linked-results-list"></div>
+        <button class="btn btn-outline btn-sm" onclick="addLinkedResult()" style="border-color:var(--gold);color:var(--gold)">
+          ＋ 実績カードを追加
+        </button>
+      </div>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="form-card">
+        <h3>プレビュー（ヒーロー部）</h3>
+        <div style="background:linear-gradient(135deg,#0d1b4b,#111F4D,#2a4a99);border-radius:6px;border-bottom:3px solid var(--gold);overflow:hidden">
+          <div id="prev-main-img" style="width:100%;max-height:160px;overflow:hidden;display:none"><img style="width:100%;max-height:160px;object-fit:cover;display:block" id="prev-main-img-el"></div>
+          <div style="padding:16px">
+            <div id="prev-cats" style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap"></div>
+            <div id="prev-title" style="font-size:15px;font-weight:700;color:#fff;line-height:1.4;min-height:22px"></div>
+            <div id="prev-date" style="font-size:11px;color:rgba(255,255,255,.5);margin-top:6px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-card" id="b-preview-panel" style="display:none">
+        <h3>本文プレビュー</h3>
+        <div id="b-preview-body" style="font-size:12px;line-height:1.9;max-height:400px;overflow-y:auto"></div>
+      </div>
+    </div>
+  </div>`;
+
+  // init main image upload area
+  renderMainImgArea();
+  renderInlineImgLibrary();
+
+  // init linked results
+  renderLinkedResultsList();
+
+  // live preview listeners
+  ['b-title','b-date'].forEach(pid=>{
+    document.getElementById(pid)?.addEventListener('input',updateBlogPreview);
+  });
+  document.getElementById('b-body').addEventListener('input',updateBlogPreview);
+  updateBlogPreview();
+}
+
+function renderMainImgArea(){
+  const area=document.getElementById('b-main-img-area');
+  if(!area)return;
+  if(_blogMainImg){
+    area.innerHTML=`
+      <div class="img-preview-wrap">
+        <img src="${_blogMainImg.dataUrl}" alt="メイン画像">
+        <button class="img-remove" onclick="removeMainImg()" title="削除">×</button>
+        <div class="img-meta">${_blogMainImg.name||''}</div>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <label style="cursor:pointer"><span class="btn btn-xs btn-outline">🔄 画像を変更</span><input type="file" accept="image/*" style="display:none" onchange="uploadMainImg(event)"></label>
+        <label style="cursor:pointer"><span class="btn btn-xs btn-outline">💾 画像ファイルをDL</span><input type="checkbox" style="display:none" onclick="downloadImgFile('${_blogMainImg.name||'main.jpg'}','${_blogMainImg.dataUrl}')"></label>
+      </div>`;
+  }else{
+    area.innerHTML=`
+      <div class="img-upload-zone" id="main-img-drop">
+        <input type="file" accept="image/*" onchange="uploadMainImg(event)">
+        <div class="upload-icon">🖼️</div>
+        <p><strong>クリックまたはドラッグ</strong>で画像をアップロード</p>
+        <p style="margin-top:4px">JPEG / PNG / WebP • 最大5MB • 推奨1200×630px</p>
+      </div>`;
+    setupDropZone('main-img-drop');
+  }
+}
+
+function renderInlineImgLibrary(){
+  const lib=document.getElementById('inline-img-library');
+  const empty=document.getElementById('inline-img-empty');
+  if(!lib)return;
+  if(!_blogInlineImgs.length){
+    lib.innerHTML='';
+    if(empty)empty.style.display='block';
+    return;
+  }
+  if(empty)empty.style.display='none';
+  lib.innerHTML=_blogInlineImgs.map(img=>`
+    <div class="inline-img-item">
+      <img src="${img.dataUrl}" title="${img.name||''}" onclick="insertInlineImg('${img.id}')" alt="">
+      <div class="iil-ins">クリックで挿入</div>
+      <button class="iil-del" onclick="removeInlineImg('${img.id}')">×</button>
+    </div>`).join('');
+}
+
+async function uploadMainImg(e){
+  const file=e.target.files[0];if(!file)return;
+  if(file.size>5*1024*1024){showToast('5MB以下の画像を選択してください','error');return;}
+  showToast('画像を処理中…');
+  const raw=await readFileAsDataURL(file);
+  const resized=await resizeImage(raw,1200,630,0.88);
+  _blogMainImg={dataUrl:resized,name:file.name};
+  renderMainImgArea();
+  updateBlogPreview();
+  showToast('メイン画像を設定しました ✓','success');
+}
+
+function removeMainImg(){
+  _blogMainImg=null;
+  renderMainImgArea();
+  updateBlogPreview();
+}
+
+async function addInlineImages(e){
+  const files=Array.from(e.target.files);
+  if(!files.length)return;
+  showToast(`${files.length}枚の画像を追加中…`);
+  for(const file of files){
+    if(file.size>8*1024*1024){showToast(`${file.name} は8MBを超えています`,'error');continue;}
+    const raw=await readFileAsDataURL(file);
+    const resized=await resizeImage(raw,1000,800,0.82);
+    _blogInlineImgs.push({id:uid(),dataUrl:resized,name:file.name});
+  }
+  renderInlineImgLibrary();
+  showToast(`画像を追加しました ✓`,'success');
+  e.target.value='';
+}
+
+function removeInlineImg(imgId){
+  _blogInlineImgs=_blogInlineImgs.filter(i=>i.id!==imgId);
+  renderInlineImgLibrary();
+}
+
+function insertInlineImg(imgId){
+  const img=_blogInlineImgs.find(i=>i.id===imgId);
+  if(!img)return;
+  const body=document.getElementById('b-body');
+  if(!body)return;
+  body.focus();
+  const imgHtml=`<img src="${img.dataUrl}" alt="${esc(img.name||'')}" style="max-width:100%;border-radius:4px;margin:10px 0;display:block">`;
+  document.execCommand('insertHTML',false,imgHtml);
+  showToast('画像を挿入しました ✓','success');
+}
+
+function setupDropZone(id){
+  const zone=document.getElementById(id);
+  if(!zone)return;
+  zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('drag-over');});
+  zone.addEventListener('dragleave',()=>zone.classList.remove('drag-over'));
+  zone.addEventListener('drop',async e=>{
+    e.preventDefault();zone.classList.remove('drag-over');
+    const file=e.dataTransfer.files[0];
+    if(file&&file.type.startsWith('image/')){
+      const fakeEvt={target:{files:[file]}};
+      if(id==='main-img-drop')await uploadMainImg(fakeEvt);
+      else await uploadResultImg(fakeEvt);
+    }
+  });
+}
+
+function updateBlogPreview(){
+  const title=document.getElementById('b-title')?.value||'';
+  const date=document.getElementById('b-date')?.value||'';
+  const cats=getCats();
+  const body=document.getElementById('b-body')?.innerHTML||'';
+  document.getElementById('prev-title').textContent=title||'（タイトル未入力）';
+  document.getElementById('prev-date').textContent=date?fmtDate(date)+' ｜ ナニウル編集部':'';
+  document.getElementById('prev-cats').innerHTML=cats.map(c=>`<span style="background:var(--gold);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:2px">${c}</span>`).join('');
+  // main image preview in hero
+  const prevImg=document.getElementById('prev-main-img');
+  const prevImgEl=document.getElementById('prev-main-img-el');
+  if(prevImg&&prevImgEl){
+    if(_blogMainImg){prevImg.style.display='block';prevImgEl.src=_blogMainImg.dataUrl;}
+    else prevImg.style.display='none';
+  }
+  const preview=document.getElementById('b-preview-body');
+  if(preview)preview.innerHTML=body;
+}
+
+let _blogPreviewPanelOpen=false;
+function toggleBlogPreview(){
+  const panel=document.getElementById('b-preview-panel');
+  if(!panel)return;
+  _blogPreviewPanelOpen=!_blogPreviewPanelOpen;
+  panel.style.display=_blogPreviewPanelOpen?'block':'none';
+  updateBlogPreview();
+}
+
+// editor commands
+function fmt(cmd){document.execCommand(cmd,false,null);document.getElementById('b-body')?.focus();}
+function insH2(){document.execCommand('formatBlock',false,'h2');document.getElementById('b-body')?.focus();}
+function insTable(){
+  document.execCommand('insertHTML',false,`<table><thead><tr><th>項目</th><th>内容</th><th>備考</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>`);
+  document.getElementById('b-body')?.focus();
+}
+function insNote(){
+  document.execCommand('insertHTML',false,`<div class="note-box">💡 ここにメモや補足を入力</div>`);
+  document.getElementById('b-body')?.focus();
+}
+function insHR(){
+  document.execCommand('insertHTML',false,`<hr style="border:none;border-top:1px solid #ddd;margin:20px 0">`);
+  document.getElementById('b-body')?.focus();
+}
+
+// tags
+function getCats(){
+  return Array.from(document.querySelectorAll('#b-tag-wrap .tag-chip')).map(el=>el.textContent.replace('×','').trim());
+}
+function handleTagKey(e){
+  if(e.key==='Enter'||e.key===','){
+    e.preventDefault();
+    const val=e.target.value.trim().replace(/,$/,'');
+    if(!val)return;
+    const wrap=document.getElementById('b-tag-wrap');
+    const input=document.getElementById('b-tag-input');
+    const chip=document.createElement('span');
+    chip.className='tag-chip';
+    chip.innerHTML=`${val}<button type="button" onclick="removeTag(this)">×</button>`;
+    wrap.insertBefore(chip,input);
+    e.target.value='';
+    updateBlogPreview();
+  }
+}
+function removeTag(btn){btn.parentElement.remove();updateBlogPreview();}
+
+// related
+function relatedRow(r,i){
+  return `<div class="field-row" style="align-items:center;gap:8px">
+    <input type="text" placeholder="🔗 タイトル" value="${esc(r?.title||'')}" class="b-rel-title">
+    <input type="text" placeholder="../blog/xxx.html" value="${esc(r?.href||'')}" class="b-rel-href">
+    <button class="btn btn-xs btn-danger" onclick="this.parentElement.remove()">削除</button>
+  </div>`;
+}
+function addRelated(){
+  const list=document.getElementById('b-related-list');
+  const div=document.createElement('div');
+  div.innerHTML=relatedRow({},list.children.length);
+  list.appendChild(div.firstChild);
+}
+
+// save blog
+
+/* ============================================================
+   LINKED RESULTS (ブログ連動実績)
+============================================================ */
+
+// カテゴリータグからもっとも近い実績カテゴリーを推定
+function guessCategory(cats){
+  const map={'貴金属':'金・プラチナ','金':'金・プラチナ','プラチナ':'金・プラチナ','銀':'金・プラチナ',
+    'ブランド':'ブランド品','バッグ':'ブランド品','財布':'ブランド品',
+    '腕時計':'腕時計','時計':'腕時計','ロレックス':'腕時計','オメガ':'腕時計',
+    '宝石':'宝石','ダイヤ':'宝石','ジュエリー':'宝石','パール':'宝石',
+    '骨董':'骨董','古美術':'骨董','茶道':'骨董',
+    'カメラ':'カメラ','レンズ':'カメラ',
+    '古銭':'古銭','切手':'古銭','コイン':'古銭'};
+  for(const cat of (cats||[])){
+    for(const [key,val] of Object.entries(map)){
+      if(cat.includes(key))return val;
+    }
+  }
+  return '金・プラチナ';
+}
+
+function renderLinkedResultsList(){
+  const list=document.getElementById('linked-results-list');
+  if(!list)return;
+  if(!_blogLinkedResults.length){
+    list.innerHTML=`<div style="font-size:12px;color:var(--muted);padding:8px 0 14px;text-align:center">実績カードがまだありません。「＋ 実績カードを追加」で追加してください。</div>`;
+    return;
+  }
+  list.innerHTML=_blogLinkedResults.map((r,i)=>buildLinkedResultForm(r,i)).join('');
+}
+
+function buildLinkedResultForm(r,i){
+  const cats=RESULT_CATS.map(c=>`<option value="${c}" ${r.category===c?'selected':''}>${c}</option>`).join('');
+  const methods=['店頭買取','宅配買取','LINE査定','出張買取'].map(m=>`<option value="${m}" ${r.method===m?'selected':''}>${m}</option>`).join('');
+  const badges=[
+    {v:'',l:'なし'},{v:'gold',l:'HOT（ゴールド）'},{v:'new',l:'NEW（ネイビー）'},{v:'gold_強化',l:'強化（ゴールド）'}
+  ].map(b=>`<option value="${b.v}" ${r.badge===b.v?'selected':''}>${b.l}</option>`).join('');
+
+  // miniプレビュー
+  const bg=BG_NUMS[r.category]||'bg1';
+  const icon=RESULT_ICONS[r.category]||'📦';
+  const imgSrc=r.img||(r.useMainImg&&_blogMainImg?.dataUrl)||null;
+
+  return `
+  <div class="linked-result-card${imgSrc?' has-img':''}" id="lr-card-${i}">
+    <div class="linked-result-card__header">
+      <span class="linked-result-card__num">実績カード ${i+1}</span>
+      <button class="btn btn-xs btn-danger" onclick="removeLinkedResult(${i})">削除</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+      <div class="field" style="margin:0">
+        <label>品名 <span style="color:var(--red)">*</span></label>
+        <input type="text" class="lr-name" data-i="${i}" placeholder="例：ロレックス サブマリーナ" value="${esc(r.name||'')}" oninput="updateLinkedResult(${i},'name',this.value)">
+      </div>
+      <div class="field" style="margin:0">
+        <label>買取価格（円）<span style="color:var(--red)">*</span></label>
+        <input type="number" class="lr-price" data-i="${i}" placeholder="850000" value="${r.price||''}" oninput="updateLinkedResult(${i},'price',this.value)">
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px">
+      <div class="field" style="margin:0">
+        <label>カテゴリー</label>
+        <select class="lr-cat" data-i="${i}" onchange="updateLinkedResult(${i},'category',this.value)">${cats}</select>
+      </div>
+      <div class="field" style="margin:0">
+        <label>査定方法</label>
+        <select class="lr-method" data-i="${i}" onchange="updateLinkedResult(${i},'method',this.value)">${methods}</select>
+      </div>
+      <div class="field" style="margin:0">
+        <label>バッジ</label>
+        <select class="lr-badge" data-i="${i}" onchange="updateLinkedResult(${i},'badge',this.value)">${badges}</select>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+      <div class="field" style="margin:0">
+        <label>都道府県</label>
+        <input type="text" class="lr-pref" data-i="${i}" placeholder="東京都" value="${esc(r.pref||'東京都')}" oninput="updateLinkedResult(${i},'pref',this.value)">
+      </div>
+      <div class="field" style="margin:0">
+        <label>掲載年月（YYYY.MM）</label>
+        <input type="text" class="lr-date" data-i="${i}" placeholder="2025.06" value="${esc(r.date||new Date().getFullYear()+'.'+String(new Date().getMonth()+1).padStart(2,'0'))}" oninput="updateLinkedResult(${i},'date',this.value)">
+      </div>
+    </div>
+
+    <!-- 画像 -->
+    <div style="margin-bottom:10px">
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">カード画像</div>
+      <div style="display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap">
+        ${_blogMainImg?`
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;background:${r.useMainImg?'var(--accent-lt)':'#fff'};border:1.5px solid ${r.useMainImg?'var(--navy)':'var(--border)'};border-radius:var(--rs);padding:7px 12px;font-weight:${r.useMainImg?'700':'400'}">
+          <input type="checkbox" ${r.useMainImg?'checked':''} onchange="updateLinkedResult(${i},'useMainImg',this.checked)" style="width:14px;height:14px">
+          ブログのメイン画像を使用
+        </label>`:''}
+        <div style="flex:1;min-width:120px">
+          ${imgSrc&&!r.useMainImg?`
+            <div class="img-preview-wrap" style="margin:0">
+              <img src="${r.img||''}" style="max-height:80px;border-radius:var(--rs)">
+              <button class="img-remove" onclick="removeLRImg(${i})" style="width:18px;height:18px;font-size:12px">×</button>
+            </div>
+          `:`
+            <div class="img-upload-mini" id="lr-drop-${i}" ${r.useMainImg?'style="pointer-events:none;opacity:.5"':''}>
+              <input type="file" accept="image/*" onchange="uploadLRImg(event,${i})" ${r.useMainImg?'disabled':''}>
+              📷 画像をアップロード
+            </div>
+          `}
+        </div>
+      </div>
+    </div>
+
+    <!-- mini preview -->
+    <div class="linked-result-mini-preview">
+      <div class="linked-result-mini-img ${bg}">
+        ${imgSrc?`<img src="${imgSrc}" alt="">`:`<span>${icon}</span>`}
+      </div>
+      <div class="linked-result-mini-body">
+        <div class="mini-cat">${r.category||'カテゴリー'}</div>
+        <div class="mini-name">${esc(r.name||'品名未入力')}</div>
+        <div class="mini-price">${r.price?'¥'+Number(r.price).toLocaleString():'¥—'}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function addLinkedResult(){
+  // ブログの現在の入力値から自動引用して初期化
+  const title=document.getElementById('b-title')?.value||'';
+  const cats=getCats();
+  const date=new Date();
+  const dateStr=date.getFullYear()+'.'+String(date.getMonth()+1).padStart(2,'0');
+  const category=guessCategory(cats);
+
+  _blogLinkedResults.push({
+    id:uid(),
+    name:title,          // ブログタイトルを初期値に
+    category,            // カテゴリータグから推定
+    price:'',
+    method:'店頭買取',
+    pref:'東京都',
+    date:dateStr,
+    badge:'',
+    img:null,
+    imgName:null,
+    useMainImg:!!_blogMainImg,  // メイン画像があれば初期ONに
+    linkedBlogId:'',     // saveBlog時に設定
+  });
+  renderLinkedResultsList();
+}
+
+function removeLinkedResult(i){
+  _blogLinkedResults.splice(i,1);
+  renderLinkedResultsList();
+}
+
+function updateLinkedResult(i,key,val){
+  if(!_blogLinkedResults[i])return;
+  _blogLinkedResults[i][key]=val;
+  // カテゴリー変更時はアイコン・背景も更新されるのでre-render
+  if(key==='category'||key==='useMainImg'||key==='name'||key==='price'){
+    renderLinkedResultsList();
+  }
+}
+
+async function uploadLRImg(e,i){
+  const file=e.target.files[0];if(!file)return;
+  if(file.size>8*1024*1024){showToast('8MB以下の画像を選択してください','error');return;}
+  showToast('画像を処理中…');
+  const raw=await readFileAsDataURL(file);
+  const resized=await resizeImage(raw,800,800,0.88);
+  if(!_blogLinkedResults[i])return;
+  _blogLinkedResults[i].img=resized;
+  _blogLinkedResults[i].imgName=file.name;
+  _blogLinkedResults[i].useMainImg=false;
+  renderLinkedResultsList();
+  showToast('画像を設定しました ✓','success');
+  e.target.value='';
+}
+
+function removeLRImg(i){
+  if(!_blogLinkedResults[i])return;
+  _blogLinkedResults[i].img=null;
+  _blogLinkedResults[i].imgName=null;
+  renderLinkedResultsList();
+}
+
+function saveBlog(){
+  const title=document.getElementById('b-title')?.value?.trim();
+  if(!title){showToast('タイトルを入力してください','error');return;}
+  const cats=getCats();
+  const related=Array.from(document.querySelectorAll('.b-rel-title')).map((el,i)=>({
+    icon:'🔗',title:el.value.trim(),
+    href:document.querySelectorAll('.b-rel-href')[i]?.value?.trim()||'',
+    date:'リンク',
+  })).filter(r=>r.title);
+
+  const blogs=loadBlogs();
+  const now=new Date().toISOString();
+  const slug=title.replace(/[^\w\u3040-\u30ff\u4e00-\u9fff]+/g,'-').toLowerCase().slice(0,40)||uid();
+
+  const data={
+    id:editingId||uid(),
+    title,
+    icon:document.getElementById('b-icon')?.value||'📝',
+    date:document.getElementById('b-date')?.value||todayISO(),
+    cats,
+    excerpt:document.getElementById('b-excerpt')?.value||'',
+    body:document.getElementById('b-body')?.innerHTML||'',
+    mainImg:_blogMainImg?.dataUrl||null,
+    mainImgName:_blogMainImg?.name||null,
+    inlineImages:_blogInlineImgs.map(({id,dataUrl,name})=>({id,dataUrl,name})),
+    related,
+    slug,
+    updatedAt:now,
+    exported:false,
+  };
+
+  const blogId=data.id;
+
+  if(editingId){
+    const idx=blogs.findIndex(b=>b.id===editingId);
+    if(idx>=0)blogs[idx]=data;
+  }else{blogs.push(data);}
+  saveBlogs(blogs);
+
+  // ---- 連動実績を自動登録・更新 ----
+  if(_blogLinkedResults.length){
+    const allResults=loadResults();
+    // このブログに紐付いた旧実績IDセット
+    const oldLinkedIds=new Set(allResults.filter(r=>r.linkedBlogId===blogId).map(r=>r.id));
+    // フォーム上の実績IDセット
+    const newIds=new Set(_blogLinkedResults.map(r=>r.id));
+    // 削除されたもの（フォームから消えた）
+    const toDelete=oldLinkedIds;
+    newIds.forEach(id=>toDelete.delete(id));
+
+    // 既存から削除分を除く
+    let updatedResults=allResults.filter(r=>!toDelete.has(r.id));
+
+    const now2=new Date().toISOString();
+    _blogLinkedResults.forEach(lr=>{
+      if(!lr.name||!lr.price)return; // 品名・価格なしはスキップ
+      // 使用する画像：useMainImg=true ならメイン画像、なければlr.img
+      const finalImg=lr.useMainImg?(_blogMainImg?.dataUrl||null):lr.img;
+      const finalImgName=lr.useMainImg?(_blogMainImg?.name||null):lr.imgName;
+      const resultData={
+        id:lr.id,
+        name:lr.name,
+        category:lr.category,
+        price:Number(lr.price),
+        method:lr.method,
+        pref:lr.pref,
+        date:lr.date,
+        badge:lr.badge,
+        blogLink:`../blog/${data.slug||blogId}.html`,
+        img:finalImg,
+        imgName:finalImgName,
+        linkedBlogId:blogId,   // 紐付けキー
+        updatedAt:now2,
+        exported:false,
+        title:lr.name,
+      };
+      const existIdx=updatedResults.findIndex(r=>r.id===lr.id);
+      if(existIdx>=0) updatedResults[existIdx]=resultData;
+      else updatedResults.push(resultData);
+    });
+    saveResults(updatedResults);
+    showToast(`記事と実績${_blogLinkedResults.filter(r=>r.name&&r.price).length}件を保存しました ✓`,'success');
+  }else{
+    showToast('記事を保存しました ✓','success');
+  }
+  setTimeout(()=>showView('blog-list'),800);
+}
+
+/* ============================================================
+   RESULT LIST
+============================================================ */
+const RESULT_CATS=['金・プラチナ','ブランド品','腕時計','宝石','骨董','カメラ','古銭','その他'];
+const RESULT_ICONS={'金・プラチナ':'🥇','ブランド品':'👜','腕時計':'⌚','宝石':'💎','骨董':'🏺','カメラ':'📷','古銭':'🪙','その他':'📦'};
+const BG_NUMS={'金・プラチナ':'bg1','ブランド品':'bg3','腕時計':'bg2','宝石':'bg4','骨董':'bg5','カメラ':'bg6','古銭':'bg1','その他':'bg5'};
+
+function renderResultList(){
+  const results=loadResults();
+  const el=document.getElementById('main-content');
+  if(!results.length){el.innerHTML=`<div class="empty-state"><div class="icon">🏆</div><h3>実績がありません</h3><p>「＋ 新規実績」から登録してください。</p></div>`;return;}
+  el.innerHTML=`<div class="post-list">`+results.map(r=>`
+    <div class="post-card">
+      <div class="post-card__thumb">${r.img?`<img src="${r.img}" alt="">`:`<span>${RESULT_ICONS[r.category]||'📦'}</span>`}</div>
+      <div class="post-card__body">
+        <div class="post-card__title">${r.name||'(無題)'}</div>
+        <div class="post-card__meta">
+          <span>${r.price?'¥'+Number(r.price).toLocaleString():'価格未設定'}</span>
+          <span class="post-card__badge" style="background:#e8f5e8;color:#2a7a2a">${r.category||'—'}</span>
+          <span style="color:var(--muted)">${r.method||''}</span>
+          ${r.img?'<span style="color:var(--muted)">📷 画像あり</span>':''}
+          ${!r.exported?'<span style="color:#e07000;font-size:10px;font-weight:700">● 未出力</span>':''}
+        </div>
+      </div>
+      <div class="post-card__actions">
+        <button class="btn btn-sm btn-outline" onclick="showView('result-edit','${r.id}')">編集</button>
+        <button class="btn btn-sm btn-danger" onclick="confirmDelete('result','${r.id}','${(r.name||'').replace(/'/g,"\\'")}')">削除</button>
+      </div>
+    </div>`).join('')+`</div>`;
+}
+
+/* ============================================================
+   RESULT EDIT
+============================================================ */
+function renderResultEdit(id){
+  const results=loadResults();
+  const r=id?results.find(x=>x.id===id):null;
+  if(r){_resultImg=r.img?{dataUrl:r.img,name:r.imgName||'saved'}:null;}
+  else{_resultImg=null;}
+
+  const el=document.getElementById('main-content');
+  el.innerHTML=`
+  <div style="display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="form-card">
+        <h3>基本情報</h3>
+        <div class="field">
+          <label>品名 <span style="color:var(--red)">*</span></label>
+          <input type="text" id="r-name" placeholder="例：ROLEX サブマリーナ Ref.116610LN" value="${esc(r?.name||'')}">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>カテゴリー</label>
+            <select id="r-cat" onchange="updateResultPreview()">
+              ${RESULT_CATS.map(c=>`<option value="${c}" ${r?.category===c?'selected':''}>${c}</option>`).join('')}
+            </select>
+          </div>
+          <div class="field">
+            <label>査定方法</label>
+            <select id="r-method" onchange="updateResultPreview()">
+              <option value="店頭買取" ${r?.method==='店頭買取'?'selected':''}>店頭買取</option>
+              <option value="宅配買取" ${r?.method==='宅配買取'?'selected':''}>宅配買取</option>
+              <option value="LINE査定" ${r?.method==='LINE査定'?'selected':''}>LINE査定</option>
+              <option value="出張買取" ${r?.method==='出張買取'?'selected':''}>出張買取</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>買取価格（円）<span style="color:var(--red)">*</span></label>
+            <input type="number" id="r-price" placeholder="850000" value="${r?.price||''}" oninput="updateResultPreview()">
+          </div>
+          <div class="field">
+            <label>都道府県</label>
+            <input type="text" id="r-pref" placeholder="東京都" value="${esc(r?.pref||'東京都')}" oninput="updateResultPreview()">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>掲載年月（YYYY.MM）</label>
+            <input type="text" id="r-date" placeholder="2025.06" value="${esc(r?.date||new Date().getFullYear()+'.'+String(new Date().getMonth()+1).padStart(2,'0'))}" oninput="updateResultPreview()">
+          </div>
+          <div class="field">
+            <label>バッジ</label>
+            <select id="r-badge" onchange="updateResultPreview()">
+              <option value="" ${!r?.badge?'selected':''}>なし</option>
+              <option value="gold" ${r?.badge==='gold'?'selected':''}>HOT（ゴールド）</option>
+              <option value="new" ${r?.badge==='new'?'selected':''}>NEW（ネイビー）</option>
+              <option value="gold_強化" ${r?.badge==='gold_強化'?'selected':''}>強化（ゴールド）</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 商品画像 -->
+      <div class="form-card">
+        <h3>商品画像</h3>
+        <div id="r-img-area"></div>
+        <div class="hint" style="margin-top:8px">推奨：正方形または4:3（800×600px以上）。画像なしの場合はカテゴリーアイコンで表示されます。</div>
+      </div>
+
+      <div class="form-card">
+        <h3>関連ブログ記事（クリック時の遷移先）</h3>
+        <div class="field">
+          <label>ブログ記事URL</label>
+          <select id="r-blog-link">
+            <option value="">なし</option>
+            <option value="../blog/gold-price-2024.html" ${r?.blogLink?.includes('gold')?'selected':''}>金の買取相場が過去最高水準に</option>
+            <option value="../blog/lv-bag-tips.html" ${r?.blogLink?.includes('lv-bag')?'selected':''}>LVバッグ査定のコツ</option>
+            <option value="../blog/watch-price-2024.html" ${r?.blogLink?.includes('watch')?'selected':''}>ロレックス・オメガの最新買取相場</option>
+            <option value="../blog/diamond-4c.html" ${r?.blogLink?.includes('diamond')?'selected':''}>ダイヤモンドの4Cとは</option>
+            <option value="../blog/takuhai-tips.html" ${r?.blogLink?.includes('takuhai')?'selected':''}>宅配買取を初めて使う方へ</option>
+            <option value="../blog/legacy-tips.html" ${r?.blogLink?.includes('legacy')?'selected':''}>遺品整理での買取のポイント</option>
+            ${loadBlogs().map(b=>`<option value="../blog/${b.slug||b.id}.html" ${r?.blogLink?.includes(b.slug||b.id)?'selected':''}>${b.title}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div>
+      <div class="form-card">
+        <h3>カードプレビュー</h3>
+        <div id="result-preview-wrap"></div>
+      </div>
+    </div>
+  </div>`;
+
+  renderResultImgArea();
+  ['r-name'].forEach(pid=>{document.getElementById(pid)?.addEventListener('input',updateResultPreview);});
+  updateResultPreview();
+}
+
+function renderResultImgArea(){
+  const area=document.getElementById('r-img-area');
+  if(!area)return;
+  if(_resultImg){
+    area.innerHTML=`
+      <div class="img-preview-wrap">
+        <img src="${_resultImg.dataUrl}" alt="商品画像" style="max-height:180px">
+        <button class="img-remove" onclick="removeResultImg()" title="削除">×</button>
+        <div class="img-meta">${_resultImg.name||''}</div>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <label style="cursor:pointer"><span class="btn btn-xs btn-outline">🔄 画像を変更</span><input type="file" accept="image/*" style="display:none" onchange="uploadResultImg(event)"></label>
+        <button class="btn btn-xs btn-outline" onclick="downloadImgFile('${_resultImg.name||'product.jpg'}','${_resultImg.dataUrl}')">💾 画像ファイルをDL</button>
+      </div>`;
+  }else{
+    area.innerHTML=`
+      <div class="img-upload-zone" id="result-img-drop">
+        <input type="file" accept="image/*" onchange="uploadResultImg(event)">
+        <div class="upload-icon">📷</div>
+        <p><strong>クリックまたはドラッグ</strong>で商品画像をアップロード</p>
+        <p style="margin-top:4px">JPEG / PNG / WebP • 最大8MB</p>
+      </div>`;
+    setupDropZone('result-img-drop');
+  }
+}
+
+async function uploadResultImg(e){
+  const file=e.target.files[0];if(!file)return;
+  if(file.size>8*1024*1024){showToast('8MB以下の画像を選択してください','error');return;}
+  showToast('画像を処理中…');
+  const raw=await readFileAsDataURL(file);
+  const resized=await resizeImage(raw,800,800,0.88);
+  _resultImg={dataUrl:resized,name:file.name};
+  renderResultImgArea();
+  updateResultPreview();
+  showToast('商品画像を設定しました ✓','success');
+}
+
+function removeResultImg(){_resultImg=null;renderResultImgArea();updateResultPreview();}
+
+function updateResultPreview(){
+  const name=document.getElementById('r-name')?.value||'（品名未入力）';
+  const cat=document.getElementById('r-cat')?.value||'金・プラチナ';
+  const price=document.getElementById('r-price')?.value||'0';
+  const method=document.getElementById('r-method')?.value||'店頭買取';
+  const pref=document.getElementById('r-pref')?.value||'';
+  const date=document.getElementById('r-date')?.value||'';
+  const badge=document.getElementById('r-badge')?.value||'';
+  const bg=BG_NUMS[cat]||'bg1';
+  const icon=RESULT_ICONS[cat]||'📦';
+  const methodClass={'店頭買取':'method-store','宅配買取':'method-mail','LINE査定':'method-line','出張買取':'method-visit'}[method]||'method-store';
+  const badgeLabel=badge==='gold'?'HOT':badge==='new'?'NEW':badge.split('_')[1]||'';
+  const badgeClass=badge.startsWith('gold')?'badge-gold':'badge-new';
+
+  document.getElementById('result-preview-wrap').innerHTML=`
+    <div class="result-preview">
+      <div class="result-preview__img ${bg}">
+        ${_resultImg?`<img src="${_resultImg.dataUrl}" alt="">`:''}
+        <span class="emoji-fallback" style="${_resultImg?'display:none':''}">${icon}</span>
+        ${badgeLabel?`<span class="result-preview__badge" style="background:${badge.startsWith('gold')?'var(--gold)':'var(--navy)'};color:#fff">${badgeLabel}</span>`:''}
+      </div>
+      <div class="result-preview__body">
+        <div class="result-preview__cat">${cat}</div>
+        <div class="result-preview__name">${name}</div>
+        <div class="result-preview__price-label">買取価格</div>
+        <div class="result-preview__price">¥${Number(price||0).toLocaleString()}</div>
+        <div class="result-preview__meta">
+          <span class="method-chip ${methodClass}">${method}</span>
+          <span style="font-size:11px;color:var(--muted)">${pref}</span>
+          <span style="font-size:11px;color:var(--muted);margin-left:auto">${date}</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function saveResult(){
+  const name=document.getElementById('r-name')?.value?.trim();
+  if(!name){showToast('品名を入力してください','error');return;}
+  const price=document.getElementById('r-price')?.value;
+  if(!price){showToast('買取価格を入力してください','error');return;}
+  const results=loadResults();
+  const now=new Date().toISOString();
+  const data={
+    id:editingId||uid(),name,
+    category:document.getElementById('r-cat')?.value||'金・プラチナ',
+    price:Number(price),
+    method:document.getElementById('r-method')?.value||'店頭買取',
+    pref:document.getElementById('r-pref')?.value||'東京都',
+    date:document.getElementById('r-date')?.value||'',
+    badge:document.getElementById('r-badge')?.value||'',
+    blogLink:document.getElementById('r-blog-link')?.value||'',
+    img:_resultImg?.dataUrl||null,
+    imgName:_resultImg?.name||null,
+    updatedAt:now,exported:false,title:name,
+  };
+  if(editingId){const idx=results.findIndex(r=>r.id===editingId);if(idx>=0)results[idx]=data;}
+  else{results.push(data);}
+  saveResults(results);
+  showToast('実績を保存しました ✓','success');
+  setTimeout(()=>showView('result-list'),800);
+}
+
+/* ============================================================
+   DELETE
+============================================================ */
+function confirmDelete(type,id,label){
+  document.getElementById('delete-msg').textContent=`「${label}」を削除しますか？この操作は元に戻せません。`;
+  document.getElementById('delete-confirm-btn').onclick=()=>{
+    if(type==='blog')saveBlogs(loadBlogs().filter(b=>b.id!==id));
+    else saveResults(loadResults().filter(r=>r.id!==id));
+    closeDeleteModal();showToast('削除しました','success');showView(type+'-list');
+  };
+  document.getElementById('delete-modal').classList.add('open');
+}
+function closeDeleteModal(){document.getElementById('delete-modal').classList.remove('open');}
+
+/* ============================================================
+   HTML EXPORT
+============================================================ */
+const SITE_CSS=`*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Hiragino Kaku Gothic ProN','Hiragino Sans','Noto Sans JP',Meiryo,sans-serif;font-size:14px;line-height:1.7;color:#222;background:#f7f7f7}
+a{color:inherit;text-decoration:none}
+:root{--navy:#1B2F6E;--navy2:#111F4D;--gold:#B8860B;--red:#C0392B;--gray1:#F5F5F5;--gray4:#888888;--border:#DDDDDD;--r4:4px}
+.site-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:300;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.site-header__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:16px}
+.site-logo{font-size:22px;font-weight:700;color:var(--navy);letter-spacing:.1em}
+.site-logo span{font-size:11px;color:var(--gray4);margin-left:8px;font-weight:400}
+.header-nav{display:flex;gap:0;margin-left:auto}
+.header-nav a{font-size:12px;font-weight:600;color:var(--gray4);padding:0 14px;height:60px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.header-nav a:hover{color:var(--navy);border-bottom-color:var(--navy)}
+.header-tel{font-size:14px;font-weight:700;color:var(--navy);border:1.5px solid var(--navy);padding:8px 16px;border-radius:4px;margin-left:8px;white-space:nowrap}
+.breadcrumb{background:#fff;border-bottom:1px solid var(--border);padding:10px 0}
+.breadcrumb__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;font-size:12px;color:var(--gray4);flex-wrap:wrap}
+.breadcrumb__inner a{color:var(--gray4)}
+.breadcrumb__sep{margin:0 8px}
+.main-wrap{max-width:1100px;margin:32px auto;padding:0 16px;display:grid;grid-template-columns:1fr 280px;gap:32px;align-items:start}
+.article{background:#fff;border:1px solid var(--border);border-radius:var(--r4);overflow:hidden}
+.article__hero{background:linear-gradient(135deg,#0d1b4b 0%,var(--navy2) 60%,#2a4a99 100%);padding:40px 36px;border-bottom:3px solid var(--gold)}
+.article__hero-img{width:100%;max-height:360px;object-fit:cover;display:block}
+.article__cats{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.article__cat{background:var(--gold);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:2px}
+.article__title{font-size:24px;font-weight:700;color:#fff;line-height:1.4;margin-bottom:12px}
+.article__meta{font-size:12px;color:rgba(255,255,255,.55)}
+.article__body{padding:36px}
+.article__body h2{font-size:17px;font-weight:700;color:var(--navy);margin:28px 0 12px;padding-left:10px;border-left:3px solid var(--gold)}
+.article__body h2:first-child{margin-top:0}
+.article__body p{font-size:13px;line-height:2;margin-bottom:14px;color:#333}
+.article__body ul{font-size:13px;line-height:2;padding-left:20px;margin-bottom:14px;list-style:disc;color:#333}
+.article__body .note-box{background:var(--gray1);border-left:3px solid var(--gold);padding:14px 18px;border-radius:0 4px 4px 0;margin:20px 0;font-size:13px;color:#444}
+.article__body img{max-width:100%;height:auto;border-radius:4px;margin:10px 0;display:block}
+.article__body table{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:13px}
+.article__body th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left}
+.article__body td{padding:9px 14px;border-bottom:1px solid var(--border)}
+.article__body tr:last-child td{border-bottom:none}
+.article__footer{padding:24px 36px;border-top:1px solid var(--border);background:var(--gray1)}
+.related-box h3{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px}
+.related-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.related-card{background:#fff;border:1px solid var(--border);border-radius:var(--r4);padding:14px;font-size:12px;transition:box-shadow .15s;color:inherit;text-decoration:none;display:block}
+.related-card:hover{box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.related-card .icon{font-size:20px;margin-bottom:6px}
+.related-card .rtitle{font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:4px}
+.related-card .rdate{color:var(--gray4)}
+.sidebar-widget{background:#fff;border:1px solid var(--border);border-radius:var(--r4);padding:20px;margin-bottom:16px}
+.sidebar-widget h3{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--navy)}
+.sidebar-link{display:block;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;color:#444}
+.sidebar-link:last-child{border-bottom:none}
+.sidebar-link:hover{color:var(--navy)}
+.cta-widget{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:var(--r4);padding:20px;color:#fff;text-align:center}
+.cta-widget h3{font-size:14px;font-weight:700;margin-bottom:6px}
+.cta-widget p{font-size:11px;color:rgba(255,255,255,.7);margin-bottom:14px;line-height:1.6}
+.cta-widget a{display:block;background:var(--gold);color:#fff;font-size:13px;font-weight:700;padding:10px;border-radius:var(--r4);margin-bottom:8px}
+.cta-widget a.alt{background:rgba(255,255,255,.15);margin-bottom:0}
+.site-footer{background:var(--navy2);margin-top:48px;padding:32px 0 20px}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;gap:32px;flex-wrap:wrap;margin-bottom:20px}
+.footer-col-head{font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.footer-link{display:block;font-size:12px;color:rgba(255,255,255,.6);padding:3px 0}
+.footer-link:hover{color:var(--gold)}
+.footer-copy{text-align:center;font-size:11px;color:rgba(255,255,255,.3);border-top:1px solid rgba(255,255,255,.08);padding:16px;max-width:1200px;margin:0 auto}
+@media(max-width:768px){.header-nav{display:none}.main-wrap{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr}.article__hero{padding:24px 20px}.article__body{padding:20px}.article__footer{padding:16px 20px}}`;
+
+const SITE_HEADER=`<header class="site-header">
+  <div class="site-header__inner">
+    <a href="../index.html" class="site-logo">ナニウル<span>八王子の高価買取専門店</span></a>
+    <nav class="header-nav">
+      <a href="../product/brand.html">買取商品</a>
+      <a href="../flow/index.html">買取の流れ</a>
+      <a href="../results/index.html">買取実績</a>
+      <a href="../reason/index.html">選ばれる理由</a>
+      <a href="../faq/index.html">よくある質問</a>
+      <a href="index.html" style="color:var(--navy);border-bottom-color:var(--navy)">ブログ</a>
+    </nav>
+    <a href="tel:0426000000" class="header-tel">042-600-0000</a>
+  </div>
+</header>`;
+
+const SITE_FOOTER=`<footer class="site-footer">
+  <div class="footer-inner">
+    <div><div class="footer-col-head">Service</div><a href="../flow/tenpo.html" class="footer-link">店頭買取</a><a href="../flow/takuhai.html" class="footer-link">宅配買取</a><a href="../flow/syuttyou.html" class="footer-link">出張買取</a><a href="../flow/line.html" class="footer-link">LINE査定</a></div>
+    <div><div class="footer-col-head">Buy Items</div><a href="../product/kikinzoku.html" class="footer-link">金・プラチナ・銀</a><a href="../product/brand.html" class="footer-link">ブランド品</a><a href="../product/watch.html" class="footer-link">腕時計</a></div>
+    <div><div class="footer-col-head">Contact</div><div style="color:rgba(255,255,255,.7);font-size:20px;font-weight:700;margin-bottom:4px">042-600-0000</div><div style="color:rgba(255,255,255,.4);font-size:11px">営業時間 10:00〜19:00 年中無休</div></div>
+  </div>
+  <div class="footer-copy">© 2024 ナニウル（株式会社yxxk）All Rights Reserved.</div>
+</footer>`;
+
+function buildBlogHTML(blog,useBase64){
+  const catsHtml=(blog.cats||[]).map(c=>`<span class="article__cat">${c}</span>`).join('');
+  const relatedHtml=(blog.related||[]).filter(r=>r.title).map(r=>
+    `<a class="related-card" href="${r.href||'#'}"><div class="icon">${r.icon||'🔗'}</div><div class="rtitle">${r.title}</div><div class="rdate">${r.date||''}</div></a>`
+  ).join('');
+  const recentLinks=loadBlogs().slice(-6).map(b=>`<a class="sidebar-link" href="${b.slug||b.id}.html">${b.title.slice(0,24)}</a>`).join('');
+
+  // Main image: base64 or external path
+  let mainImgHtml='';
+  if(blog.mainImg){
+    const src=useBase64?blog.mainImg:`images/${blog.slug||blog.id}-main.jpg`;
+    mainImgHtml=`<img class="article__hero-img" src="${src}" alt="${esc(blog.title)}">`;
+  }
+
+  // Body: base64 stays as-is OR replace with relative paths
+  let body=blog.body||'';
+  if(!useBase64 && blog.inlineImages?.length){
+    blog.inlineImages.forEach(img=>{
+      const fname=`images/${blog.slug||blog.id}-${img.id}.jpg`;
+      // replace data URL in body with relative path
+      body=body.replaceAll(img.dataUrl,fname);
+    });
+  }
+
+  return `<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="${esc(blog.excerpt||blog.title)}">
+<title>${esc(blog.title)}｜ナニウル ブログ</title>
+<style>${SITE_CSS}</style>
+</head>
+<body>
+${SITE_HEADER}
+<div class="breadcrumb">
+  <div class="breadcrumb__inner">
+    <a href="../index.html">HOME</a><span class="breadcrumb__sep">›</span>
+    <a href="index.html">ブログ</a><span class="breadcrumb__sep">›</span>
+    <span>${esc(blog.title.slice(0,24))}…</span>
+  </div>
+</div>
+<div class="main-wrap">
+  <div>
+    <article class="article">
+      <div class="article__hero">
+        ${mainImgHtml}
+        <div style="padding:${blog.mainImg?'24px 36px 32px':''}">
+          <div class="article__cats">${catsHtml}</div>
+          <div class="article__title">${esc(blog.title)}</div>
+          <div class="article__meta">📅 ${fmtDate(blog.date)} ｜ ナニウル編集部</div>
+        </div>
+      </div>
+      <div class="article__body">${body}</div>
+      ${relatedHtml?`<div class="article__footer"><div class="related-box"><h3>関連記事・ページ</h3><div class="related-grid">${relatedHtml}</div></div></div>`:''}
+    </article>
+  </div>
+  <aside>
+    <div class="sidebar-widget"><h3>最近の記事</h3>${recentLinks}</div>
+    <div class="cta-widget">
+      <h3>今すぐ無料査定<</h3>
+      <p>写真を送るだけ。LINEで気軽に査定依頼できます。</p>
+      <a href="../flow/line.html">📱 LINE査定（無料）</a>
+      <a href="../contact/index.html" class="alt">📝 メールで相談</a>
+    </div>
+  </aside>
+</div>
+${SITE_FOOTER}
+</body>
+</html>`;
+}
+
+// ブログ一覧（blog/index.html）に追加する1件分のカードHTML
+function buildBlogCardHTML(blog){
+  const href=`${blog.slug||blog.id}.html`;
+  const thumb=blog.mainImg
+    ? `<div class="blog-card__thumb" style="background-image:url('images/${blog.slug||blog.id}-main.jpg');background-size:cover;background-position:center"></div>`
+    : `<div class="blog-card__thumb">${(blog.cats&&BLOG_THUMB_ICON[blog.cats[0]])||'📝'}</div>`;
+  const catsHtml=(blog.cats||[]).map(c=>`<span class="blog-card__cat">${esc(c)}</span>`).join('');
+  const excerpt=esc(blog.excerpt||'');
+  return `
+    <a class="blog-card" href="${href}" data-blog-id="${blog.id}">
+      ${thumb}
+      <div class="blog-card__body">
+        <div class="blog-card__cats">${catsHtml}</div>
+        <div class="blog-card__title">${esc(blog.title)}</div>
+        <div class="blog-card__excerpt">${excerpt}</div>
+        <div class="blog-card__date">${fmtDate(blog.date)}</div>
+      </div>
+    </a>`;
+}
+const BLOG_THUMB_ICON={'貴金属':'🥇','金':'🥇','相場情報':'📈','ブランド':'👜','ブランド品':'👜','査定のコツ':'🔍','腕時計':'⌚','宝石・ジュエリー':'💍','宝石':'💍','宅配買取':'📦','出張買取':'🏠','遺品整理':'🏠','ガイド':'📋','コラム':'📝'};
+
+function buildResultCardHTML(r,useBase64){
+  const bg=BG_NUMS[r.category]||'bg1';
+  const icon=RESULT_ICONS[r.category]||'📦';
+  const methodClass={'店頭買取':'method-store','宅配買取':'method-mail','LINE査定':'method-line','出張買取':'method-visit'}[r.method]||'method-store';
+  const bv=r.badge||'';
+  const bLabel=bv==='gold'?'HOT':bv==='new'?'NEW':bv.split('_')[1]||'';
+  const bHtml=bLabel?`<span class="result-card__badge ${bv.startsWith('gold')?'badge-gold':'badge-new'}">${bLabel}</span>`:'';
+  let imgHtml='';
+  if(r.img){
+    const src=useBase64?r.img:`images/result-${r.id}.jpg`;
+    imgHtml=`<img src="${src}" alt="${esc(r.name)}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`;
+  }
+  const href=r.blogLink||'#';
+  return `
+      <a href="${href}" class="result-card" data-cat="${r.category}" data-result-id="${r.id}" style="display:block;color:inherit;text-decoration:none;cursor:pointer">
+        <div class="result-card__img result-card__img-${bg}" style="position:relative">${imgHtml}<span style="${r.img?'opacity:0;':''}font-size:48px">${icon}</span>${bHtml}</div>
+        <div class="result-card__body">
+          <div class="result-card__category">${r.category}</div>
+          <div class="result-card__name">${esc(r.name)}</div>
+          <div class="result-card__price-label">買取価格</div>
+          <div class="result-card__price">¥${Number(r.price||0).toLocaleString()}</div>
+          <div class="result-card__meta">
+            <span class="result-card__method ${methodClass}">${r.method}</span>
+            <span class="result-card__pref">${r.pref||''}</span>
+            <span class="result-card__date">${r.date||''}</span>
+          </div>
+        </div>
+      </a>`;
+}
+
+function showExportModal(){
+  const blogs=loadBlogs(),results=loadResults();
+  const list=document.getElementById('export-list');
+  const blogItems=blogs.map(b=>`
+    <div class="export-item">
+      <div>
+        <div class="export-item__name">📝 ${b.title.slice(0,32)}</div>
+        <div class="export-item__detail">blog/${b.slug||b.id}.html${b.mainImg?' ＋ main画像':''} ${b.inlineImages?.length?`＋ 本文内${b.inlineImages.length}枚`:''}</div>
+      </div>
+      <div style="display:flex;gap:6px">
+        <button class="btn btn-xs btn-outline" onclick="downloadBlog('${b.id}',true)" title="画像Base64埋め込み（ファイル1つ）">📥 Base64</button>
+        <button class="btn btn-xs btn-primary" onclick="downloadBlog('${b.id}',false)" title="画像を別ファイルで出力">📁 分離DL</button>
+      </div>
+    </div>`).join('');
+  const blogIndexItem=blogs.length?`
+    <div class="export-item">
+      <div>
+        <div class="export-item__name">📚 ブログ一覧カード ${blogs.length}件（HTMLスニペット）</div>
+        <div class="export-item__detail">blog/index.html の &lt;!-- CMS-BLOG-CARDS --&gt; 直後に貼り付け</div>
+      </div>
+      <div style="display:flex;gap:6px">
+        <button class="btn btn-xs btn-primary" onclick="downloadBlogIndexSnippet()" title="一覧用カードHTML">📁 一覧カードDL</button>
+      </div>
+    </div>`:'';
+  const resultItem=results.length?`
+    <div class="export-item">
+      <div>
+        <div class="export-item__name">🏆 買取実績 ${results.length}件（HTMLスニペット）</div>
+        <div class="export-item__detail">results/index.html のグリッド末尾に貼り付け${results.some(r=>r.img)?' ＋ 商品画像あり':''}</div>
+      </div>
+      <div style="display:flex;gap:6px">
+        <button class="btn btn-xs btn-outline" onclick="downloadResultSnippet(true)" title="画像Base64埋め込み">📥 Base64</button>
+        <button class="btn btn-xs btn-primary" onclick="downloadResultSnippet(false)" title="画像を別ファイルで出力">📁 分離DL</button>
+      </div>
+    </div>`:
+    `<div style="text-align:center;padding:12px;color:var(--muted);font-size:12px">保存済みの実績がありません</div>`;
+  list.innerHTML=blogItems+blogIndexItem+resultItem||`<div style="text-align:center;padding:20px;color:var(--muted)">出力するコンテンツがありません</div>`;
+  document.getElementById('export-modal').classList.add('open');
+}
+function closeExportModal(){document.getElementById('export-modal').classList.remove('open');}
+
+async function downloadBlog(id,useBase64){
+  const blog=loadBlogs().find(b=>b.id===id);
+  if(!blog)return;
+  const html=buildBlogHTML(blog,useBase64);
+  const fname=`${blog.slug||blog.id}.html`;
+  downloadFile(fname,html);
+  if(!useBase64){
+    if(blog.mainImg)downloadImgFile(`${blog.slug||blog.id}-main.jpg`,blog.mainImg);
+    (blog.inlineImages||[]).forEach(img=>downloadImgFile(`${blog.slug||blog.id}-${img.id}.jpg`,img.dataUrl));
+  }
+  const blogs=loadBlogs();
+  const idx=blogs.findIndex(b=>b.id===id);
+  if(idx>=0){blogs[idx].exported=true;saveBlogs(blogs);}
+  showToast(`${fname} をダウンロードしました`,'success');
+}
+
+function downloadBlogIndexSnippet(){
+  const blogs=loadBlogs();
+  if(!blogs.length){showToast('ブログ記事がありません','error');return;}
+  const snippet=blogs.map(b=>buildBlogCardHTML(b)).join('\n');
+  const note='<!-- blog/index.html の CMS-BLOG-CARDS マーカー直後に貼り付け -->';
+  const output=`<!-- ナニウルCMS 出力 ${new Date().toLocaleString('ja')} -->\n${note}\n${snippet}\n<!-- ここまで -->`;
+  downloadFile('blog-index-cards-snippet.html',output);
+  showToast('ブログ一覧カードをダウンロードしました','success');
+}
+
+function downloadResultSnippet(useBase64){
+  const results=loadResults();
+  if(!results.length){showToast('実績データがありません','error');return;}
+  const snippet=results.map(r=>buildResultCardHTML(r,useBase64)).join('\n');
+  const output=`<!-- ナニウルCMS 出力 ${new Date().toLocaleString('ja')} -->\n<!-- results/index.html の .results-grid 内末尾に追加 -->\n${snippet}\n<!-- ここまで -->`;
+  downloadFile('results-cards-snippet.html',output);
+  if(!useBase64){results.filter(r=>r.img).forEach(r=>downloadImgFile(`result-${r.id}.jpg`,r.img));}
+  saveResults(loadResults().map(r=>({...r,exported:true})));
+  showToast('実績コードをダウンロードしました','success');
+}
+
+function exportAll(){
+  const blogs=loadBlogs(),results=loadResults();
+  blogs.forEach(b=>downloadBlog(b.id,true));
+  if(results.length)downloadResultSnippet(true);
+  else if(blogs.length)showToast(`${blogs.length}件の記事をダウンロードしました`,'success');
+}
+
+function downloadFile(filename,content){
+  const blob=new Blob([content],{type:'text/html;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+}
+function downloadImgFile(filename,dataUrl){
+  const a=document.createElement('a');a.href=dataUrl;
+  a.download=filename;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+}
+
+
+/* ============================================================
+   GITHUB SETTINGS & PUBLISH
+============================================================ */
+
+function renderGithubSettings(){
+  const cfg=loadGhConfig();
+  const el=document.getElementById('main-content');
+  const isConfigured=!!(cfg.token&&cfg.owner&&cfg.repo);
+  el.innerHTML=`
+  <div style="max-width:640px">
+    <div class="settings-card">
+      <h3>🔑 GitHub Personal Access Token
+        ${isConfigured?'<span class="settings-status ok">✓ 設定済み</span>':'<span class="settings-status ng">未設定</span>'}
+      </h3>
+      <div class="field">
+        <label>Personal Access Token（PAT）</label>
+        <div class="token-input-wrap">
+          <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" value="${cfg.token||''}" autocomplete="off">
+          <button class="token-toggle" onclick="toggleTokenVis()" id="tok-eye">👁</button>
+        </div>
+        <div class="hint">
+          <a href="https://github.com/settings/tokens/new" target="_blank" style="color:var(--navy);text-decoration:underline">GitHubでTokenを発行 ↗</a>
+          　Scopes: <code style="background:#f0f2f7;padding:1px 5px;border-radius:3px">repo</code> にチェック。有効期限は90日または無期限を推奨。
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>GitHubユーザー名 / Organization名</label>
+          <input type="text" id="gh-owner" placeholder="例：yxxk-co" value="${cfg.owner||''}">
+        </div>
+        <div class="field">
+          <label>リポジトリ名</label>
+          <input type="text" id="gh-repo" placeholder="例：naniuru-corp" value="${cfg.repo||''}">
+        </div>
+      </div>
+      <div class="field">
+        <label>ブランチ</label>
+        <input type="text" id="gh-branch" placeholder="main" value="${cfg.branch||'main'}" style="max-width:160px">
+        <div class="hint">GitHub Pages のソースブランチと合わせてください（通常は main または gh-pages）</div>
+      </div>
+      <div class="field">
+        <label>サイトのベースパス（任意）</label>
+        <input type="text" id="gh-basepath" placeholder="例：/ または /naniuru-corp/" value="${cfg.basepath||'/'}">
+        <div class="hint">リポジトリ名でサブディレクトリ公開する場合は /リポジトリ名/ と入力</div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:4px">
+        <button class="btn btn-outline" onclick="testGhConnection()">🔍 接続テスト</button>
+        <button class="btn btn-primary" onclick="saveGhSettings()">💾 設定を保存</button>
+      </div>
+      <div id="gh-test-result" style="margin-top:10px;font-size:12px"></div>
+    </div>
+
+    <div class="settings-card">
+      <h3>📋 GitHub Pages の設定方法</h3>
+      <ol style="font-size:12px;line-height:2;padding-left:18px;color:#444">
+        <li>GitHubのリポジトリページを開く</li>
+        <li>Settings → Pages を開く</li>
+        <li>Source を「Deploy from a branch」に設定</li>
+        <li>Branch を <code style="background:#f0f2f7;padding:1px 5px;border-radius:3px">main</code>（または設定したブランチ）、フォルダを <code style="background:#f0f2f7;padding:1px 5px;border-radius:3px">/ (root)</code> に設定</li>
+        <li>Save → 数分でサイトが公開される</li>
+      </ol>
+      <div style="background:#e8f5e8;border:1px solid #a0d8a0;border-radius:var(--rs);padding:10px 14px;font-size:11px;color:#1a5a1a;margin-top:10px">
+        ✓ 設定後はこのCMSから「🚀 サイトに公開」を押すだけで、約30〜60秒でサイトに反映されます。
+      </div>
+    </div>
+  </div>`;
+}
+
+function toggleTokenVis(){
+  const inp=document.getElementById('gh-token');
+  const btn=document.getElementById('tok-eye');
+  if(inp.type==='password'){inp.type='text';btn.textContent='🔒';}
+  else{inp.type='password';btn.textContent='👁';}
+}
+
+function saveGhSettings(){
+  const token=document.getElementById('gh-token')?.value?.trim();
+  const owner=document.getElementById('gh-owner')?.value?.trim();
+  const repo=document.getElementById('gh-repo')?.value?.trim();
+  const branch=document.getElementById('gh-branch')?.value?.trim()||'main';
+  const basepath=document.getElementById('gh-basepath')?.value?.trim()||'/';
+  if(!token||!owner||!repo){showToast('Token・ユーザー名・リポジトリ名は必須です','error');return;}
+  saveGhConfig({token,owner,repo,branch,basepath});
+  showToast('GitHub設定を保存しました ✓','success');
+  renderGithubSettings();
+}
+
+async function testGhConnection(){
+  const result=document.getElementById('gh-test-result');
+  result.innerHTML='<span style="color:var(--muted)">接続確認中…</span>';
+  const token=document.getElementById('gh-token')?.value?.trim();
+  const owner=document.getElementById('gh-owner')?.value?.trim();
+  const repo=document.getElementById('gh-repo')?.value?.trim();
+  if(!token||!owner||!repo){result.innerHTML='<span style="color:var(--red)">Token・ユーザー名・リポジトリ名を入力してください</span>';return;}
+  try{
+    const res=await fetch(`https://api.github.com/repos/${owner}/${repo}`,{
+      headers:{Authorization:`Bearer ${token}`,'Accept':'application/vnd.github+json'}
+    });
+    if(res.ok){
+      const data=await res.json();
+      result.innerHTML=`<span style="color:#2a7a2a;font-weight:700">✓ 接続成功！</span>　リポジトリ: ${data.full_name}　デフォルトブランチ: ${data.default_branch}`;
+    }else if(res.status===401){
+      result.innerHTML='<span style="color:var(--red)">✗ Token が無効です。再確認してください。</span>';
+    }else if(res.status===404){
+      result.innerHTML='<span style="color:var(--red)">✗ リポジトリが見つかりません。ユーザー名・リポジトリ名を確認してください。</span>';
+    }else{
+      result.innerHTML=`<span style="color:var(--red)">✗ エラー: HTTP ${res.status}</span>`;
+    }
+  }catch(e){
+    result.innerHTML=`<span style="color:var(--red)">✗ ネットワークエラー: ${e.message}</span>`;
+  }
+}
+
+/* ---- PUBLISH PAGE ---- */
+
+function renderPublish(){
+  const cfg=loadGhConfig();
+  const blogs=loadBlogs().filter(b=>!b.exported);
+  const results=loadResults().filter(r=>!r.exported);
+  const allBlogs=loadBlogs();
+  const allResults=loadResults();
+  const isConfigured=!!(cfg.token&&cfg.owner&&cfg.repo);
+  const el=document.getElementById('main-content');
+
+  el.innerHTML=`
+  <div style="max-width:680px">
+    ${!isConfigured?`
+    <div style="background:#fff8e6;border:1.5px solid #f0d080;border-radius:var(--r);padding:20px;margin-bottom:16px;display:flex;align-items:center;gap:14px">
+      <span style="font-size:28px">⚠️</span>
+      <div>
+        <div style="font-weight:700;margin-bottom:4px">GitHub設定が未完了です</div>
+        <div style="font-size:12px;color:#7a5a00">まず「GitHub設定」でToken・リポジトリ情報を登録してください。</div>
+        <button class="btn btn-outline btn-sm" style="margin-top:8px" onclick="showView('github-settings')">⚙️ GitHub設定へ</button>
+      </div>
+    </div>`:''}
+
+    <div class="settings-card">
+      <h3>📤 公開するコンテンツ</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+        <div style="background:#f7f8fb;border-radius:var(--rs);padding:14px">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:4px">未公開ブログ記事</div>
+          <div style="font-size:24px;font-weight:700;color:var(--navy)">${blogs.length}<span style="font-size:12px;color:var(--muted);margin-left:4px">件</span></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">全${allBlogs.length}件中</div>
+        </div>
+        <div style="background:#f7f8fb;border-radius:var(--rs);padding:14px">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:4px">未公開買取実績</div>
+          <div style="font-size:24px;font-weight:700;color:var(--navy)">${results.length}<span style="font-size:12px;color:var(--muted);margin-left:4px">件</span></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">全${allResults.length}件中</div>
+        </div>
+      </div>
+      ${blogs.length||results.length?`
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">公開対象ファイル</div>
+        ${blogs.map(b=>`
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
+            <span>📝</span>
+            <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${b.title}</span>
+            <span style="color:var(--muted);font-family:monospace;font-size:10px">blog/${b.slug||b.id}.html</span>
+          </div>`).join('')}
+        ${results.length?`
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:12px">
+            <span>🏆</span>
+            <span style="flex:1">買取実績 ${results.length}件を results/index.html に反映</span>
+            <span style="color:var(--muted);font-family:monospace;font-size:10px">results/index.html</span>
+          </div>`:''}
+      </div>`:`
+      <div style="text-align:center;padding:20px;color:var(--muted);font-size:12px">
+        未公開のコンテンツはありません。すべて最新の状態です ✓
+      </div>`}
+    </div>
+
+    <div class="deploy-progress" id="deploy-progress" style="display:none">
+      <div class="deploy-progress__title">デプロイ進捗</div>
+      <div id="deploy-steps"></div>
+    </div>
+
+    <div class="publish-btn-wrap">
+      <p>${isConfigured?`公開先: <strong style="color:#fff">github.com/${cfg.owner}/${cfg.repo}</strong>（${cfg.branch}ブランチ）<br>push後、GitHub Pages が自動でビルドします（約30〜60秒）`:'GitHub設定を完了してから公開できます'}</p>
+      <button class="publish-big-btn" id="publish-btn" onclick="startPublish()" ${!isConfigured||(!blogs.length&&!results.length)?'disabled':''}>
+        🚀 ${blogs.length||results.length?`${blogs.length+results.length}件をサイトに公開`:'公開済み（変更なし）'}
+      </button>
+    </div>
+  </div>`;
+}
+
+/* ---- GITHUB API ---- */
+
+// リポジトリ内パスにベースパス（サブフォルダ）を付与する
+// 例: basepath="/naniuru-corp/" + path="blog/index.html" → "naniuru-corp/blog/index.html"
+function repoPath(cfg, path){
+  let bp=(cfg.basepath||'/').trim();
+  bp=bp.replace(/^\/+/,'').replace(/\/+$/,''); // 前後のスラッシュを除去
+  return bp ? `${bp}/${path}` : path;
+}
+
+// ファイルのSHAを取得（更新時に必要）
+async function getFileSha(cfg, path){
+  try{
+    const res=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${repoPath(cfg,path)}?ref=${cfg.branch}`,{
+      headers:{Authorization:`Bearer ${cfg.token}`,'Accept':'application/vnd.github+json'}
+    });
+    if(res.ok){const d=await res.json();return d.sha||null;}
+    return null;
+  }catch(e){return null;}
+}
+
+// ファイルを1件 push
+async function pushFile(cfg, path, content, message, sha){
+  const body={
+    message,
+    content:btoa(unescape(encodeURIComponent(content))),
+    branch:cfg.branch,
+  };
+  if(sha)body.sha=sha;
+  const res=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${repoPath(cfg,path)}`,{
+    method:'PUT',
+    headers:{Authorization:`Bearer ${cfg.token}`,'Accept':'application/vnd.github+json','Content-Type':'application/json'},
+    body:JSON.stringify(body),
+  });
+  if(!res.ok){
+    const err=await res.json();
+    throw new Error(`HTTP ${res.status}: ${err.message||JSON.stringify(err)}`);
+  }
+  return res.json();
+}
+
+// 画像（base64）を push
+async function pushImageFile(cfg, path, dataUrl, message, sha){
+  // dataUrl = "data:image/jpeg;base64,XXXX..." → base64部分だけ抽出
+  const base64=dataUrl.split(',')[1];
+  if(!base64)return;
+  const body={message,content:base64,branch:cfg.branch};
+  if(sha)body.sha=sha;
+  const res=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${repoPath(cfg,path)}`,{
+    method:'PUT',
+    headers:{Authorization:`Bearer ${cfg.token}`,'Accept':'application/vnd.github+json','Content-Type':'application/json'},
+    body:JSON.stringify(body),
+  });
+  if(!res.ok){
+    const err=await res.json();
+    throw new Error(`HTTP ${res.status}: ${err.message||JSON.stringify(err)}`);
+  }
+  return res.json();
+}
+
+// blog/index.html をGitHubから取得してブログ一覧カードを追記・更新
+async function pushBlogIndex(cfg, newBlogs, commitMsg){
+  const res=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${repoPath(cfg,'blog/index.html')}?ref=${cfg.branch}`,{
+    headers:{Authorization:`Bearer ${cfg.token}`,'Accept':'application/vnd.github+json'}
+  });
+  let existingHtml='', sha=null;
+  if(res.ok){
+    const d=await res.json();
+    sha=d.sha;
+    existingHtml=decodeURIComponent(escape(atob(d.content.replace(/\n/g,''))));
+  } else {
+    throw new Error('blog/index.html がリポジトリに見つかりません。先にサイトをリポジトリにアップロードしてください。');
+  }
+
+  let updatedHtml=existingHtml;
+  // 既存カードを data-blog-id で置換、新規は先頭（最新）へ
+  newBlogs.forEach(b=>{
+    const idPattern=new RegExp(`\\s*<a[^>]*data-blog-id="${b.id}"[\\s\\S]*?<\\/a>`,'g');
+    if(idPattern.test(updatedHtml)){
+      updatedHtml=updatedHtml.replace(idPattern, '\n'+buildBlogCardHTML(b));
+    }
+  });
+  const existingIds=(updatedHtml.match(/data-blog-id="([^"]+)"/g)||[]).map(m=>m.replace(/data-blog-id="|"/g,''));
+  const toAdd=newBlogs.filter(b=>!existingIds.includes(b.id));
+  if(toAdd.length){
+    const cards=toAdd.map(b=>buildBlogCardHTML(b)).join('\n');
+    const marker='<!-- CMS-BLOG-CARDS -->';
+    if(updatedHtml.includes(marker)){
+      // マーカー位置（一覧先頭側）に新着を差し込む
+      updatedHtml=updatedHtml.replace(marker, marker+'\n'+cards);
+    } else {
+      // マーカーが無い旧版へのフォールバック：blog-list の閉じ前に追加
+      updatedHtml=updatedHtml.replace(/(<\/div>\s*<!-- \/blog-list -->)/, cards+'\n  $1');
+      if(updatedHtml===existingHtml){
+        updatedHtml=updatedHtml.replace(/(<aside class="sidebar")/, cards+'\n\n  $1');
+      }
+    }
+  }
+
+  await pushFile(cfg, 'blog/index.html', updatedHtml, commitMsg, sha);
+}
+
+// results/index.html をGitHubから取得してカードを追記
+async function pushResultsPage(cfg, newResults, commitMsg){
+  // 既存のresults/index.htmlを取得
+  const res=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${repoPath(cfg,'results/index.html')}?ref=${cfg.branch}`,{
+    headers:{Authorization:`Bearer ${cfg.token}`,'Accept':'application/vnd.github+json'}
+  });
+  let existingHtml='', sha=null;
+  if(res.ok){
+    const d=await res.json();
+    sha=d.sha;
+    existingHtml=decodeURIComponent(escape(atob(d.content.replace(/\n/g,''))));
+  } else {
+    throw new Error('results/index.html がリポジトリに見つかりません。先にサイトをリポジトリにアップロードしてください。');
+  }
+
+  // 既存カードから linkedBlogId で管理されているIDを抽出して更新
+  // 新しいカードのHTMLを生成（Base64画像で分離なし）
+  const newCardsHtml = newResults.map(r => buildResultCardHTML(r, true)).join('\n');
+
+  // 各実績IDが既に存在するか確認し、存在すれば置換・なければ末尾追加
+  let updatedHtml = existingHtml;
+  const resultsGridMatch = updatedHtml.match(/(<div class="results-grid"[^>]*>)([\s\S]*?)(<\/div><!-- \/results-grid -->)/);
+  if(resultsGridMatch){
+    // 既存カードのdata-idで管理
+    newResults.forEach(r=>{
+      const idPattern = new RegExp(`<a[^>]*data-result-id="${r.id}"[\\s\\S]*?<\\/a>\\s*`, 'g');
+      if(idPattern.test(updatedHtml)){
+        updatedHtml = updatedHtml.replace(idPattern, buildResultCardHTML(r,true)+'\n      ');
+      }
+    });
+    // まだ存在しないものを末尾に追加
+    const existingIds = (updatedHtml.match(/data-result-id="([^"]+)"/g)||[]).map(m=>m.replace(/data-result-id="|"/g,''));
+    const toAdd = newResults.filter(r=>!existingIds.includes(r.id));
+    if(toAdd.length){
+      updatedHtml = updatedHtml.replace(
+        /(<\/div><!-- \/results-grid -->)/,
+        '\n' + toAdd.map(r=>buildResultCardHTML(r,true)).join('\n') + '\n      $1'
+      );
+    }
+  } else {
+    // グリッドが見つからない場合は末尾のグリッドdivに挿入
+    updatedHtml = updatedHtml.replace(
+      /(<\/div><!-- \/results-grid -->|id="results-grid"[^>]*>)/,
+      m => m + '\n' + newCardsHtml
+    );
+  }
+
+  // シンプルなフォールバック: グリッドへの追加を正規表現なしで
+  if(updatedHtml === existingHtml){
+    // </div><!-- /results-grid --> の直前に追加
+    const marker = '</div><!-- /results-grid -->';
+    if(updatedHtml.includes(marker)){
+      updatedHtml = updatedHtml.replace(marker, newCardsHtml + '\n    ' + marker);
+    } else {
+      // id="results-grid" を持つdivの閉じタグ直前
+      updatedHtml = updatedHtml.replace(/(<div[^>]*id="results-grid"[^>]*>)([\s\S]*?)(<\/div>\s*<\/main>)/,
+        (m,open,inner,close)=> open+inner+newCardsHtml+'\n    '+close);
+    }
+  }
+
+  await pushFile(cfg, 'results/index.html', updatedHtml, commitMsg, sha);
+}
+
+function setDeployStep(steps, idx, status){
+  const el=document.getElementById('deploy-steps');
+  if(!el)return;
+  el.innerHTML=steps.map((s,i)=>{
+    let icon='○';let cls='';
+    if(i<idx){icon='✓';cls='done';}
+    else if(i===idx){
+      if(status==='active'){icon='⏳';cls='active';}
+      else if(status==='done'){icon='✓';cls='done';}
+      else if(status==='error'){icon='✗';cls='error';}
+    }
+    return `<div class="deploy-step ${cls}"><span class="step-icon">${icon}</span>${s}</div>`;
+  }).join('');
+}
+
+async function startPublish(){
+  const cfg=loadGhConfig();
+  if(!cfg.token||!cfg.owner||!cfg.repo){showToast('GitHub設定が未完了です','error');return;}
+
+  const blogs=loadBlogs().filter(b=>!b.exported);
+  const results=loadResults().filter(r=>!r.exported);
+  if(!blogs.length&&!results.length){showToast('公開するコンテンツがありません','error');return;}
+
+  // UI初期化
+  const prog=document.getElementById('deploy-progress');
+  prog.style.display='block';
+  const btn=document.getElementById('publish-btn');
+  btn.disabled=true; btn.textContent='🔄 公開中…';
+
+  const blogSteps=blogs.map(b=>`ブログ「${b.title.slice(0,20)}」を push`);
+  const blogIndexStep=blogs.length?['ブログ一覧 blog/index.html を更新']:[];
+  const resultStep=results.length?['買取実績を results/index.html に反映']:[];
+  const allSteps=[...blogSteps,...blogIndexStep,...resultStep,'完了'];
+  setDeployStep(allSteps, 0, 'active');
+
+  const commitTime=new Date().toLocaleString('ja');
+  let stepIdx=0;
+  const errors=[];
+
+  try{
+    // ---- ブログ記事を push ----
+    for(let i=0;i<blogs.length;i++){
+      const blog=blogs[i];
+      setDeployStep(allSteps, stepIdx, 'active');
+      try{
+        // HTMLを生成（分離モード：画像は別ファイル）
+        const html=buildBlogHTML(blog, false);
+        const filePath=`blog/${blog.slug||blog.id}.html`;
+        const sha=await getFileSha(cfg, filePath);
+        await pushFile(cfg, filePath, html, `[CMS] ブログ公開: ${blog.title} (${commitTime})`, sha);
+
+        // メイン画像のpush
+        if(blog.mainImg && !blog.mainImg.startsWith('http')){
+          const imgPath=`blog/images/${blog.slug||blog.id}-main.jpg`;
+          const imgSha=await getFileSha(cfg, imgPath);
+          await pushImageFile(cfg, imgPath, blog.mainImg, `[CMS] 画像: ${blog.slug||blog.id}-main`, imgSha);
+        }
+        // 本文内画像
+        for(const img of (blog.inlineImages||[])){
+          if(img.dataUrl && !img.dataUrl.startsWith('http')){
+            const imgPath=`blog/images/${blog.slug||blog.id}-${img.id}.jpg`;
+            const imgSha=await getFileSha(cfg, imgPath);
+            await pushImageFile(cfg, imgPath, img.dataUrl, `[CMS] 画像: ${img.id}`, imgSha);
+          }
+        }
+      }catch(e){
+        errors.push(`${blog.title}: ${e.message}`);
+        setDeployStep(allSteps, stepIdx, 'error');
+      }
+      if(!errors.length)setDeployStep(allSteps, stepIdx, 'done');
+      stepIdx++;
+    }
+
+    // ---- ブログ一覧 blog/index.html を更新 ----
+    if(blogs.length){
+      setDeployStep(allSteps, stepIdx, 'active');
+      try{
+        await pushBlogIndex(cfg, blogs, `[CMS] ブログ一覧を更新 (${commitTime})`);
+        setDeployStep(allSteps, stepIdx, 'done');
+      }catch(e){
+        errors.push(`ブログ一覧: ${e.message}`);
+        setDeployStep(allSteps, stepIdx, 'error');
+      }
+      stepIdx++;
+    }
+
+    // ---- results/index.html を push ----
+    if(results.length){
+      setDeployStep(allSteps, stepIdx, 'active');
+      try{
+        await pushResultsPage(cfg, results, `[CMS] 買取実績 ${results.length}件を追加 (${commitTime})`);
+        // 実績画像のpush
+        for(const r of results){
+          if(r.img && !r.img.startsWith('http')){
+            const imgPath=`results/images/result-${r.id}.jpg`;
+            const imgSha=await getFileSha(cfg, imgPath);
+            await pushImageFile(cfg, imgPath, r.img, `[CMS] 実績画像: ${r.id}`, imgSha);
+          }
+        }
+        setDeployStep(allSteps, stepIdx, 'done');
+      }catch(e){
+        errors.push(`実績: ${e.message}`);
+        setDeployStep(allSteps, stepIdx, 'error');
+      }
+      stepIdx++;
+    }
+
+    // ---- 完了 ----
+    setDeployStep(allSteps, stepIdx, 'done');
+
+    if(!errors.length){
+      // exported フラグを更新
+      const allBlogs=loadBlogs();
+      blogs.forEach(b=>{const idx=allBlogs.findIndex(x=>x.id===b.id);if(idx>=0)allBlogs[idx].exported=true;});
+      saveBlogs(allBlogs);
+      const allResults=loadResults();
+      results.forEach(r=>{const idx=allResults.findIndex(x=>x.id===r.id);if(idx>=0)allResults[idx].exported=true;});
+      saveResults(allResults);
+
+      btn.textContent='✓ 公開完了！';
+      btn.style.background='#2a7a2a';
+      showToast(`${blogs.length+results.length}件を公開しました。約30〜60秒でサイトに反映されます ✓`,'success');
+      // GitHub Pagesのリンクを表示
+      const pagesUrl=`https://${cfg.owner}.github.io/${cfg.repo}/`;
+      const wrap=document.querySelector('.publish-btn-wrap');
+      if(wrap){
+        wrap.insertAdjacentHTML('beforeend',`<div style="margin-top:14px"><a href="${pagesUrl}" target="_blank" style="color:rgba(255,255,255,.8);font-size:12px;text-decoration:underline">🌐 ${pagesUrl} でサイトを確認 ↗</a></div>`);
+      }
+    }else{
+      btn.textContent='⚠️ 一部エラー';
+      showToast('一部のファイルでエラーが発生しました','error');
+      const prog2=document.getElementById('deploy-progress');
+      if(prog2){prog2.insertAdjacentHTML('beforeend',`<div style="margin-top:10px;font-size:11px;color:var(--red)">${errors.map(e=>`• ${e}`).join('<br>')}</div>`);}
+    }
+  }catch(e){
+    btn.textContent='✗ エラー';btn.disabled=false;
+    showToast(`公開エラー: ${e.message}`,'error');
+  }
+}
+
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function showToast(msg,type){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='show '+(type||'');
+  clearTimeout(t._timer);t._timer=setTimeout(()=>{t.className='';},2800);
+}
+document.querySelectorAll('.modal-overlay').forEach(el=>{
+  el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');});
+});
+
+updateBadges();
+showView('dashboard');
+</script>
+</body>
+</html>

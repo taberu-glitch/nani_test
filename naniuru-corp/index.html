@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ナニウルは八王子の買取専門店。貴金属・ブランド品・宝飾品・腕時計など幅広く高価買取。LINE査定・宅配買取・店頭買取に対応。手数料無料。">
+<title>ナニウル｜なんでも高価買取・八王子</title>
+<style>
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Hiragino Kaku Gothic ProN','Hiragino Sans','Noto Sans JP',Meiryo,sans-serif;font-size:14px;line-height:1.7;color:#222;background:#fff}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+ul,ol{list-style:none}
+
+/* ===== VARIABLES ===== */
+:root{
+  --navy:#1B2F6E;
+  --navy2:#111F4D;
+  --gold:#B8860B;
+  --gold2:#D4A017;
+  --red:#C0392B;
+  --white:#fff;
+  --gray1:#F5F5F5;
+  --gray2:#E8E8E8;
+  --gray3:#BBBBBB;
+  --gray4:#888888;
+  --text:#222222;
+  --border:#DDDDDD;
+  --r4:4px;
+  --r2:2px;
+  --shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* ===== UTILITY ===== */
+.inner{max-width:1200px;margin:0 auto;padding:0 16px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+
+/* ===== LINE BANNER ===== */
+.line-banner{display:block;width:100%;background:#00B900;text-align:center}
+.line-banner__inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 16px;font-size:14px;font-weight:700;color:#fff}
+
+/* ===== UTIL BAR ===== */
+.util-bar{background:var(--white);border-bottom:1px solid var(--border);font-size:12px}
+.util-bar__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;justify-content:flex-end;gap:0;height:36px}
+.util-bar__item{display:flex;align-items:center;gap:5px;padding:0 14px;height:100%;color:var(--gray4);border-left:1px solid var(--border);transition:color .15s,background .15s;white-space:nowrap;cursor:pointer}
+.util-bar__item:hover{color:var(--navy);background:var(--gray1)}
+.util-bar__item svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== HEADER ===== */
+.site-header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:300;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.site-header__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:64px;gap:16px}
+.header-menu-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 12px;cursor:pointer;border:1px solid var(--border);border-radius:var(--r4);flex-shrink:0;transition:background .15s;background:none}
+.header-menu-btn:hover{background:var(--gray1)}
+.header-menu-btn__lines{display:flex;flex-direction:column;gap:4px}
+.header-menu-btn__lines span{display:block;width:20px;height:2px;background:var(--navy);border-radius:1px}
+.header-menu-btn__label{font-size:10px;color:var(--navy);font-weight:700;letter-spacing:.05em}
+.site-logo{flex:1;display:flex;justify-content:center;align-items:center;flex-direction:column}
+.site-logo__text{font-size:28px;font-weight:700;color:var(--navy);letter-spacing:.12em;line-height:1}
+.site-logo__sub{font-size:10px;color:var(--gray4);letter-spacing:.08em;text-align:center;margin-top:2px}
+.header-actions{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.header-action-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 14px;cursor:pointer;border-radius:var(--r4);transition:background .15s;background:none;border:none}
+.header-action-btn:hover{background:var(--gray1)}
+.header-action-btn svg{width:20px;height:20px;stroke:var(--navy);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.header-action-btn__label{font-size:10px;color:var(--navy);font-weight:600}
+.header-action-btn--tel{border:1.5px solid var(--navy);padding:8px 18px;border-radius:var(--r4)}
+.header-action-btn--tel .tel-num{font-size:16px;font-weight:700;color:var(--navy);letter-spacing:.04em}
+.header-action-btn--tel .tel-note{font-size:9px;color:var(--gray4)}
+
+/* ===== GLOBAL NAV ===== */
+.global-nav{background:var(--navy);border-bottom:2px solid var(--gold)}
+.global-nav__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:stretch}
+.gnav-item{position:relative;display:flex;align-items:center}
+.gnav-item>a,.gnav-item>span{display:flex;align-items:center;gap:5px;padding:14px 18px;font-size:13px;font-weight:700;color:rgba(255,255,255,.85);letter-spacing:.04em;white-space:nowrap;cursor:pointer;transition:color .15s,background .15s}
+.gnav-item>a:hover,.gnav-item>span:hover,.gnav-item.is-active>a{color:#fff;background:rgba(255,255,255,.08)}
+.gnav-item svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.gnav-dropdown{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--border);border-top:2px solid var(--gold);min-width:220px;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.gnav-item:hover .gnav-dropdown{display:block}
+.gnav-dropdown a{display:block;padding:10px 16px;font-size:13px;color:var(--text);border-bottom:1px solid var(--border);transition:background .12s,color .12s}
+.gnav-dropdown a:last-child{border-bottom:none}
+.gnav-dropdown a:hover{background:var(--gray1);color:var(--navy)}
+
+/* ===== SEARCH BAR ===== */
+.search-bar{background:var(--navy2);padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.search-bar__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;gap:8px;align-items:center}
+.search-form{flex:1;display:flex;gap:0;background:#fff;border-radius:var(--r4);overflow:hidden;max-width:600px}
+.search-form__input{flex:1;padding:10px 14px;border:none;outline:none;font-size:14px;color:var(--text)}
+.search-form__btn{background:var(--gold);border:none;padding:0 20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .15s}
+.search-form__btn:hover{opacity:.88}
+.search-form__btn svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.search-bar__links{display:flex;gap:12px;flex-shrink:0;margin-left:auto}
+.search-bar__link{font-size:12px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:4px;white-space:nowrap;transition:color .15s}
+.search-bar__link:hover{color:#fff}
+.search-bar__link svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* ===== HERO CAROUSEL ===== */
+.hero-carousel{position:relative;overflow:hidden;width:100%;background:#000;--slide-dur:.55s}
+.carousel-track{display:flex;transition:transform var(--slide-dur) cubic-bezier(.25,.46,.45,.94);will-change:transform}
+.carousel-slide{min-width:100%;position:relative;overflow:hidden;line-height:0}
+.carousel-slide__inner{width:100%;position:relative;background:var(--navy2);aspect-ratio:1200/400;display:flex;align-items:center;justify-content:flex-start;padding:40px 60px}
+.hero-slide-content{position:relative;z-index:2}
+.hero-slide-eyebrow{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
+.hero-slide-title{font-size:clamp(28px,4vw,52px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:14px}
+.hero-slide-sub{font-size:15px;color:rgba(255,255,255,.75);margin-bottom:24px}
+.hero-slide-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--gold);color:#fff;font-size:14px;font-weight:700;border-radius:var(--r4);transition:opacity .15s}
+.hero-slide-btn:hover{opacity:.88}
+.hero-slide-btn svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.hero-slide-deco{position:absolute;right:0;top:0;bottom:0;width:45%;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-slide-deco-circle{width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.04);position:absolute;right:-60px;top:50%;transform:translateY(-50%)}
+.hero-slide-deco-circle2{width:200px;height:200px;border-radius:50%;background:rgba(184,134,11,.12);position:absolute;right:80px;top:20%}
+.hero-slide-big-text{font-size:120px;font-weight:700;color:rgba(255,255,255,.04);letter-spacing:-.02em;white-space:nowrap;user-select:none}
+
+/* slide variants */
+.slide-bg--1{background:linear-gradient(135deg,#0d1b4b 0%,#1B2F6E 60%,#2a4a99 100%)}
+.slide-bg--2{background:linear-gradient(135deg,#3d2800 0%,#6B4D0B 50%,#8B6914 100%)}
+.slide-bg--3{background:linear-gradient(135deg,#111 0%,#1a1a2e 50%,#16213e 100%)}
+
+.carousel-ui{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:10;display:flex;align-items:center;gap:12px}
+.carousel-dots{display:flex;gap:6px}
+.carousel-dot{width:24px;height:3px;border-radius:2px;background:rgba(255,255,255,.45);border:none;cursor:pointer;transition:background .25s,width .25s;padding:0}
+.carousel-dot.is-active{background:#fff;width:40px}
+.carousel-counter{font-size:11px;color:rgba(255,255,255,.5);font-weight:700;letter-spacing:.1em;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.carousel-counter span{color:rgba(255,255,255,.85)}
+.carousel-prev,.carousel-next{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:44px;height:44px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;backdrop-filter:blur(6px)}
+.carousel-prev{left:16px}
+.carousel-next{right:16px}
+.carousel-prev:hover,.carousel-next:hover{background:rgba(0,0,0,.55)}
+.carousel-prev svg,.carousel-next svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.carousel-progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.15);z-index:10}
+.carousel-progress__bar{height:100%;background:#F0C040;width:0%;transition:width .1s linear}
+
+/* ===== TICKER BAND ===== */
+.ticker-band{background:var(--navy2);padding:8px 0;border-bottom:2px solid var(--gold)}
+.ticker-band__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:6px 20px;flex-wrap:wrap}
+.ticker-band__label{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
+.ticker-band__items{display:flex;gap:18px;flex-wrap:wrap}
+.ticker-band__item{display:flex;align-items:baseline;gap:4px}
+.ticker-band__name{font-size:11px;color:rgba(255,255,255,.55);font-weight:700}
+.ticker-band__price{font-size:16px;font-weight:700;color:#fff;letter-spacing:-.02em}
+.ticker-band__unit{font-size:10px;color:rgba(255,255,255,.45)}
+.ticker-band__diff--up{font-size:10px;background:rgba(50,180,50,.2);color:#6fdb6f;padding:2px 7px;border-radius:2px;font-weight:700}
+.ticker-band__diff--down{font-size:10px;background:rgba(220,50,50,.2);color:#ff8080;padding:2px 7px;border-radius:2px;font-weight:700}
+.ticker-band__updated{margin-left:auto;font-size:10px;color:rgba(255,255,255,.35);white-space:nowrap}
+.ticker-band__link{margin-left:8px;font-size:11px;color:var(--gold);display:flex;align-items:center;gap:3px;white-space:nowrap;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+
+/* ===== MAIN LAYOUT ===== */
+.main-layout{max-width:1200px;margin:0 auto;padding:24px 16px;display:flex;gap:24px;align-items:flex-start}
+
+/* ===== SIDEBAR ===== */
+.sidebar{width:220px;flex-shrink:0;position:sticky;top:80px}
+.sidebar-section{margin-bottom:24px}
+.sidebar-section__head{font-size:13px;font-weight:700;color:var(--white);background:var(--navy);padding:10px 14px;border-radius:var(--r4) var(--r4) 0 0;letter-spacing:.05em}
+.sidebar-section__body{border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r4) var(--r4)}
+.sidebar-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;font-size:13px;color:var(--text);border-bottom:1px solid var(--border);transition:background .12s,color .12s;cursor:pointer}
+.sidebar-item:last-child{border-bottom:none}
+.sidebar-item:hover{background:var(--gray1);color:var(--navy)}
+.sidebar-item__name{display:flex;align-items:center;gap:8px;font-weight:600}
+.sidebar-item__name svg{width:14px;height:14px;stroke:var(--navy);fill:none;stroke-width:1.8;opacity:.6;flex-shrink:0}
+.sidebar-item__arrow{font-size:10px;color:var(--gray3)}
+.sidebar-item.is-active{background:#e8edf7;color:var(--navy);font-weight:700}
+.sidebar-cta{background:var(--navy);border-radius:var(--r4);padding:18px 16px;margin-bottom:16px}
+.sidebar-cta__title{font-size:14px;font-weight:700;color:#fff;margin-bottom:6px}
+.sidebar-cta__sub{font-size:12px;color:rgba(255,255,255,.6);margin-bottom:14px;line-height:1.6}
+.sidebar-cta__btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:10px;background:var(--gold);color:#fff;font-size:13px;font-weight:700;border-radius:var(--r4);margin-bottom:8px;transition:opacity .15s}
+.sidebar-cta__btn:hover{opacity:.88}
+.sidebar-cta__btn svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sidebar-cta__btn--outline{background:transparent;border:1px solid rgba(255,255,255,.4);color:rgba(255,255,255,.85)}
+.sidebar-cta__btn--outline:hover{background:rgba(255,255,255,.1)}
+
+/* ===== MAIN CONTENT ===== */
+.main-content{flex:1;min-width:0}
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--navy)}
+.section-header__title{font-size:18px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:10px}
+.section-header__title svg{width:18px;height:18px;stroke:var(--navy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.section-header__more{font-size:12px;color:var(--navy);display:flex;align-items:center;gap:4px;font-weight:600;border:1px solid var(--navy);padding:5px 12px;border-radius:var(--r4);transition:background .15s,color .15s}
+.section-header__more:hover{background:var(--navy);color:#fff}
+.section-header__more svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.section-block{margin-bottom:40px}
+
+/* ===== BANNER GRID ===== */
+.banner-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:40px}
+.banner-card{position:relative;border-radius:var(--r4);overflow:hidden;cursor:pointer;aspect-ratio:16/7;display:flex;align-items:flex-end;transition:transform .2s}
+.banner-card:hover{transform:translateY(-2px)}
+.banner-card__bg{position:absolute;inset:0}
+.banner-bg--gold{background:linear-gradient(135deg,#3d2800 0%,#8B6914 50%,#C8960C 100%)}
+.banner-bg--navy{background:linear-gradient(135deg,#0d1b4b 0%,#1B2F6E 60%,#2a4a99 100%)}
+.banner-bg--dark{background:linear-gradient(135deg,#111 0%,#333 60%,#555 100%)}
+.banner-bg--emerald{background:linear-gradient(135deg,#0a2a1a 0%,#1a5a3a 50%,#2d8060 100%)}
+.banner-card__body{position:relative;z-index:2;padding:16px 18px;width:100%}
+.banner-card__eyebrow{font-size:10px;color:var(--gold);font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:5px}
+.banner-card__title{font-size:16px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:8px}
+.banner-card__btn{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#fff;font-weight:700;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:1px;transition:border-color .15s}
+.banner-card:hover .banner-card__btn{border-color:#fff}
+.banner-card__btn svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.banner-card__bg::after{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.05)}
+.banner-card__bg::before{content:'';position:absolute;right:30px;top:20px;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.04)}
+
+/* ===== PRODUCT SCROLL ROW ===== */
+.product-row{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+.product-row::-webkit-scrollbar{display:none}
+
+/* ===== PRODUCT CARD ===== */
+.product-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;flex-shrink:0;width:190px;cursor:pointer;transition:box-shadow .2s,transform .18s}
+.product-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.product-card__img{width:100%;aspect-ratio:1;background:var(--gray1);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.card-bg--1{background:linear-gradient(135deg,#f0e8d0 0%,#e8d5b0 100%)}
+.card-bg--2{background:linear-gradient(135deg,#d0d8f0 0%,#b0c0e8 100%)}
+.card-bg--3{background:linear-gradient(135deg,#e8d0e0 0%,#d0b0c8 100%)}
+.card-bg--4{background:linear-gradient(135deg,#d0e8d0 0%,#b0d0b0 100%)}
+.card-bg--5{background:linear-gradient(135deg,#e8e0d0 0%,#d0c8b0 100%)}
+.card-bg--6{background:linear-gradient(135deg,#d8d0e8 0%,#c0b0d8 100%)}
+.product-card__img svg{width:48px;height:48px;stroke:rgba(27,47,110,.25);fill:none;stroke-width:1.5}
+.product-card__badge{position:absolute;top:8px;left:8px;font-size:10px;font-weight:700;padding:2px 8px;border-radius:var(--r2)}
+.badge--new{background:var(--navy);color:#fff}
+.badge--sale{background:var(--red);color:#fff}
+.badge--hot{background:var(--gold);color:#fff}
+.product-card__body{padding:10px 12px}
+.product-card__brand{font-size:10px;font-weight:700;color:var(--gray4);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.product-card__name{font-size:12px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:6px;height:2.8em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.product-card__price{font-size:16px;font-weight:700;color:var(--navy);letter-spacing:-.01em}
+.product-card__price-sub{font-size:10px;color:var(--gray4);margin-top:1px}
+.product-card__method{font-size:10px;color:var(--gray4);margin-top:4px;display:flex;gap:4px;flex-wrap:wrap}
+.product-card__tag{padding:1px 6px;border-radius:2px;font-size:10px;font-weight:700}
+.tag--store{background:#E8EDF7;color:var(--navy)}
+.tag--mail{background:#E8F0E8;color:#2a7a2a}
+.tag--line{background:#E8F8E8;color:#00B900}
+
+/* ===== CATEGORY CARD GRID ===== */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:40px}
+.cat-card{border:1px solid var(--border);border-radius:var(--r4);padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;cursor:pointer;background:var(--white);transition:border-color .18s,box-shadow .18s,transform .15s}
+.cat-card:hover{border-color:var(--navy);box-shadow:var(--shadow);transform:translateY(-2px)}
+.cat-card__icon{width:48px;height:48px;border-radius:12px;background:var(--gray1);display:flex;align-items:center;justify-content:center;transition:background .18s}
+.cat-card:hover .cat-card__icon{background:#e8edf7}
+.cat-card__icon svg{width:22px;height:22px;stroke:var(--navy);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cat-card__name{font-size:12px;font-weight:700;color:var(--text);line-height:1.4}
+.cat-card__badge{font-size:10px;padding:2px 7px;border-radius:2px;background:#fff0d0;color:var(--gold);font-weight:700;border:1px solid rgba(184,134,11,.25)}
+
+/* ===== BRAND LIST ===== */
+.brand-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
+.brand-tag{padding:8px 16px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:700;color:var(--text);background:var(--white);cursor:pointer;transition:border-color .15s,background .15s,color .15s;white-space:nowrap;display:flex;align-items:center;gap:5px}
+.brand-tag:hover{border-color:var(--navy);background:#e8edf7;color:var(--navy)}
+.brand-tag__badge{font-size:10px;padding:1px 6px;background:var(--red);color:#fff;border-radius:2px;font-weight:700}
+
+/* ===== GOLD CALCULATOR ===== */
+.calc-section{background:var(--gray1);border-radius:var(--r4);padding:24px;margin-bottom:40px;border:1px solid var(--border)}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.calc-input-box{background:#fff;border:1px solid var(--border);border-radius:var(--r4);padding:20px;display:flex;flex-direction:column;gap:18px}
+.calc-field{display:flex;flex-direction:column;gap:6px}
+.calc-label{font-size:11px;font-weight:700;color:var(--gray4);letter-spacing:.08em;text-transform:uppercase}
+.calc-select{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--r4);font-size:13px;font-weight:600;color:var(--text);background:#fff;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;cursor:pointer}
+.calc-select:focus{outline:none;border-color:var(--navy)}
+.calc-weight-wrap{display:flex;align-items:center;gap:8px}
+.calc-input{flex:1;padding:9px 12px;border:1px solid var(--border);border-radius:var(--r4);font-size:20px;font-weight:700;color:var(--text);text-align:right}
+.calc-input:focus{outline:none;border-color:var(--navy)}
+.calc-unit{font-size:14px;font-weight:600;color:var(--gray4)}
+.calc-slider{width:100%;accent-color:var(--navy);cursor:pointer}
+.calc-slider-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--gray4);margin-top:3px}
+.calc-rate-row{display:flex;align-items:baseline;gap:5px}
+.calc-rate-num{font-size:18px;font-weight:700;color:var(--navy)}
+.calc-rate-unit{font-size:11px;color:var(--gray4)}
+.calc-result-box{background:var(--navy);border-radius:var(--r4);padding:20px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.calc-result-label{font-size:10px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px}
+.calc-result-price{font-size:clamp(32px,5vw,46px);font-weight:700;color:#F0C040;letter-spacing:-.02em;line-height:1;margin-bottom:6px}
+.calc-result-note{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:14px}
+.calc-result-breakdown{width:100%;background:rgba(255,255,255,.07);border-radius:var(--r4);padding:12px 14px;font-size:13px;color:rgba(255,255,255,.65);line-height:2;text-align:left;margin-bottom:14px}
+.calc-result-breakdown strong{color:#fff}
+.calc-result-btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:11px;background:var(--gold);color:#fff;font-size:13px;font-weight:700;border-radius:var(--r4);transition:opacity .15s}
+.calc-result-btn:hover{opacity:.88}
+.calc-result-btn svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2}
+.calc-disclaimer{font-size:10px;color:rgba(255,255,255,.3);margin-top:8px;line-height:1.6}
+.price-tables{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:20px}
+.price-tbl{width:100%;border-collapse:collapse;font-size:12px;border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;background:#fff}
+.price-tbl thead th{background:var(--navy);color:#fff;padding:9px 14px;text-align:left;font-size:12px;font-weight:700;letter-spacing:.06em}
+.price-tbl tbody tr{border-bottom:1px solid var(--border)}
+.price-tbl tbody tr:last-child{border-bottom:none}
+.price-tbl tbody tr:hover{background:var(--gray1)}
+.price-tbl td{padding:8px 14px;color:var(--text)}
+.price-cell{text-align:right;font-weight:700;color:var(--gold)!important}
+
+/* ===== HOW TO FLOW ===== */
+.flow-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:40px;position:relative}
+.flow-steps::before{content:'';position:absolute;top:36px;left:calc(100%/6);right:calc(100%/6);height:2px;background:linear-gradient(90deg,var(--gold) 0%,var(--gold2) 100%);z-index:0}
+.flow-step{position:relative;z-index:1;text-align:center;padding:20px 16px}
+.flow-step__num{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;border:2px solid var(--gold)}
+.flow-step__icon{font-size:28px;margin-bottom:8px}
+.flow-step__title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.flow-step__desc{font-size:12px;color:var(--gray4);line-height:1.6}
+
+/* ===== REASON CARDS ===== */
+.reason-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
+.reason-card{border:1px solid var(--border);border-radius:var(--r4);padding:24px 20px;text-align:center;background:#fff}
+.reason-card__icon{font-size:36px;margin-bottom:12px}
+.reason-card__num{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.12em;margin-bottom:8px}
+.reason-card__title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.reason-card__desc{font-size:13px;color:var(--gray4);line-height:1.7}
+
+/* ===== VOICE / TESTIMONIAL ===== */
+.voice-list{display:flex;flex-direction:column;gap:12px;margin-bottom:40px}
+.voice-card{border:1px solid var(--border);border-radius:var(--r4);padding:18px 20px;background:#fff;display:flex;gap:16px}
+.voice-card__avatar{width:44px;height:44px;border-radius:50%;background:var(--gray2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px}
+.voice-card__body{flex:1}
+.voice-card__header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.voice-card__name{font-size:13px;font-weight:700;color:var(--navy)}
+.voice-card__item{font-size:11px;color:var(--gray4)}
+.voice-card__stars{color:var(--gold);font-size:14px;margin-bottom:6px}
+.voice-card__text{font-size:13px;color:var(--text);line-height:1.7}
+
+/* ===== NEWS LIST ===== */
+.news-list{display:flex;flex-direction:column;gap:0;margin-bottom:40px}
+.news-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-size:13px}
+.news-item:first-child{padding-top:0}
+.news-date{color:var(--gray4);white-space:nowrap;font-size:12px;min-width:80px}
+.news-cat{font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;background:#E8EDF7;color:var(--navy);white-space:nowrap}
+.news-title{color:var(--text);transition:color .12s;flex:1}
+.news-item:hover .news-title{color:var(--navy)}
+
+/* ===== FAQ ACCORDION ===== */
+.faq-list{display:flex;flex-direction:column;gap:8px;margin-bottom:40px}
+.faq-item{border:1px solid var(--border);border-radius:var(--r4);overflow:hidden}
+.faq-q{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;background:#fff;transition:background .12s}
+.faq-q:hover{background:var(--gray1)}
+.faq-q__icon{width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.faq-q__text{flex:1;font-size:13px;font-weight:700;color:var(--text)}
+.faq-q__arrow{font-size:11px;color:var(--gray3);transition:transform .2s}
+.faq-item.is-open .faq-q__arrow{transform:rotate(180deg)}
+.faq-a{display:none;padding:14px 16px 14px 52px;background:var(--gray1);font-size:13px;color:var(--gray4);line-height:1.7}
+.faq-item.is-open .faq-a{display:block}
+
+/* ===== CTA BAND ===== */
+.cta-band{background:var(--navy);padding:40px 0;margin-bottom:0}
+.cta-band__inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.cta-band__text h2{font-size:24px;font-weight:700;color:#fff;margin-bottom:8px}
+.cta-band__text p{font-size:14px;color:rgba(255,255,255,.7)}
+.cta-band__btns{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;font-size:14px;font-weight:700;border-radius:var(--r4);transition:opacity .15s;white-space:nowrap}
+.cta-btn:hover{opacity:.88}
+.cta-btn--gold{background:var(--gold);color:#fff}
+.cta-btn--white{background:#fff;color:var(--navy)}
+.cta-btn--outline{border:2px solid rgba(255,255,255,.5);color:#fff}
+.cta-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== BLOG CARDS ===== */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
+.blog-card{border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;cursor:pointer;background:#fff;transition:box-shadow .2s,transform .18s}
+.blog-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.blog-card__thumb{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#e8edf7 0%,#d0d8f0 100%);display:flex;align-items:center;justify-content:center;font-size:32px}
+.blog-card__body{padding:14px}
+.blog-card__cat{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.blog-card__title{font-size:13px;font-weight:700;color:var(--text);line-height:1.5;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.blog-card__date{font-size:11px;color:var(--gray4)}
+
+/* ===== FOOTER ===== */
+.site-footer{background:var(--navy2)}
+.site-footer__main{max-width:1200px;margin:0 auto;padding:40px 16px 32px;display:grid;grid-template-columns:240px 1fr;gap:40px}
+.footer-brand__logo{font-size:24px;font-weight:700;color:#fff;letter-spacing:.1em;margin-bottom:6px}
+.footer-brand__catch{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:16px}
+.footer-brand__tel{font-size:20px;font-weight:700;color:var(--gold);letter-spacing:.04em;margin-bottom:4px}
+.footer-brand__hours{font-size:11px;color:rgba(255,255,255,.4)}
+.footer-links{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.footer-links__col-head{font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-links__item{display:block;font-size:12px;color:rgba(255,255,255,.6);padding:4px 0;transition:color .12s}
+.footer-links__item:hover{color:var(--gold)}
+.site-footer__bottom{border-top:1px solid rgba(255,255,255,.08);padding:16px}
+.footer-nav{max-width:1200px;margin:0 auto 10px;display:flex;gap:0;flex-wrap:wrap}
+.footer-nav a{font-size:11px;color:rgba(255,255,255,.4);padding:4px 12px;border-right:1px solid rgba(255,255,255,.1);transition:color .12s}
+.footer-nav a:last-child{border-right:none}
+.footer-nav a:hover{color:rgba(255,255,255,.8)}
+.footer-copy{max-width:1200px;margin:0 auto;font-size:11px;color:rgba(255,255,255,.3);text-align:center;padding:0 16px}
+
+/* ===== SCROLL TOP ===== */
+.scroll-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;background:var(--navy);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:400;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.scroll-top.visible{opacity:1;pointer-events:auto}
+.scroll-top:hover{transform:translateY(-2px)}
+.scroll-top svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== MOBILE MENU ===== */
+.mobile-menu-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500}
+.mobile-menu-overlay.is-open{display:block}
+.mobile-menu{position:fixed;top:0;left:-280px;width:280px;height:100%;background:#fff;z-index:501;transition:left .3s;overflow-y:auto}
+.mobile-menu.is-open{left:0}
+.mobile-menu__head{background:var(--navy);padding:20px 16px;display:flex;align-items:center;justify-content:space-between}
+.mobile-menu__logo{font-size:20px;font-weight:700;color:#fff;letter-spacing:.1em}
+.mobile-menu__close{background:none;border:none;color:#fff;font-size:24px;cursor:pointer;line-height:1}
+.mobile-menu__body{padding:16px 0}
+.mobile-menu-item{display:flex;align-items:center;padding:14px 20px;font-size:14px;font-weight:600;color:var(--text);border-bottom:1px solid var(--border);transition:background .12s,color .12s}
+.mobile-menu-item:hover{background:var(--gray1);color:var(--navy)}
+.mobile-menu-item--cat{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;padding:16px 20px 8px;cursor:default;background:none}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .global-nav,.search-bar,.sidebar{display:none}
+  .main-layout{padding:16px}
+  .banner-grid{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:repeat(3,1fr)}
+  .reason-grid,.blog-grid{grid-template-columns:1fr}
+  .flow-steps{grid-template-columns:1fr;gap:12px}
+  .flow-steps::before{display:none}
+  .calc-grid{grid-template-columns:1fr}
+  .cta-band__inner{flex-direction:column;text-align:center}
+  .site-footer__main{grid-template-columns:1fr}
+  .footer-links{grid-template-columns:1fr 1fr}
+  .header-action-btn--tel .tel-num{font-size:13px}
+}
+@media(max-width:480px){
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .site-logo__text{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- LINE BANNER -->
+<a href="flow/line.html" class="line-banner">
+  <div class="line-banner__inner">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+    写真を送るだけ！ LINE査定 受付中 ▶
+  </div>
+</a>
+
+<!-- UTIL BAR -->
+<div class="util-bar">
+  <div class="util-bar__inner">
+    <a href="flow/takuhai.html" class="util-bar__item">
+      <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>宅配買取
+    </a>
+    <a href="flow/syuttyou.html" class="util-bar__item">
+      <svg viewBox="0 0 24 24"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>出張買取
+    </a>
+    <a href="contact/index.html" class="util-bar__item">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>メール査定
+    </a>
+    <a href="company/index.html" class="util-bar__item">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>会社概要
+    </a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="site-header__inner">
+    <button class="header-menu-btn" id="menuBtn" aria-label="メニュー">
+      <div class="header-menu-btn__lines"><span></span><span></span><span></span></div>
+      <span class="header-menu-btn__label">MENU</span>
+    </button>
+    <div class="site-logo">
+      <a href="index.html">
+        <div class="site-logo__text">ナニウル</div>
+        <div class="site-logo__sub">NANIURU ｜ 八王子の高価買取専門店</div>
+      </a>
+    </div>
+    <div class="header-actions">
+      <a href="flow/line.html" class="header-action-btn">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span class="header-action-btn__label">LINE査定</span>
+      </a>
+      <a href="contact/index.html" class="header-action-btn">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="header-action-btn__label">お問合せ</span>
+      </a>
+      <a href="tel:0426000000" class="header-action-btn header-action-btn--tel">
+        <div class="tel-num">042-600-0000</div>
+        <div class="tel-note">10:00〜19:00 年中無休</div>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- GLOBAL NAV -->
+<nav class="global-nav">
+  <div class="global-nav__inner">
+    <div class="gnav-item is-active"><a href="index.html">HOME</a></div>
+    <div class="gnav-item">
+      <span>買取商品 <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+      <div class="gnav-dropdown">
+        <a href="product/kikinzoku.html">金・プラチナ・銀</a>
+        <a href="product/brand.html">ブランド品</a>
+        <a href="product/watch.html">腕時計</a>
+        <a href="product/jewelry.html">宝石・ジュエリー</a>
+        <a href="product/antique.html">骨董・古美術</a>
+        <a href="product/camera.html">カメラ・光学機器</a>
+        <a href="product/coin.html">古銭・切手</a>
+        <a href="product/other.html">その他なんでも</a>
+      </div>
+    </div>
+    <div class="gnav-item">
+      <span>買取の流れ <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+      <div class="gnav-dropdown">
+        <a href="flow/index.html">買取方法のご案内</a>
+        <a href="flow/tenpo.html">店頭買取</a>
+        <a href="flow/takuhai.html">宅配買取</a>
+        <a href="flow/syuttyou.html">出張買取</a>
+        <a href="flow/line.html">LINE査定</a>
+      </div>
+    </div>
+    <div class="gnav-item"><a href="results/index.html">買取実績</a></div>
+    <div class="gnav-item"><a href="reason/index.html">選ばれる理由</a></div>
+    <div class="gnav-item"><a href="voice/index.html">お客様の声</a></div>
+    <div class="gnav-item"><a href="faq/index.html">よくある質問</a></div>
+    <div class="gnav-item">
+      <span>会社情報 <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+      <div class="gnav-dropdown">
+        <a href="company/index.html">会社概要</a>
+        <a href="company/access.html">アクセス・店舗案内</a>
+        <a href="company/recruit.html">採用情報</a>
+      </div>
+    </div>
+    <div class="gnav-item"><a href="blog/index.html">ブログ</a></div>
+  </div>
+</nav>
+
+<!-- SEARCH BAR -->
+<div class="search-bar">
+  <div class="search-bar__inner">
+    <form class="search-form" onsubmit="return false">
+      <input type="text" class="search-form__input" placeholder="商品名・ブランド名で検索（例：ロレックス、K18）">
+      <button class="search-form__btn" type="submit" aria-label="検索">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+    </form>
+    <div class="search-bar__links">
+      <a href="product/kikinzoku.html" class="search-bar__link"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>金・プラチナ</a>
+      <a href="product/watch.html" class="search-bar__link"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><polyline points="12 9 12 12 13.5 13.5"/></svg>時計</a>
+      <a href="product/brand.html" class="search-bar__link"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/></svg>ブランド</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO CAROUSEL -->
+<div class="hero-carousel" id="hero">
+  <div class="carousel-track" id="carouselTrack">
+    <!-- Slide 1 -->
+    <div class="carousel-slide">
+      <div class="carousel-slide__inner slide-bg--1">
+        <div class="hero-slide-content">
+          <div class="hero-slide-eyebrow">High Value Purchase</div>
+          <div class="hero-slide-title">他店より<br>高く売れます</div>
+          <div class="hero-slide-sub">独自の買取ルートで業界最高水準の査定額を実現</div>
+          <a href="contact/index.html" class="hero-slide-btn">無料で査定を依頼する <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+        <div class="hero-slide-deco">
+          <div class="hero-slide-deco-circle"></div>
+          <div class="hero-slide-deco-circle2"></div>
+          <div class="hero-slide-big-text">GOLD</div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="carousel-slide">
+      <div class="carousel-slide__inner slide-bg--2">
+        <div class="hero-slide-content">
+          <div class="hero-slide-eyebrow">LINE Appraisal</div>
+          <div class="hero-slide-title">写真を送るだけ<br>LINE査定</div>
+          <div class="hero-slide-sub">24時間受付・数分で概算をご回答</div>
+          <a href="flow/line.html" class="hero-slide-btn">LINE査定を始める <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+        <div class="hero-slide-deco">
+          <div class="hero-slide-deco-circle"></div>
+          <div class="hero-slide-big-text">LINE</div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="carousel-slide">
+      <div class="carousel-slide__inner slide-bg--3">
+        <div class="hero-slide-content">
+          <div class="hero-slide-eyebrow">Home Visit</div>
+          <div class="hero-slide-title">ご自宅まで<br>出張買取</div>
+          <div class="hero-slide-sub">手数料・キャンセル料すべて無料</div>
+          <a href="flow/syuttyou.html" class="hero-slide-btn">出張買取を申し込む <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+        <div class="hero-slide-deco">
+          <div class="hero-slide-deco-circle"></div>
+          <div class="hero-slide-big-text">FREE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-prev" id="carouselPrev" aria-label="前へ"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="carousel-next" id="carouselNext" aria-label="次へ"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+  <div class="carousel-ui">
+    <div class="carousel-dots">
+      <button class="carousel-dot is-active" data-slide="0"></button>
+      <button class="carousel-dot" data-slide="1"></button>
+      <button class="carousel-dot" data-slide="2"></button>
+    </div>
+    <div class="carousel-counter"><span id="carouselCurrent">1</span> / 3</div>
+  </div>
+  <div class="carousel-progress"><div class="carousel-progress__bar" id="carouselBar"></div></div>
+</div>
+
+<!-- TICKER BAND -->
+<div class="ticker-band">
+  <div class="ticker-band__inner">
+    <div class="ticker-band__label">本日の買取相場</div>
+    <div class="ticker-band__items">
+      <div class="ticker-band__item">
+        <span class="ticker-band__name">K24</span>
+        <span class="ticker-band__price" id="price-k24">—</span>
+        <span class="ticker-band__unit">円/g</span>
+      </div>
+      <div class="ticker-band__item">
+        <span class="ticker-band__name">K18</span>
+        <span class="ticker-band__price" id="price-k18">—</span>
+        <span class="ticker-band__unit">円/g</span>
+      </div>
+      <div class="ticker-band__item">
+        <span class="ticker-band__name">Pt950</span>
+        <span class="ticker-band__price" id="price-pt">—</span>
+        <span class="ticker-band__unit">円/g</span>
+      </div>
+      <div class="ticker-band__item">
+        <span class="ticker-band__name">Silver</span>
+        <span class="ticker-band__price" id="price-ag">—</span>
+        <span class="ticker-band__unit">円/g</span>
+      </div>
+    </div>
+    <a href="product/kikinzoku.html" class="ticker-band__link">詳細 ›</a>
+    <span class="ticker-band__updated" id="ticker-updated"></span>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="main-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-cta">
+      <div class="sidebar-cta__title">無料査定受付中</div>
+      <div class="sidebar-cta__sub">手数料・キャンセル料<br>すべて無料</div>
+      <a href="flow/line.html" class="sidebar-cta__btn">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>LINE査定（24時間）
+      </a>
+      <a href="contact/index.html" class="sidebar-cta__btn sidebar-cta__btn--outline">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>メールで相談する
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section__head">買取ジャンル</div>
+      <div class="sidebar-section__body">
+        <a href="product/kikinzoku.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>金・プラチナ・銀</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+        <a href="product/brand.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>ブランド品</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+        <a href="product/watch.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><polyline points="12 9 12 12 13.5 13.5"/></svg>腕時計</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+        <a href="product/jewelry.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>宝石・ジュエリー</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+        <a href="product/antique.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>骨董・古美術</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+        <a href="product/camera.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>カメラ</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+        <a href="product/coin.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>古銭・切手</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+        <a href="product/other.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>その他なんでも</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section__head">買取の流れ</div>
+      <div class="sidebar-section__body">
+        <a href="flow/tenpo.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>店頭買取</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+        <a href="flow/takuhai.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>宅配買取</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+        <a href="flow/syuttyou.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>出張買取</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+        <a href="flow/line.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>LINE査定</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section__head">サポート</div>
+      <div class="sidebar-section__body">
+        <a href="faq/index.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>よくある質問</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+        <a href="voice/index.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>お客様の声</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+        <a href="contact/index.html" class="sidebar-item">
+          <span class="sidebar-item__name"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>お問い合わせ</span>
+          <span class="sidebar-item__arrow">›</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- 2列バナー -->
+    <div class="banner-grid">
+      <a href="product/kikinzoku.html" class="banner-card">
+        <div class="banner-card__bg banner-bg--gold"></div>
+        <div class="banner-card__body">
+          <div class="banner-card__eyebrow">Precious Metal</div>
+          <div class="banner-card__title">金・プラチナ<br>強化買取中</div>
+          <div class="banner-card__btn">詳細はこちら <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </a>
+      <a href="product/watch.html" class="banner-card">
+        <div class="banner-card__bg banner-bg--navy"></div>
+        <div class="banner-card__body">
+          <div class="banner-card__eyebrow">Brand Watch</div>
+          <div class="banner-card__title">ROLEX・OMEGA<br>ブランド時計買取</div>
+          <div class="banner-card__btn">詳細はこちら <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </a>
+    </div>
+
+    <!-- 買取ジャンル -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-header__title">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+          買取ジャンル一覧
+        </div>
+        <a href="product/brand.html" class="section-header__more">すべて見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+      <div class="cat-grid" id="genre-grid">
+        <a href="product/kikinzoku.html" class="cat-card">
+          <div class="cat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+          <span class="cat-card__name">金・プラチナ・銀</span>
+          <span class="cat-card__badge">相場最高値</span>
+        </a>
+        <a href="product/brand.html" class="cat-card">
+          <div class="cat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div>
+          <span class="cat-card__name">ブランド品</span>
+        </a>
+        <a href="product/watch.html" class="cat-card">
+          <div class="cat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7"/><polyline points="12 9 12 12 13.5 13.5"/></svg></div>
+          <span class="cat-card__name">腕時計</span>
+        </a>
+        <a href="product/jewelry.html" class="cat-card">
+          <div class="cat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <span class="cat-card__name">宝石・ジュエリー</span>
+          <span class="cat-card__badge">高額査定</span>
+        </a>
+        <a href="product/antique.html" class="cat-card">
+          <div class="cat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+          <span class="cat-card__name">骨董・古美術</span>
+        </a>
+        <a href="product/camera.html" class="cat-card">
+          <div class="cat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+          <span class="cat-card__name">カメラ・光学</span>
+        </a>
+        <a href="product/coin.html" class="cat-card">
+          <div class="cat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
+          <span class="cat-card__name">古銭・切手</span>
+        </a>
+        <a href="product/other.html" class="cat-card">
+          <div class="cat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <span class="cat-card__name">その他なんでも</span>
+          <span class="cat-card__badge">まず相談</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 買取実績 -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-header__title">
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          高価買取実績
+        </div>
+        <a href="results/index.html" class="section-header__more">すべて見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+      <div class="product-row" id="results-grid">
+        <!-- JS or static cards -->
+        <article class="product-card">
+          <div class="product-card__img card-bg--1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(27,47,110,.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7"/><polyline points="12 9 12 12 13.5 13.5"/></svg>
+            <span class="product-card__badge badge--hot">HOT</span>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__brand">東京都</div>
+            <div class="product-card__name">ロレックス サブマリーナ</div>
+            <div class="product-card__price">¥850,000</div>
+            <div class="product-card__price-sub">買取価格</div>
+            <div class="product-card__method"><span class="product-card__tag tag--store">店頭買取</span></div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-card__img card-bg--3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(27,47,110,.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+            <span class="product-card__badge badge--new">NEW</span>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__brand">神奈川県</div>
+            <div class="product-card__name">エルメス バーキン 30</div>
+            <div class="product-card__price">¥1,350,000</div>
+            <div class="product-card__price-sub">買取価格</div>
+            <div class="product-card__method"><span class="product-card__tag tag--mail">宅配買取</span></div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-card__img card-bg--2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(27,47,110,.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__brand">東京都</div>
+            <div class="product-card__name">ダイヤモンド 3.2ct ルース</div>
+            <div class="product-card__price">¥980,000</div>
+            <div class="product-card__price-sub">買取価格</div>
+            <div class="product-card__method"><span class="product-card__tag tag--line">LINE査定</span></div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-card__img card-bg--1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(27,47,110,.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__brand">埼玉県</div>
+            <div class="product-card__name">K18 ネックレス 42g</div>
+            <div class="product-card__price">¥312,000</div>
+            <div class="product-card__price-sub">買取価格</div>
+            <div class="product-card__method"><span class="product-card__tag tag--store">店頭買取</span></div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-card__img card-bg--4">
+            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(27,47,110,.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7"/><polyline points="12 9 12 12 13.5 13.5"/></svg>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__brand">千葉県</div>
+            <div class="product-card__name">カルティエ タンクフランセーズ</div>
+            <div class="product-card__price">¥420,000</div>
+            <div class="product-card__price-sub">買取価格</div>
+            <div class="product-card__method"><span class="product-card__tag tag--mail">宅配買取</span></div>
+          </div>
+        </article>
+        <article class="product-card">
+          <div class="product-card__img card-bg--5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(27,47,110,.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+            <span class="product-card__badge badge--sale">SALE</span>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__brand">東京都</div>
+            <div class="product-card__name">シャネル ラムスキン バッグ</div>
+            <div class="product-card__price">¥390,000</div>
+            <div class="product-card__price-sub">買取価格</div>
+            <div class="product-card__method"><span class="product-card__tag tag--store">店頭買取</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- ブランドタグ -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-header__title">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          強化買取中ブランド
+        </div>
+      </div>
+      <div class="brand-list" id="brand-grid">
+        <a href="product/watch/rolex.html" class="brand-tag">ロレックス <span class="brand-tag__badge">強化</span></a>
+        <a href="product/brand/lv.html" class="brand-tag">ルイ・ヴィトン</a>
+        <a href="product/brand/hermes.html" class="brand-tag">エルメス <span class="brand-tag__badge">強化</span></a>
+        <a href="product/brand/chanel.html" class="brand-tag">シャネル</a>
+        <a href="product/brand/cartier.html" class="brand-tag">カルティエ</a>
+        <a href="product/brand/bulgari.html" class="brand-tag">ブルガリ</a>
+        <a href="product/brand/tiffany.html" class="brand-tag">ティファニー</a>
+        <a href="product/brand/gucci.html" class="brand-tag">グッチ</a>
+        <a href="product/brand/prada.html" class="brand-tag">プラダ</a>
+        <a href="product/watch/omega.html" class="brand-tag">オメガ <span class="brand-tag__badge">強化</span></a>
+        <a href="product/watch/patek.html" class="brand-tag">パテックフィリップ</a>
+        <a href="product/brand/celine.html" class="brand-tag">セリーヌ</a>
+      </div>
+    </div>
+
+    <!-- 金相場計算機 -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-header__title">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          金・貴金属 買取計算機
+        </div>
+        <a href="product/kikinzoku.html" class="section-header__more">相場詳細 <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+      <div class="calc-section">
+        <div class="calc-grid">
+          <div class="calc-input-box">
+            <div class="calc-field">
+              <label class="calc-label" for="calc-metal">素材・刻印</label>
+              <select class="calc-select" id="calc-metal">
+                <optgroup label="ゴールド">
+                  <option value="k24">K24（純金）</option>
+                  <option value="k22">K22</option>
+                  <option value="k18" selected>K18</option>
+                  <option value="k14">K14</option>
+                  <option value="k10">K10</option>
+                  <option value="k9">K9</option>
+                </optgroup>
+                <optgroup label="プラチナ">
+                  <option value="pt1000">Pt1000</option>
+                  <option value="pt950">Pt950</option>
+                  <option value="pt900">Pt900</option>
+                  <option value="pt850">Pt850</option>
+                </optgroup>
+                <optgroup label="シルバー">
+                  <option value="ag999">Silver 999</option>
+                  <option value="ag950">Silver 950</option>
+                  <option value="ag925">Silver 925</option>
+                  <option value="ag900">Silver 900</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label class="calc-label" for="calc-weight">重量</label>
+              <div class="calc-weight-wrap">
+                <input type="number" class="calc-input" id="calc-weight" value="10" min="0" max="9999" step="0.1">
+                <span class="calc-unit">g</span>
+              </div>
+              <input type="range" class="calc-slider" id="calc-slider" min="0" max="200" step="0.5" value="10">
+              <div class="calc-slider-labels"><span>0g</span><span>200g</span></div>
+            </div>
+            <div class="calc-field">
+              <div class="calc-label">買取レート目安</div>
+              <div class="calc-rate-row">
+                <span class="calc-rate-num" id="calc-rate">—</span>
+                <span class="calc-rate-unit">円/g</span>
+              </div>
+            </div>
+          </div>
+          <div class="calc-result-box">
+            <div class="calc-result-label">概算買取金額</div>
+            <div class="calc-result-price" id="calc-result">¥—</div>
+            <div class="calc-result-note" id="calc-result-note">重量を入力してください</div>
+            <div class="calc-result-breakdown" id="calc-breakdown"></div>
+            <a href="contact/index.html" class="calc-result-btn">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              正式な査定を依頼する
+            </a>
+            <div class="calc-disclaimer">※上記は概算です。実際の買取価格は状態・鑑定書の有無等により異なります</div>
+          </div>
+        </div>
+        <div class="price-tables">
+          <table class="price-tbl">
+            <thead><tr><th>金（Gold）</th><th style="text-align:right">円/g</th></tr></thead>
+            <tbody>
+              <tr><td>K24</td><td class="price-cell" id="tbl-k24">—</td></tr>
+              <tr><td>K22</td><td class="price-cell" id="tbl-k22">—</td></tr>
+              <tr><td>K18</td><td class="price-cell" id="tbl-k18">—</td></tr>
+              <tr><td>K14</td><td class="price-cell" id="tbl-k14">—</td></tr>
+              <tr><td>K10</td><td class="price-cell" id="tbl-k10">—</td></tr>
+              <tr><td>K9</td><td class="price-cell" id="tbl-k9">—</td></tr>
+            </tbody>
+          </table>
+          <table class="price-tbl">
+            <thead><tr><th>プラチナ（Pt）</th><th style="text-align:right">円/g</th></tr></thead>
+            <tbody>
+              <tr><td>Pt1000</td><td class="price-cell" id="tbl-pt1000">—</td></tr>
+              <tr><td>Pt950</td><td class="price-cell" id="tbl-pt950">—</td></tr>
+              <tr><td>Pt900</td><td class="price-cell" id="tbl-pt900">—</td></tr>
+              <tr><td>Pt850</td><td class="price-cell" id="tbl-pt850">—</td></tr>
+            </tbody>
+          </table>
+          <table class="price-tbl">
+            <thead><tr><th>シルバー（Ag）</th><th style="text-align:right">円/g</th></tr></thead>
+            <tbody>
+              <tr><td>Silver 999</td><td class="price-cell" id="tbl-ag999">—</td></tr>
+              <tr><td>Silver 925</td><td class="price-cell" id="tbl-ag925">—</td></tr>
+              <tr><td>Silver 900</td><td class="price-cell" id="tbl-ag900">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 選ばれる理由 -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-header__title">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          ナニウルが選ばれる理由
+        </div>
+        <a href="reason/index.html" class="section-header__more">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+      <div class="reason-grid">
+        <div class="reason-card">
+          <div class="reason-card__icon">💰</div>
+          <div class="reason-card__num">REASON 01</div>
+          <div class="reason-card__title">業界最高水準の<br>高価買取</div>
+          <div class="reason-card__desc">独自の買取ルートと豊富な販売実績により、他店を圧倒する高額査定を実現します。</div>
+        </div>
+        <div class="reason-card">
+          <div class="reason-card__icon">🆓</div>
+          <div class="reason-card__num">REASON 02</div>
+          <div class="reason-card__title">手数料・送料<br>すべて無料</div>
+          <div class="reason-card__desc">宅配買取の送料も、キャンセル時の手数料も一切いただきません。安心してご相談ください。</div>
+        </div>
+        <div class="reason-card">
+          <div class="reason-card__icon">😊</div>
+          <div class="reason-card__num">REASON 03</div>
+          <div class="reason-card__title">丁寧・親切な<br>接客</div>
+          <div class="reason-card__desc">査定内容を分かりやすくご説明。納得いただいてからの買取を徹底しています。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 買取の流れ -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-header__title">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          買取の流れ
+        </div>
+        <a href="flow/index.html" class="section-header__more">詳しく見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step__num">1</div>
+          <div class="flow-step__icon">📦</div>
+          <div class="flow-step__title">お申し込み</div>
+          <div class="flow-step__desc">電話・LINE・メールでお気軽にご連絡ください</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">2</div>
+          <div class="flow-step__icon">🔍</div>
+          <div class="flow-step__title">無料査定</div>
+          <div class="flow-step__desc">専門スタッフが丁寧に査定し金額をご提示します</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step__num">3</div>
+          <div class="flow-step__icon">💴</div>
+          <div class="flow-step__title">即日お支払い</div>
+          <div class="flow-step__desc">ご納得いただけたら即日現金またはお振込みで</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- お客様の声 -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-header__title">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          お客様の声
+        </div>
+        <a href="voice/index.html" class="section-header__more">すべて見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+      <div class="voice-list">
+        <div class="voice-card">
+          <div class="voice-card__avatar">👩</div>
+          <div class="voice-card__body">
+            <div class="voice-card__header">
+              <span class="voice-card__name">T.M様（40代・女性）</span>
+              <span class="voice-card__item">ロレックス 買取</span>
+            </div>
+            <div class="voice-card__stars">★★★★★</div>
+            <div class="voice-card__text">他店で断られたキズのあるロレックスを快く査定していただき、想像以上の金額で買取ってもらえました。スタッフの方もとても親切で、また利用したいと思います。</div>
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-card__avatar">👨</div>
+          <div class="voice-card__body">
+            <div class="voice-card__header">
+              <span class="voice-card__name">K.S様（60代・男性）</span>
+              <span class="voice-card__item">金・プラチナ 買取</span>
+            </div>
+            <div class="voice-card__stars">★★★★★</div>
+            <div class="voice-card__text">遺品の金製品をまとめて持ち込みましたが、一点一点丁寧に査定してくれました。相場も教えていただき納得感のある取引ができました。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ブログ -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-header__title">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          買取コラム・ブログ
+        </div>
+        <a href="blog/index.html" class="section-header__more">一覧を見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+      <div class="blog-grid">
+        <a href="blog/rolex-value.html" class="blog-card">
+          <div class="blog-card__thumb">⌚</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">ブランド時計</div>
+            <div class="blog-card__title">ロレックスの買取相場は？高く売るコツを専門家が解説</div>
+            <div class="blog-card__date">2025.06.01</div>
+          </div>
+        </a>
+        <a href="blog/gold-price.html" class="blog-card">
+          <div class="blog-card__thumb">💛</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">貴金属</div>
+            <div class="blog-card__title">K18とK24の違い・刻印の見方と買取価格の目安</div>
+            <div class="blog-card__date">2025.05.20</div>
+          </div>
+        </a>
+        <a href="blog/brand-bag.html" class="blog-card">
+          <div class="blog-card__thumb">👜</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">ブランド品</div>
+            <div class="blog-card__title">エルメス バーキンの買取価格相場と査定ポイント</div>
+            <div class="blog-card__date">2025.05.10</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- お知らせ -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-header__title">
+          <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          お知らせ
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <span class="news-date">2025.06.15</span>
+          <span class="news-cat">お知らせ</span>
+          <a href="#" class="news-title">ゴールデンウィーク期間中の営業のご案内</a>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2025.05.20</span>
+          <span class="news-cat">実績</span>
+          <a href="results/index.html" class="news-title">2025年5月の高価買取実績を更新しました</a>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2025.04.01</span>
+          <span class="news-cat">サービス</span>
+          <a href="flow/takuhai.html" class="news-title">宅配買取サービス エリア拡大のお知らせ</a>
+        </div>
+        <div class="news-item">
+          <span class="news-date">2025.03.01</span>
+          <span class="news-cat">お知らせ</span>
+          <a href="#" class="news-title">LINE査定24時間対応開始のお知らせ</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section-block">
+      <div class="section-header">
+        <div class="section-header__title">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          よくあるご質問
+        </div>
+        <a href="faq/index.html" class="section-header__more">すべて見る <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="this.parentElement.classList.toggle('is-open')">
+            <span class="faq-q__icon">Q</span>
+            <span class="faq-q__text">査定にどのくらい時間がかかりますか？</span>
+            <span class="faq-q__arrow">▼</span>
+          </div>
+          <div class="faq-a">品物にもよりますが、通常数分〜30分程度で査定いたします。貴金属・金は特にスムーズです。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="this.parentElement.classList.toggle('is-open')">
+            <span class="faq-q__icon">Q</span>
+            <span class="faq-q__text">査定後にキャンセルできますか？</span>
+            <span class="faq-q__arrow">▼</span>
+          </div>
+          <div class="faq-a">もちろんです。査定金額にご納得いただけない場合は、キャンセル料なしでお断りいただけます。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="this.parentElement.classList.toggle('is-open')">
+            <span class="faq-q__icon">Q</span>
+            <span class="faq-q__text">壊れていたり、傷がある品物でも買取できますか？</span>
+            <span class="faq-q__arrow">▼</span>
+          </div>
+          <div class="faq-a">はい、状態が良くない品物でも積極的に査定いたします。まずはお気軽にご相談ください。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="this.parentElement.classList.toggle('is-open')">
+            <span class="faq-q__icon">Q</span>
+            <span class="faq-q__text">宅配買取の箱はどうすれば入手できますか？</span>
+            <span class="faq-q__arrow">▼</span>
+          </div>
+          <div class="faq-a">当店から梱包材をお送りする無料キットサービスをご利用いただけます。お申し込みフォームよりご依頼ください。</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div><!-- /main-layout -->
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band__inner">
+    <div class="cta-band__text">
+      <h2>まずは無料査定から</h2>
+      <p>手数料・キャンセル料すべて無料。お気軽にご相談ください。</p>
+    </div>
+    <div class="cta-band__btns">
+      <a href="flow/line.html" class="cta-btn cta-btn--gold">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>LINE査定（24時間）
+      </a>
+      <a href="tel:0426000000" class="cta-btn cta-btn--white">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>042-600-0000
+      </a>
+      <a href="contact/index.html" class="cta-btn cta-btn--outline">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>メールで相談
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="site-footer__main">
+    <div class="footer-brand">
+      <div class="footer-brand__logo">ナニウル</div>
+      <div class="footer-brand__catch">八王子の高価買取専門店</div>
+      <div class="footer-brand__tel">042-600-0000</div>
+      <div class="footer-brand__hours">10:00〜19:00（年中無休）</div>
+    </div>
+    <div class="footer-links">
+      <div>
+        <div class="footer-links__col-head">買取商品</div>
+        <a href="product/kikinzoku.html" class="footer-links__item">金・プラチナ・銀</a>
+        <a href="product/brand.html" class="footer-links__item">ブランド品</a>
+        <a href="product/watch.html" class="footer-links__item">腕時計</a>
+        <a href="product/jewelry.html" class="footer-links__item">宝石・ジュエリー</a>
+        <a href="product/antique.html" class="footer-links__item">骨董・古美術</a>
+        <a href="product/camera.html" class="footer-links__item">カメラ</a>
+        <a href="product/coin.html" class="footer-links__item">古銭・切手</a>
+      </div>
+      <div>
+        <div class="footer-links__col-head">買取の流れ</div>
+        <a href="flow/index.html" class="footer-links__item">買取方法のご案内</a>
+        <a href="flow/tenpo.html" class="footer-links__item">店頭買取</a>
+        <a href="flow/takuhai.html" class="footer-links__item">宅配買取</a>
+        <a href="flow/syuttyou.html" class="footer-links__item">出張買取</a>
+        <a href="flow/line.html" class="footer-links__item">LINE査定</a>
+      </div>
+      <div>
+        <div class="footer-links__col-head">買取実績・情報</div>
+        <a href="results/index.html" class="footer-links__item">買取実績</a>
+        <a href="reason/index.html" class="footer-links__item">選ばれる理由</a>
+        <a href="voice/index.html" class="footer-links__item">お客様の声</a>
+        <a href="faq/index.html" class="footer-links__item">よくある質問</a>
+        <a href="blog/index.html" class="footer-links__item">ブログ・コラム</a>
+      </div>
+      <div>
+        <div class="footer-links__col-head">会社情報</div>
+        <a href="company/index.html" class="footer-links__item">会社概要</a>
+        <a href="company/access.html" class="footer-links__item">アクセス</a>
+        <a href="company/recruit.html" class="footer-links__item">採用情報</a>
+        <a href="contact/index.html" class="footer-links__item">お問い合わせ</a>
+        <a href="privacy.html" class="footer-links__item">プライバシーポリシー</a>
+      </div>
+    </div>
+  </div>
+  <div class="site-footer__bottom">
+    <nav class="footer-nav">
+      <a href="index.html">HOME</a>
+      <a href="results/index.html">買取実績</a>
+      <a href="flow/index.html">買取の流れ</a>
+      <a href="faq/index.html">よくある質問</a>
+      <a href="blog/index.html">ブログ</a>
+      <a href="company/index.html">会社概要</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="contact/index.html">お問い合わせ</a>
+    </nav>
+    <p class="footer-copy">東京都公安委員会許可 第308832000000号 © ナニウル / 株式会社yxxk</p>
+  </div>
+</footer>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu__head">
+    <span class="mobile-menu__logo">ナニウル</span>
+    <button class="mobile-menu__close" id="menuClose">×</button>
+  </div>
+  <div class="mobile-menu__body">
+    <a href="index.html" class="mobile-menu-item">🏠 HOME</a>
+    <div class="mobile-menu-item mobile-menu-item--cat">買取商品</div>
+    <a href="product/kikinzoku.html" class="mobile-menu-item">　金・プラチナ・銀</a>
+    <a href="product/brand.html" class="mobile-menu-item">　ブランド品</a>
+    <a href="product/watch.html" class="mobile-menu-item">　腕時計</a>
+    <a href="product/jewelry.html" class="mobile-menu-item">　宝石・ジュエリー</a>
+    <a href="product/antique.html" class="mobile-menu-item">　骨董・古美術</a>
+    <a href="product/camera.html" class="mobile-menu-item">　カメラ</a>
+    <a href="product/coin.html" class="mobile-menu-item">　古銭・切手</a>
+    <a href="product/other.html" class="mobile-menu-item">　その他なんでも</a>
+    <div class="mobile-menu-item mobile-menu-item--cat">買取の流れ</div>
+    <a href="flow/tenpo.html" class="mobile-menu-item">　店頭買取</a>
+    <a href="flow/takuhai.html" class="mobile-menu-item">　宅配買取</a>
+    <a href="flow/syuttyou.html" class="mobile-menu-item">　出張買取</a>
+    <a href="flow/line.html" class="mobile-menu-item">　LINE査定</a>
+    <div class="mobile-menu-item mobile-menu-item--cat">サイト情報</div>
+    <a href="results/index.html" class="mobile-menu-item">　買取実績</a>
+    <a href="reason/index.html" class="mobile-menu-item">　選ばれる理由</a>
+    <a href="voice/index.html" class="mobile-menu-item">　お客様の声</a>
+    <a href="faq/index.html" class="mobile-menu-item">　よくある質問</a>
+    <a href="blog/index.html" class="mobile-menu-item">　ブログ・コラム</a>
+    <a href="company/index.html" class="mobile-menu-item">　会社概要</a>
+    <a href="contact/index.html" class="mobile-menu-item">📞 お問い合わせ</a>
+  </div>
+</div>
+
+<!-- SCROLL TOP -->
+<button id="scrollTop" class="scroll-top" aria-label="ページトップへ">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+(function(){
+'use strict';
+
+/* ===== カルーセル ===== */
+var track = document.getElementById('carouselTrack');
+var slides = track ? Array.from(track.children) : [];
+var dots   = document.querySelectorAll('.carousel-dot');
+var bar    = document.getElementById('carouselBar');
+var counter= document.getElementById('carouselCurrent');
+var current = 0, total = slides.length;
+var timer, barDur = 5000;
+
+function goTo(idx) {
+  current = (idx + total) % total;
+  if (track) track.style.transform = 'translateX(-' + (current * 100) + '%)';
+  dots.forEach(function(d,i){ d.classList.toggle('is-active', i === current); });
+  if (counter) counter.textContent = current + 1;
+  resetBar();
+}
+function resetBar() {
+  if (!bar) return;
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+  void bar.offsetWidth;
+  bar.style.transition = 'width ' + barDur + 'ms linear';
+  bar.style.width = '100%';
+}
+function autoPlay() { timer = setInterval(function(){ goTo(current + 1); }, barDur); }
+function stopPlay() { clearInterval(timer); if(bar){ bar.style.transition='none'; bar.style.width='0%'; } }
+
+var prev = document.getElementById('carouselPrev');
+var next = document.getElementById('carouselNext');
+if (prev) prev.addEventListener('click', function(){ stopPlay(); goTo(current-1); autoPlay(); });
+if (next) next.addEventListener('click', function(){ stopPlay(); goTo(current+1); autoPlay(); });
+dots.forEach(function(d){ d.addEventListener('click', function(){ stopPlay(); goTo(parseInt(this.dataset.slide)); autoPlay(); }); });
+goTo(0); autoPlay();
+
+/* ===== 金相場 ===== */
+var FALLBACK = { gold: 15800, pt: 6200, ag: 155 };
+var PURITY = { k24:1,k22:.917,k21:.9,k20:.833,k18:.75,k17:.708,k14:.585,k12:.5,k10:.417,k9:.375, pt1000:1,pt950:.95,pt900:.9,pt850:.85, ag999:.999,ag950:.95,ag925:.925,ag900:.9 };
+var METAL  = { k24:'gold',k22:'gold',k21:'gold',k20:'gold',k18:'gold',k17:'gold',k14:'gold',k12:'gold',k10:'gold',k9:'gold', pt1000:'pt',pt950:'pt',pt900:'pt',pt850:'pt', ag999:'ag',ag950:'ag',ag925:'ag',ag900:'ag' };
+var BASE = Object.assign({}, FALLBACK);
+function fmt(n){ return Math.floor(n).toLocaleString('ja-JP'); }
+function el(id){ return document.getElementById(id); }
+function setText(id,v){ var e=el(id); if(e) e.textContent=v; }
+
+function updateTicker(){
+  var d = new Date();
+  var now = d.getFullYear()+'/'+(d.getMonth()+1).toString().padStart(2,'0')+'/'+d.getDate().toString().padStart(2,'0');
+  setText('price-k24', fmt(BASE.gold));
+  setText('price-k18', fmt(BASE.gold*.75));
+  setText('price-pt',  fmt(BASE.pt));
+  setText('price-ag',  fmt(BASE.ag));
+  setText('ticker-updated', now+' 更新');
+}
+function updateTable(){
+  var pairs = [
+    ['tbl-k24',BASE.gold],['tbl-k22',BASE.gold*.917],['tbl-k18',BASE.gold*.75],
+    ['tbl-k14',BASE.gold*.585],['tbl-k10',BASE.gold*.417],['tbl-k9',BASE.gold*.375],
+    ['tbl-pt1000',BASE.pt],['tbl-pt950',BASE.pt*.95],['tbl-pt900',BASE.pt*.9],['tbl-pt850',BASE.pt*.85],
+    ['tbl-ag999',BASE.ag*.999],['tbl-ag925',BASE.ag*.925],['tbl-ag900',BASE.ag*.9]
+  ];
+  pairs.forEach(function(p){ setText(p[0], fmt(p[1])+' 円/g'); });
+}
+function updateCalc(){
+  var m=el('calc-metal'), w=el('calc-weight');
+  if(!m||!w) return;
+  var metal=m.value, weight=parseFloat(w.value)||0;
+  var purity=PURITY[metal]||1, basePrice=BASE[METAL[metal]]||BASE.gold;
+  var rate=Math.floor(basePrice*purity), total=Math.floor(rate*weight);
+  setText('calc-rate', fmt(rate));
+  setText('calc-result', '¥'+fmt(total));
+  setText('calc-result-note', weight.toFixed(1)+'g × '+fmt(rate)+'円/g');
+  var bd=el('calc-breakdown');
+  if(bd) bd.innerHTML='<strong>基準相場</strong>　'+fmt(basePrice)+' 円/g<br><strong>純度</strong>　× '+purity.toFixed(3)+'<br><strong>レート</strong>　'+fmt(rate)+' 円/g<br><strong>重量</strong>　'+weight.toFixed(1)+' g';
+}
+function bindCalc(){
+  var m=el('calc-metal'),w=el('calc-weight'),s=el('calc-slider');
+  if(m) m.addEventListener('change', updateCalc);
+  if(w) w.addEventListener('input', function(){ if(s) s.value=w.value; updateCalc(); });
+  if(s) s.addEventListener('input', function(){ if(w) w.value=s.value; updateCalc(); });
+}
+function applyData(d){ BASE.gold=d.gold; BASE.pt=d.pt; BASE.ag=d.ag; updateTicker(); updateTable(); updateCalc(); }
+function fetchSpot(cb){
+  var xhr=new XMLHttpRequest();
+  xhr.open('GET','https://api.metals.live/v1/spot/gold',true);
+  xhr.timeout=5000;
+  xhr.onreadystatechange=function(){ if(xhr.readyState===4){ try{ if(xhr.status===200){ var arr=JSON.parse(xhr.responseText); var usd=arr[0]&&arr[0].gold?arr[0].gold:0; if(usd>0){ var jpy=Math.floor(usd/31.1035*150); cb({gold:jpy,pt:Math.floor(jpy*.39),ag:Math.floor(jpy*.0098)}); return; } } }catch(e){} cb(null); } };
+  xhr.onerror=function(){cb(null);}; xhr.ontimeout=function(){cb(null);}; xhr.send();
+}
+
+/* ===== スクロールトップ ===== */
+var sbtn=document.getElementById('scrollTop');
+if(sbtn){
+  window.addEventListener('scroll',function(){ sbtn.classList.toggle('visible', window.scrollY>300); },{passive:true});
+  sbtn.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+}
+
+/* ===== モバイルメニュー ===== */
+var menuBtn=document.getElementById('menuBtn');
+var menuClose=document.getElementById('menuClose');
+var menuOverlay=document.getElementById('menuOverlay');
+var mobileMenu=document.getElementById('mobileMenu');
+function openMenu(){ mobileMenu.classList.add('is-open'); menuOverlay.classList.add('is-open'); document.body.style.overflow='hidden'; }
+function closeMenu(){ mobileMenu.classList.remove('is-open'); menuOverlay.classList.remove('is-open'); document.body.style.overflow=''; }
+if(menuBtn) menuBtn.addEventListener('click', openMenu);
+if(menuClose) menuClose.addEventListener('click', closeMenu);
+if(menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+
+/* ===== INIT ===== */
+function init(){
+  bindCalc();
+  try{
+    var d=new Date(),key='naniuru_'+d.getFullYear()+(d.getMonth()+1)+d.getDate();
+    var cache=sessionStorage.getItem(key);
+    if(cache){ applyData(JSON.parse(cache)); return; }
+  }catch(e){}
+  applyData(FALLBACK);
+  fetchSpot(function(d2){ if(d2&&d2.gold>0){ applyData(d2); } });
+}
+if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',init); } else { init(); }
+})();
+</script>
+</body>
+</html>
